@@ -9,7 +9,7 @@ This is where I put all of the JavaScript modules.  On my Cognos server, this li
   <dd>Custom Control module that works with Prompts.js to autofinish (autonext?) a prompt page.</dd>
 
   <dt>ObjectMethods.js</dt>
-  <dd>A collection of additional object methods to make some scripting tasks simpler.  Used by Prompts.js.</dd>
+  <dd>A collection of additional object methods to make some scripting tasks simpler.<br />Used by Prompts.js.</dd>
 
   <dt>HolidayCalendar.js</dt>
   <dd>Provides a HolidayCalendar object used by some methods of the Date object that are defined in ObjectMethods.js.<br />Used by Prompt.js.</dd>
