@@ -1,0 +1,240 @@
+<report xmlns="http://developer.cognos.com/schemas/report/14.1/" useStyleVersion="11.4" expressionLocale="en-us">
+	<drillBehavior/>
+	<layouts>
+		<layout>
+			<reportPages>
+				<page name="Page1">
+					<style>
+						<defaultStyles>
+							<defaultStyle refStyle="pg"/>
+						</defaultStyles>
+					</style>
+					<pageBody>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="pb"/>
+							</defaultStyles>
+						</style>
+						<contents>
+							<HTMLItem>
+								<dataSource>
+									<staticValue>&lt;style type=&quot;text/css&quot;&gt;
+
+a.tooltip{
+    position:relative; /*this is the key*/
+    z-index:24;      text-decoration:none}
+
+a.tooltip:hover{z-index:25;}
+
+a.tooltip span{display: none}
+
+a.tooltip:hover span{ /*the span will display just on :hover state*/
+    display:block;
+    position:absolute;
+    top:2em; left:2em; width:14em;
+    border:2px solid #000000;
+   background-color:#ffffff; color:#000;
+   }
+
+&lt;/style&gt;
+									</staticValue>
+								</dataSource>
+							</HTMLItem>
+							<list horizontalPagination="true" name="List1" refQuery="salesQuantity">
+								<noDataHandler>
+									<contents>
+										<block>
+											<contents>
+												<textItem>
+													<dataSource>
+														<staticValue>No Data Available</staticValue>
+													</dataSource>
+													<style>
+														<CSS value="padding:10px 18px;"/>
+													</style>
+												</textItem>
+											</contents>
+										</block>
+									</contents>
+								</noDataHandler>
+								<style>
+									<CSS value="border-collapse:collapse"/>
+									<defaultStyles>
+										<defaultStyle refStyle="ls"/>
+									</defaultStyles>
+								</style>
+								<listColumns>
+									<listColumn>
+										<listColumnTitle>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lt"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemLabel refDataItem="Product line"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnTitle>
+										<listColumnBody>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lc"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemValue refDataItem="Product line"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnBody>
+									</listColumn>
+									<listColumn>
+										<listColumnTitle>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lt"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemLabel refDataItem="Revenue"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnTitle>
+										<listColumnBody>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lm"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemValue refDataItem="Revenue"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnBody>
+									</listColumn>
+									<listColumn>
+										<listColumnTitle>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lt"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<staticValue>HTML item</staticValue>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnTitle>
+										<listColumnBody>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lc"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<HTMLItem>
+													<dataSource>
+
+														<reportExpression>&apos;&lt;a class=&quot;tooltip&quot; href=&quot;#&quot;&gt;&apos;
+
++
+	(if ( [salesQuantity].[Quantity] &gt; 10000000 ) then 
+		(&apos;&lt;font color =&quot;Red&quot;&gt;&apos;)
+		else (&apos;&lt;font color =&quot;Green&quot;&gt;&apos;))
++
+
+
+&apos;&lt;font size=&quot;4.2em&quot;&gt;&lt;font style=&quot;Bold&quot;&gt;&amp;#x25a0;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;
+
+&lt;span class=&quot;classic&quot;&gt;
+
+&lt;table border=&quot;0&quot;  width=&quot;100%&quot; cellpadding=&quot;3&quot; cellspacing=&quot;3&quot; &gt;
+	&lt;tr&gt;&apos;
++
+	(if ( [salesQuantity].[Quantity] &gt; 10000000 ) then 
+		(&apos;&lt;td style =&quot;background-color:Red&quot;&gt;&lt;font color=&quot;White&quot;&gt;&lt;font style=&quot;Bold&quot;&gt;&lt;font size=&quot;2.2em&quot;&gt;&amp;nbsp;&apos; + [salesQuantity].[Product line] + &apos;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/td&gt;&apos;)
+	else (&apos;&lt;td style =&quot;background-color:Green&quot;&gt;&lt;font color=&quot;White&quot;&gt;&lt;font style=&quot;Bold&quot;&gt;&lt;font size=&quot;2.2em&quot;&gt;&amp;nbsp;&apos; + [salesQuantity].[Product line] + &apos;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/td&gt;&apos;))
+
++
+
+	&apos;&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;font size=&quot;2.2em&quot;&gt;&amp;nbsp;&amp;nbsp; Quantity: &lt;/font&gt;&apos; + [salesQuantity].[strQuantity] + &apos;
+
+&lt;br&gt;&lt;/br&gt;
+
+&lt;/span&gt;&lt;/a&gt;&apos;</reportExpression>
+													</dataSource>
+												</HTMLItem>
+											</contents>
+										</listColumnBody>
+									</listColumn>
+								</listColumns>
+								<propertyList>
+									<propertyItem refDataItem="Revenue"/>
+									<propertyItem refDataItem="Quantity"/>
+									<propertyItem refDataItem="strQuantity"/>
+								</propertyList>
+							</list>
+						</contents>
+					</pageBody>
+				</page>
+			</reportPages>
+		</layout>
+	</layouts>
+	<XMLAttributes>
+		<XMLAttribute output="no" name="RS_CreateExtendedDataItems" value="true"/>
+		<XMLAttribute output="no" name="RS_modelModificationTime" value="2013-01-08T15:30:33.117Z"/>
+		<XMLAttribute output="no" name="listSeparator" value=","/>
+	</XMLAttributes>
+	<modelPath>/content/folder[@name=&apos;Samples&apos;]/folder[@name=&apos;Models&apos;]/package[@name=&apos;GO Sales (query)&apos;]/model[@name=&apos;model&apos;]</modelPath>
+	<queries>
+		<query name="salesQuantity">
+			<source>
+				<model/>
+			</source>
+			<selection>
+				<dataItem aggregate="none" rollupAggregate="none" name="Product line">
+					<expression>[Sales (query)].[Products].[Product line]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="attribute"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItem aggregate="total" name="Revenue">
+					<expression>[Sales (query)].[Sales].[Revenue]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="2"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="fact"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItem aggregate="total" name="Quantity">
+					<expression>[Sales (query)].[Sales].[Quantity]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="1"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="fact"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItem name="strQuantity">
+					<expression>cast ([Quantity], varchar(10))</expression>
+				</dataItem>
+			</selection>
+		</query>
+	</queries>
+	<reportName>ToolTips</reportName>
+</report>

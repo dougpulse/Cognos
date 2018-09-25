@@ -1,0 +1,512 @@
+<report xmlns="http://developer.cognos.com/schemas/report/14.1/" useStyleVersion="11.4" expressionLocale="en-us">
+	<drillBehavior/>
+	<layouts>
+		<layout>
+			<reportPages>
+				<page name="Output">
+					<style>
+						<defaultStyles>
+							<defaultStyle refStyle="pg"/>
+						</defaultStyles>
+					</style>
+					<pageBody>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="pb"/>
+							</defaultStyles>
+						</style>
+						<contents>
+							<list horizontalPagination="true" name="List1" refQuery="Output">
+								<noDataHandler>
+									<contents>
+										<block>
+											<contents>
+												<textItem>
+													<dataSource>
+														<staticValue>No Data Available</staticValue>
+													</dataSource>
+													<style>
+														<CSS value="padding:10px 18px;"/>
+													</style>
+												</textItem>
+											</contents>
+										</block>
+									</contents>
+								</noDataHandler>
+								<style>
+									<CSS value="border-collapse:collapse"/>
+									<defaultStyles>
+										<defaultStyle refStyle="ls"/>
+									</defaultStyles>
+								</style>
+								<listColumns>
+									<listColumn>
+										<listColumnTitle>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lt"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemLabel refDataItem="City"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnTitle>
+										<listColumnBody>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lc"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemValue refDataItem="City"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnBody>
+									</listColumn>
+									<listColumn>
+										<listColumnTitle>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lt"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemLabel refDataItem="Quantity"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnTitle>
+										<listColumnBody>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lm"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemValue refDataItem="Quantity"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnBody>
+									</listColumn>
+								</listColumns>
+								<listOverallGroup>
+									<listFooter>
+										<listRows>
+											<listRow>
+												<rowCells>
+													<rowCell>
+														<contents>
+															<textItem>
+																<dataSource>
+																	<staticValue>Overall</staticValue>
+																</dataSource>
+															</textItem>
+															<textItem>
+																<dataSource>
+																	<staticValue> - </staticValue>
+																</dataSource>
+															</textItem>
+															<textItem>
+																<dataSource>
+																	<staticValue>Total</staticValue>
+																</dataSource>
+															</textItem>
+														</contents>
+														<style>
+															<defaultStyles>
+																<defaultStyle refStyle="if"/>
+															</defaultStyles>
+														</style>
+													</rowCell>
+													<rowCell>
+														<contents>
+															<textItem>
+																<dataSource>
+																	<dataItemValue refDataItem="Total(Quantity)"/>
+																</dataSource>
+															</textItem>
+														</contents>
+														<style>
+															<defaultStyles>
+																<defaultStyle refStyle="is"/>
+															</defaultStyles>
+														</style>
+													</rowCell>
+												</rowCells>
+											</listRow>
+										</listRows>
+									</listFooter>
+								</listOverallGroup>
+								<sortList>
+									<sortItem refDataItem="City"/>
+								</sortList>
+							</list>
+						</contents>
+					</pageBody>
+				</page>
+			</reportPages>
+			<promptPages>
+				<page name="Country">
+					<pageHeader>
+						<contents>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+											<reportExpression>ReportName()</reportExpression>
+										</dataSource>
+										<style>
+											<defaultStyles>
+												<defaultStyle refStyle="tt"/>
+											</defaultStyles>
+										</style>
+									</textItem>
+								</contents>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="ta"/>
+									</defaultStyles>
+								</style>
+							</block>
+						</contents>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="hp"/>
+							</defaultStyles>
+						</style>
+					</pageHeader>
+					<pageBody>
+						<contents>
+							<table>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="tb"/>
+									</defaultStyles>
+									<CSS value="border-collapse:collapse"/>
+								</style>
+								<tableRows>
+									<tableRow>
+										<tableCells>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>Country:  </staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+											</tableCell>
+										</tableCells>
+									</tableRow>
+									<tableRow>
+										<tableCells>
+											<tableCell>
+												<contents>
+													<selectValue parameter="country" refQuery="Country">
+														<useItem refDataItem="Country">
+															<displayItem refDataItem="Country"/>
+														</useItem>
+														<sortList>
+															<sortItem refDataItem="Country"/>
+														</sortList>
+													</selectValue>
+												</contents>
+											</tableCell>
+										</tableCells>
+									</tableRow>
+								</tableRows>
+							</table>
+						</contents>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="py"/>
+							</defaultStyles>
+						</style>
+					</pageBody>
+					<pageFooter>
+						<contents>
+							<promptButton type="cancel">
+								<contents/>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="bp"/>
+									</defaultStyles>
+								</style>
+							</promptButton>
+
+							<promptButton type="next">
+								<contents>
+									<textItem>
+										<dataSource>
+											<staticValue>Finish</staticValue>
+										</dataSource>
+									</textItem>
+								</contents>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="bp"/>
+									</defaultStyles>
+								</style>
+							</promptButton>
+
+							<textItem>
+								<dataSource>
+									<staticValue>Finish button is actually a Next button with a text item on it.</staticValue>
+								</dataSource>
+							</textItem>
+						</contents>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="fp"/>
+							</defaultStyles>
+						</style>
+					</pageFooter>
+					<style>
+						<defaultStyles>
+							<defaultStyle refStyle="pp"/>
+						</defaultStyles>
+					</style>
+				</page>
+				<page name="City">
+					<pageHeader>
+						<contents>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+
+											<reportExpression>ReportName()</reportExpression>
+										</dataSource>
+										<style>
+											<defaultStyles>
+												<defaultStyle refStyle="tt"/>
+											</defaultStyles>
+										</style>
+									</textItem>
+								</contents>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="ta"/>
+									</defaultStyles>
+								</style>
+							</block>
+						</contents>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="hp"/>
+							</defaultStyles>
+						</style>
+					</pageHeader>
+					<pageBody>
+						<contents>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+											<staticValue>Make the header and footer match the first prompt page.</staticValue>
+										</dataSource>
+									</textItem>
+								</contents>
+							</block>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+											<staticValue>Set the &quot;Visible&quot; property of the table to &quot;No&quot;.</staticValue>
+										</dataSource>
+									</textItem>
+								</contents>
+							</block>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+											<staticValue>Name the value prompt.  The name is used in the script.</staticValue>
+										</dataSource>
+									</textItem>
+								</contents>
+							</block>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+											<staticValue>Add a custom control configured as below.</staticValue>
+										</dataSource>
+									</textItem>
+								</contents>
+							</block>
+							<block>
+								<contents>
+									<textItem name="PromptConfiguration">
+										<dataSource>
+											<staticValue>{&quot;SelectAll&quot;: [&quot;City&quot;],&quot;AutoComplete&quot;: true}</staticValue>
+										</dataSource>
+									</textItem>
+								</contents>
+							</block>
+							<table>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="tb"/>
+									</defaultStyles>
+									<CSS value="border-collapse:collapse"/>
+								</style>
+								<tableRows>
+									<tableRow>
+										<tableCells>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>City:  </staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+											</tableCell>
+										</tableCells>
+									</tableRow>
+									<tableRow>
+										<tableCells>
+											<tableCell>
+												<contents>
+													<selectValue parameter="city" selectValueUI="listBox" multiSelect="true" name="City" refQuery="City">
+														<useItem refDataItem="City">
+															<displayItem refDataItem="City"/>
+														</useItem>
+														<sortList>
+															<sortItem refDataItem="City"/>
+														</sortList>
+													</selectValue>
+												</contents>
+											</tableCell>
+										</tableCells>
+									</tableRow>
+								</tableRows>
+							</table>
+							<customControl name="AutoFinish" path="/CognosScripts/PromptAutoFinish.js"/>
+						</contents>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="py"/>
+							</defaultStyles>
+						</style>
+					</pageBody>
+					<pageFooter>
+						<contents>
+							<promptButton type="cancel">
+								<contents/>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="bp"/>
+									</defaultStyles>
+								</style>
+							</promptButton>
+
+
+							<promptButton type="finish">
+								<contents/>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="bp"/>
+									</defaultStyles>
+								</style>
+							</promptButton>
+						</contents>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="fp"/>
+							</defaultStyles>
+						</style>
+					</pageFooter>
+					<style>
+						<defaultStyles>
+							<defaultStyle refStyle="pp"/>
+						</defaultStyles>
+					</style>
+					<pageModule path="/CognosScripts/Prompts.js"/>
+				</page>
+			</promptPages>
+		</layout>
+	</layouts>
+	<XMLAttributes>
+		<XMLAttribute output="no" name="RS_CreateExtendedDataItems" value="true"/>
+		<XMLAttribute output="no" name="RS_modelModificationTime" value="2013-01-08T15:30:33.117Z"/>
+		<XMLAttribute output="no" name="listSeparator" value=","/>
+	</XMLAttributes>
+	<queries>
+		<query name="Output">
+			<source>
+				<model/>
+			</source>
+			<selection>
+				<dataItem aggregate="total" name="Quantity">
+					<expression>[Sales (query)].[Sales].[Quantity]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="1"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="fact"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItem aggregate="none" rollupAggregate="none" name="City">
+					<expression>[Sales (query)].[Branch].[City]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="attribute"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItemListSummary refDataItem="Quantity" aggregateMethod="total" name="Total(Quantity)"/>
+			</selection>
+			<detailFilters>
+				<detailFilter>
+					<filterExpression>[Sales (query)].[Branch].[City] in ?city?</filterExpression>
+				</detailFilter>
+			</detailFilters>
+		</query>
+		<query name="Country">
+			<source>
+				<model/>
+			</source>
+			<selection>
+				<dataItem aggregate="none" rollupAggregate="none" name="Country">
+					<expression>[Sales (query)].[Branch].[Country]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="attribute"/>
+					</XMLAttributes>
+				</dataItem>
+			</selection>
+		</query>
+		<query name="City">
+			<source>
+				<model/>
+			</source>
+			<selection>
+				<dataItem aggregate="none" rollupAggregate="none" name="City">
+					<expression>[Sales (query)].[Branch].[City]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="attribute"/>
+					</XMLAttributes>
+				</dataItem>
+			</selection>
+			<detailFilters>
+				<detailFilter>
+					<filterExpression>[Sales (query)].[Branch].[Country] = ?country?</filterExpression>
+				</detailFilter>
+			</detailFilters>
+		</query>
+	</queries>
+	<modelPath>/content/folder[@name=&apos;Samples&apos;]/folder[@name=&apos;Models&apos;]/package[@name=&apos;GO Sales (query)&apos;]/model[@name=&apos;model&apos;]</modelPath>
+	<reportName>Parameter Value Automation</reportName>
+</report>

@@ -1,0 +1,590 @@
+<report xmlns="http://developer.cognos.com/schemas/report/14.1/" expressionLocale="en-us" useStyleVersion="10">
+	<!--RSU-SPC-0093 The report specification was upgraded from "http://developer.cognos.com/schemas/report/11.0/" to "http://developer.cognos.com/schemas/report/14.1/" at 2018-9-25. 13:11:50-->
+	<modelPath>/content/folder[@name=&apos;Samples_Audit&apos;]/package[@name=&apos;Audit&apos;]/model[@name=&apos;model&apos;]</modelPath>
+	<drillBehavior/>
+	<queries>
+		<query name="Query1">
+			<source>
+				<model/>
+			</source>
+			<selection>
+				<dataItem aggregate="none" name="User name" rollupAggregate="none">
+					<expression>[Audit].[View Reports].[User name]</expression>
+					<XMLAttributes>
+						<XMLAttribute name="RS_dataType" output="no" value="3"/>
+						<XMLAttribute name="RS_dataUsage" output="no" value="attribute"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItem name="Beginning of this year (macro)">
+					<expression>#timestampMask ($current_timestamp, &apos;yyyy&apos;) + &apos;-01-01&apos;#</expression>
+				</dataItem>
+				<dataItem name="Beginning of this month (macro)">
+					<expression>#timestampMask ($current_timestamp, &apos;yyyy-mm&apos;) + &apos;-01&apos;#</expression>
+				</dataItem>
+				<dataItem name="Beginning of this week (SQL)">
+					<expression>cast(dateadd({day}, -datepart({dw}, getdate()) + 1, getdate()) as date)</expression>
+				</dataItem>
+				<dataItem name="Beginning of today (function)">
+					<expression>current_date</expression>
+				</dataItem>
+				<dataItem name="Beginning of this month (function)">
+					<expression>_first_of_month (current_date)</expression>
+				</dataItem>
+				<dataItem name="Beginning of this week (function)">
+					<expression>_add_days (current_date, - _day_of_week (current_date, 7) + 1)</expression>
+				</dataItem>
+				<dataItem name="Beginning of this year (function)">
+					<expression>_add_days (current_date, - _day_of_year (current_date) + 1)</expression>
+				</dataItem>
+				<dataItem name="Beginning of this month (SQL)">
+					<expression>cast(dateadd({month}, ((year(getdate()) - 1900) * 12) + month(getdate()) - 1, 0) as date)</expression>
+				</dataItem>
+				<dataItem name="Beginning of this year (SQL)">
+					<expression>cast(dateadd({month}, ((year(getdate()) - 1900) * 12), 0) as date)</expression>
+				</dataItem>
+				<dataItem name="Beginning of today (SQL)">
+					<expression>cast(getdate() as date)</expression>
+				</dataItem>
+				<dataItem name="Beginning of this fiscal year (SQL)">
+					<expression>cast(&apos;7/1/&apos; + cast((case when month(getdate()) &lt; 8 then year(getdate()) - 1 else year(getdate()) end) as varchar(4)) as date)</expression>
+				</dataItem>
+			</selection>
+			<detailFilters>
+				<detailFilter>
+					<filterExpression>[User name] = &apos;Pulse, Doug&apos;</filterExpression>
+				</detailFilter>
+			</detailFilters>
+		</query>
+	</queries>
+	<layouts>
+		<layout>
+			<reportPages>
+				<page name="Page1">
+					<style>
+						<defaultStyles>
+							<defaultStyle refStyle="pg"/>
+						</defaultStyles>
+					</style>
+					<pageBody>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="pb"/>
+							</defaultStyles>
+						</style>
+						<contents>
+							<list horizontalPagination="true" name="List1" refQuery="Query1">
+								<noDataHandler>
+									<contents>
+										<block>
+											<contents>
+												<textItem>
+													<dataSource>
+														<staticValue>No Data Available</staticValue>
+													</dataSource>
+													<style>
+														<CSS value="padding:10px 18px;"/>
+													</style>
+												</textItem>
+											</contents>
+										</block>
+									</contents>
+								</noDataHandler>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="ls"/>
+									</defaultStyles>
+									<CSS value="border-collapse:collapse"/>
+								</style>
+								<listColumns>
+									<listColumn>
+										<listColumnTitle>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lt"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemLabel refDataItem="Beginning of this year (SQL)"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnTitle>
+										<listColumnBody>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lm"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemValue refDataItem="Beginning of this year (SQL)"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnBody>
+									</listColumn>
+									<listColumn>
+										<listColumnTitle>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lt"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemLabel refDataItem="Beginning of this year (function)"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnTitle>
+										<listColumnBody>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lm"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemValue refDataItem="Beginning of this year (function)"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnBody>
+									</listColumn>
+									<listColumn>
+										<listColumnTitle>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lt"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemLabel refDataItem="Beginning of this year (macro)"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnTitle>
+										<listColumnBody>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lm"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemValue refDataItem="Beginning of this year (macro)"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnBody>
+									</listColumn>
+									<listColumn>
+										<listColumnTitle>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lt"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemLabel refDataItem="Beginning of this fiscal year (SQL)"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnTitle>
+										<listColumnBody>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lm"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemValue refDataItem="Beginning of this fiscal year (SQL)"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnBody>
+									</listColumn>
+									<listColumn>
+										<listColumnTitle>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lt"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemLabel refDataItem="Beginning of this month (SQL)"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnTitle>
+										<listColumnBody>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lm"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemValue refDataItem="Beginning of this month (SQL)"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnBody>
+									</listColumn>
+									<listColumn>
+										<listColumnTitle>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lt"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemLabel refDataItem="Beginning of this month (function)"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnTitle>
+										<listColumnBody>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lm"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemValue refDataItem="Beginning of this month (function)"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnBody>
+									</listColumn>
+									<listColumn>
+										<listColumnTitle>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lt"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemLabel refDataItem="Beginning of this month (macro)"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnTitle>
+										<listColumnBody>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lm"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemValue refDataItem="Beginning of this month (macro)"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnBody>
+									</listColumn>
+									<listColumn>
+										<listColumnTitle>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lt"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemLabel refDataItem="Beginning of this week (SQL)"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnTitle>
+										<listColumnBody>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lm"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemValue refDataItem="Beginning of this week (SQL)"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnBody>
+									</listColumn>
+									<listColumn>
+										<listColumnTitle>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lt"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemLabel refDataItem="Beginning of this week (function)"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnTitle>
+										<listColumnBody>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lm"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemValue refDataItem="Beginning of this week (function)"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnBody>
+									</listColumn>
+									<listColumn>
+										<listColumnTitle>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lt"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemLabel refDataItem="Beginning of today (SQL)"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnTitle>
+										<listColumnBody>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lm"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemValue refDataItem="Beginning of today (SQL)"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnBody>
+									</listColumn>
+									<listColumn>
+										<listColumnTitle>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lt"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemLabel refDataItem="Beginning of today (function)"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnTitle>
+										<listColumnBody>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lm"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemValue refDataItem="Beginning of today (function)"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnBody>
+									</listColumn>
+								</listColumns>
+							</list>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+											<staticValue>Using macros makes Cognos write tighter SQL code to send to the database server.  Consider these two scenarios when the current date is May 6th, 2016:</staticValue>
+										</dataSource>
+									</textItem>
+								</contents>
+								<style>
+									<CSS value="padding-top:0.2in"/>
+								</style>
+							</block>
+							<table>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="tb"/>
+									</defaultStyles>
+									<CSS value="border-collapse:collapse"/>
+								</style>
+								<tableRows>
+									<tableRow>
+										<tableCells>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>Data item:  </staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="padding:5px;border:1pt solid silver"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>Beginning of this month (macro)</staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="padding:5px;border:1pt solid silver"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>Beginning of this month (SQL)</staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="padding:5px;border:1pt solid silver"/>
+												</style>
+											</tableCell>
+										</tableCells>
+									</tableRow>
+									<tableRow>
+										<tableCells>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>Data item expression:  </staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="padding:5px;border:1pt solid silver"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>#timestampMask ($current_timestamp, &apos;yyyy-mm&apos;) + &apos;-01&apos;#</staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="padding:5px;font-family:&apos;Courier New&apos;;border:1pt solid silver"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>cast(dateadd(month, ((year(getdate()) - 1900) * 12) + month(getdate()) - 1, 0) as date)</staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="padding:5px;font-family:&apos;Courier New&apos;;border:1pt solid silver"/>
+												</style>
+											</tableCell>
+										</tableCells>
+									</tableRow>
+									<tableRow>
+										<tableCells>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>What Cognos sends to the server:  </staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="padding:5px;border:1pt solid silver"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>convert(DATE, {d &apos;2016-05-01&apos;})</staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="padding:5px;font-family:&apos;Courier New&apos;;border:1pt solid silver"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>cast(dateadd(month, ((year(getdate()) - 1900) * 12 + month(getdate())) - 1, 0) as date  )</staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="padding:5px;font-family:&apos;Courier New&apos;;border:1pt solid silver"/>
+												</style>
+											</tableCell>
+										</tableCells>
+									</tableRow>
+								</tableRows>
+							</table>
+							<textItem>
+								<dataSource>
+									<staticValue>You can see that the result of the macro, not the macro itself, is sent to the database server.</staticValue>
+								</dataSource>
+							</textItem>
+						</contents>
+					</pageBody>
+				</page>
+			</reportPages>
+		</layout>
+	</layouts>
+	<XMLAttributes>
+		<XMLAttribute name="RS_CreateExtendedDataItems" output="no" value="true"/>
+		<XMLAttribute name="listSeparator" output="no" value=","/>
+		<XMLAttribute name="RS_modelModificationTime" output="no" value="2013-04-23T19:03:53.987Z"/>
+	</XMLAttributes>
+	<reportName>Date Calculations</reportName>
+</report>

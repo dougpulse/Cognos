@@ -1,0 +1,689 @@
+<report xmlns="http://developer.cognos.com/schemas/report/14.1/" useStyleVersion="11.4" expressionLocale="en-us">
+	<drillBehavior/>
+	<layouts>
+		<layout>
+			<reportPages>
+				<page name="Page1">
+					<style>
+						<defaultStyles>
+							<defaultStyle refStyle="pg"/>
+						</defaultStyles>
+					</style>
+					<pageBody>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="pb"/>
+							</defaultStyles>
+						</style>
+						<contents>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+											<reportExpression>ParamDisplayValue(&apos;date&apos;)</reportExpression>
+										</dataSource>
+									</textItem>
+								</contents>
+							</block>
+							<singleton name="Singleton1" refQuery="header">
+								<contents>
+									<textItem>
+										<dataSource>
+											<dataItemValue refDataItem="Country"/>
+										</dataSource>
+									</textItem>
+								</contents>
+							</singleton>
+							<list horizontalPagination="true" name="List1" refQuery="main">
+								<noDataHandler>
+									<contents>
+										<block>
+											<contents>
+												<textItem>
+													<dataSource>
+														<staticValue>No Data Available</staticValue>
+													</dataSource>
+													<style>
+														<CSS value="padding:10px 18px;"/>
+													</style>
+												</textItem>
+											</contents>
+										</block>
+									</contents>
+								</noDataHandler>
+								<style>
+									<CSS value="border-collapse:collapse"/>
+									<defaultStyles>
+										<defaultStyle refStyle="ls"/>
+									</defaultStyles>
+								</style>
+								<listColumns>
+									<listColumn>
+										<listColumnTitle>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lt"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemLabel refDataItem="City"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnTitle>
+										<listColumnBody>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lc"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemValue refDataItem="City"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnBody>
+									</listColumn>
+									<listColumn>
+										<listColumnTitle>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lt"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemLabel refDataItem="Quantity"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnTitle>
+										<listColumnBody>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lm"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemValue refDataItem="Quantity"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnBody>
+									</listColumn>
+								</listColumns>
+								<listOverallGroup>
+									<listFooter>
+										<listRows>
+											<listRow>
+												<rowCells>
+													<rowCell>
+														<contents>
+															<textItem>
+																<dataSource>
+																	<staticValue>Overall</staticValue>
+																</dataSource>
+															</textItem>
+															<textItem>
+																<dataSource>
+																	<staticValue> - </staticValue>
+																</dataSource>
+															</textItem>
+															<textItem>
+																<dataSource>
+																	<staticValue>Summary</staticValue>
+																</dataSource>
+															</textItem>
+														</contents>
+														<style>
+															<defaultStyles>
+																<defaultStyle refStyle="if"/>
+															</defaultStyles>
+														</style>
+													</rowCell>
+													<rowCell>
+														<contents>
+															<textItem>
+																<dataSource>
+																	<dataItemValue refDataItem="Summary(Quantity)"/>
+																</dataSource>
+															</textItem>
+														</contents>
+														<style>
+															<defaultStyles>
+																<defaultStyle refStyle="is"/>
+															</defaultStyles>
+														</style>
+													</rowCell>
+												</rowCells>
+											</listRow>
+										</listRows>
+									</listFooter>
+								</listOverallGroup>
+							</list>
+						</contents>
+					</pageBody>
+					<pageHeader>
+						<contents>
+							<block name="header">
+								<contents>
+									<textItem>
+										<dataSource>
+											<reportExpression>ReportName()</reportExpression>
+										</dataSource>
+									</textItem>
+								</contents>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="ta"/>
+									</defaultStyles>
+								</style>
+							</block>
+						</contents>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="ph"/>
+							</defaultStyles>
+						</style>
+					</pageHeader>
+					<pageFooter>
+						<contents/>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="pf"/>
+							</defaultStyles>
+						</style>
+					</pageFooter>
+				</page>
+			</reportPages>
+			<pageSetup orientation="landscape">
+				<namedPaper name="/configuration/pageDefinition[@name=&apos;Letter&apos;]"/>
+			</pageSetup>
+			<promptPages>
+				<page name="Prompt page1">
+					<pageHeader>
+						<contents>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+											<reportExpression>ReportName()</reportExpression>
+										</dataSource>
+										<style>
+											<defaultStyles>
+												<defaultStyle refStyle="tt"/>
+											</defaultStyles>
+										</style>
+									</textItem>
+								</contents>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="ta"/>
+									</defaultStyles>
+								</style>
+							</block>
+						</contents>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="hp"/>
+							</defaultStyles>
+						</style>
+					</pageHeader>
+					<pageBody>
+						<contents>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+											<staticValue>Filters:  </staticValue>
+										</dataSource>
+									</textItem>
+								</contents>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="h3"/>
+									</defaultStyles>
+								</style>
+							</block>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+											<staticValue>Add a block.</staticValue>
+										</dataSource>
+									</textItem>
+								</contents>
+							</block>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+											<staticValue>Add a text item to the block.</staticValue>
+										</dataSource>
+									</textItem>
+								</contents>
+							</block>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+											<staticValue>Add the configuration object (a JavaScript object in JSON format) to the text item.</staticValue>
+										</dataSource>
+									</textItem>
+								</contents>
+							</block>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+											<staticValue>Name the text item </staticValue>
+										</dataSource>
+									</textItem>
+									<textItem>
+										<dataSource>
+											<staticValue>PromptConfiguration</staticValue>
+										</dataSource>
+										<style>
+											<CSS value="font-weight:bold"/>
+										</style>
+									</textItem>
+								</contents>
+							</block>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+											<staticValue>To hide the configuration object from the user, change the </staticValue>
+										</dataSource>
+									</textItem>
+									<textItem>
+										<dataSource>
+											<staticValue>Box type</staticValue>
+										</dataSource>
+										<style>
+											<CSS value="font-style:italic"/>
+										</style>
+									</textItem>
+									<textItem>
+										<dataSource>
+											<staticValue> property of the block to </staticValue>
+										</dataSource>
+									</textItem>
+									<textItem>
+										<dataSource>
+											<staticValue>None-Block.</staticValue>
+										</dataSource>
+										<style>
+											<CSS value="font-style:italic"/>
+										</style>
+									</textItem>
+								</contents>
+								<style>
+									<CSS value="padding-bottom:2em"/>
+								</style>
+							</block>
+							<block>
+								<contents>
+									<textItem name="PromptConfiguration">
+										<dataSource>
+											<staticValue>{&quot;PromptValues&quot;: [{&quot;PromptName&quot;: &quot;date&quot;,&quot;PromptRange&quot;: [{&quot;start&quot;: &quot;2018-02-02&quot;,&quot;end&quot;: &quot;&quot;}]}, {&quot;PromptName&quot;: &quot;date2&quot;, &quot;PromptValue&quot;: [&quot;2018-03-03&quot;]}, {&quot;PromptName&quot;: &quot;country&quot;,&quot;PromptValue&quot;: [&quot;Brazil&quot;]},{&quot;PromptName&quot;: &quot;yesterday&quot;, &quot;PromptRelative&quot;: &quot;Yesterday&quot;, &quot;PromptType&quot;: &quot;value&quot;},{&quot;PromptName&quot;: &quot;lastworkday&quot;,&quot;PromptRelative&quot;: &quot;Last Work Day&quot;,&quot;PromptType&quot;: &quot;range&quot;},{&quot;PromptName&quot;: &quot;thisweek&quot;,&quot;PromptRelative&quot;: &quot;This Week&quot;,&quot;PromptType&quot;: &quot;range&quot;}],&quot;RequiredPrompts&quot;: [[&quot;date&quot;],[&quot;country&quot;],[&quot;ss&quot;],[&quot;t&quot;]]}</staticValue>
+										</dataSource>
+									</textItem>
+								</contents>
+							</block>
+							<table>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="tb"/>
+									</defaultStyles>
+									<CSS value="border-collapse:collapse"/>
+								</style>
+								<tableRows>
+									<tableRow>
+										<tableCells>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>Date:  </staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="vertical-align:top;text-align:left"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<selectDate multiSelect="true" name="date" parameter="date" range="true" required="false" selectDateUI="editBox"/>
+												</contents>
+												<style>
+													<CSS value="vertical-align:top;text-align:left"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>Text:  </staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="vertical-align:top;text-align:left"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<textBox name="t" parameter="text"/>
+												</contents>
+												<style>
+													<CSS value="vertical-align:top;text-align:left"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>Yesterday:  </staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="text-align:left;vertical-align:top"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<selectDate name="yesterday" parameter="date" required="false" selectDateUI="editBox"/>
+												</contents>
+												<style>
+													<CSS value="text-align:left;vertical-align:top"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>Last Work Day:  </staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="vertical-align:top;text-align:left"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<selectDate parameter="lastworkdayrange" range="true" name="lastworkday"/>
+												</contents>
+												<style>
+													<CSS value="vertical-align:top;text-align:left"/>
+												</style>
+											</tableCell>
+										</tableCells>
+									</tableRow>
+									<tableRow>
+										<tableCells>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>Value:  </staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="vertical-align:top;text-align:left"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<selectValue multiSelect="true" name="country" parameter="country" refQuery="Country" required="false" selectValueUI="listBox">
+														<useItem refDataItem="Country">
+															<displayItem refDataItem="City"/>
+														</useItem>
+														<sortList>
+															<sortItem refDataItem="Country"/>
+														</sortList>
+													</selectValue>
+												</contents>
+												<style>
+													<CSS value="vertical-align:top;text-align:left"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>Select &amp; Search:  </staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="vertical-align:top;text-align:left"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<selectWithSearch name="ss" parameter="SelectSearch" refQuery="Country">
+														<useItem refDataItem="Country">
+															<displayItem refDataItem="City"/>
+														</useItem>
+													</selectWithSearch>
+												</contents>
+												<style>
+													<CSS value="vertical-align:top;text-align:left"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>Date 2:  </staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="text-align:left;vertical-align:top"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<selectDate name="date2" parameter="date2" required="false"/>
+												</contents>
+												<style>
+													<CSS value="text-align:left;vertical-align:top"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>This Week:  </staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="vertical-align:top;text-align:left"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<selectDate name="thisweek" parameter="date" range="true" required="false" selectDateUI="editBox"/>
+												</contents>
+												<style>
+													<CSS value="vertical-align:top;text-align:left"/>
+												</style>
+											</tableCell>
+										</tableCells>
+									</tableRow>
+									<tableRow>
+										<tableCells>
+											<tableCell colSpan="2">
+												<contents>
+													<promptButton type="cancel">
+														<contents/>
+														<style>
+															<defaultStyles>
+																<defaultStyle refStyle="bp"/>
+															</defaultStyles>
+														</style>
+													</promptButton>
+													<promptButton type="finish">
+														<contents/>
+														<style>
+															<defaultStyles>
+																<defaultStyle refStyle="bp"/>
+															</defaultStyles>
+														</style>
+													</promptButton>
+												</contents>
+												<style>
+													<CSS value="padding-top:1em;vertical-align:top;text-align:left"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents/>
+												<style>
+													<CSS value="vertical-align:top;text-align:left"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents/>
+												<style>
+													<CSS value="vertical-align:top;text-align:left"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents/>
+												<style>
+													<CSS value="text-align:left;vertical-align:top"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents/>
+												<style>
+													<CSS value="text-align:left;vertical-align:top"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents/>
+												<style>
+													<CSS value="vertical-align:top;text-align:left"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents/>
+												<style>
+													<CSS value="vertical-align:top;text-align:left"/>
+												</style>
+											</tableCell>
+										</tableCells>
+									</tableRow>
+								</tableRows>
+							</table>
+						</contents>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="py"/>
+							</defaultStyles>
+						</style>
+					</pageBody>
+					<style>
+						<defaultStyles>
+							<defaultStyle refStyle="pp"/>
+						</defaultStyles>
+					</style>
+					<pageModule path="/CognosScripts/Prompts.js"/>
+				</page>
+			</promptPages>
+		</layout>
+	</layouts>
+	<XMLAttributes>
+		<XMLAttribute name="RS_CreateExtendedDataItems" output="no" value="true"/>
+		<XMLAttribute output="no" name="listSeparator" value=","/>
+		<XMLAttribute output="no" name="RS_modelModificationTime" value="2013-01-08T15:30:33.117Z"/>
+	</XMLAttributes>
+	<queries>
+		<query name="Country">
+			<source>
+				<model/>
+			</source>
+			<selection>
+				<dataItem aggregate="none" rollupAggregate="none" name="Country">
+					<expression>[Sales (query)].[Branch].[Country]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="attribute"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItem aggregate="none" rollupAggregate="none" name="City">
+					<expression>[Sales (query)].[Branch].[City]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="attribute"/>
+					</XMLAttributes>
+				</dataItem>
+			</selection>
+		</query>
+		<query name="main">
+			<source>
+				<model/>
+			</source>
+			<selection>
+				<dataItemListSummary aggregateMethod="aggregate" name="Summary(Quantity)" refDataItem="Quantity"/>
+				<dataItem aggregate="none" rollupAggregate="none" name="City">
+					<expression>[Sales (query)].[Branch].[City]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="attribute"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItem aggregate="total" name="Quantity">
+					<expression>[Sales (query)].[Sales].[Quantity]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="1"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="fact"/>
+					</XMLAttributes>
+				</dataItem>
+			</selection>
+			<detailFilters>
+				<detailFilter use="optional">
+					<filterExpression>[Sales (query)].[Branch].[Country] in ?country?</filterExpression>
+				</detailFilter>
+				<detailFilter use="optional">
+					<filterExpression>[Sales (query)].[Time].[Date] in_range ?date?</filterExpression>
+				</detailFilter>
+			</detailFilters>
+		</query>
+		<query name="header">
+			<source>
+				<model/>
+			</source>
+			<selection>
+				<dataItem aggregate="none" rollupAggregate="none" name="Country">
+					<expression>[Sales (query)].[Branch].[Country]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="attribute"/>
+					</XMLAttributes>
+				</dataItem>
+			</selection>
+			<detailFilters>
+				<detailFilter>
+					<filterExpression>[Sales (query)].[Branch].[Country] = ?country?</filterExpression>
+				</detailFilter>
+			</detailFilters>
+		</query>
+	</queries>
+	<reportName>Prompt Scripts</reportName>
+	<modelPath>/content/folder[@name=&apos;Samples&apos;]/folder[@name=&apos;Models&apos;]/package[@name=&apos;GO Sales (query)&apos;]/model[@name=&apos;model&apos;]</modelPath>
+</report>
