@@ -156,6 +156,11 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 		log("sConfig", this.sConfig);
 		
 		this.oConfig = JSON.parse(this.sConfig);
+		
+		if (this.oConfig.AutoComplete) {
+			//	AutoComplete and the Auto-Submit property on a control are not compatible
+			PromptPageLoaded = false;
+		}
 		//log("oConfig", JSON.stringify(oConfig));
 		//log("Prompt values", oConfig.PromptValues.length);
 	};
@@ -331,9 +336,9 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 						alert(n + " was not found.");
 					}
 					else {
-						log(oPrompt.name, JSON.stringify(oPrompt.getValues(true)));
+						//log(oPrompt.name, JSON.stringify(oPrompt.getValues(true)));
 						oPrompt.setValues(oPrompt.getValues(true));
-						log(oPrompt.name, JSON.stringify(oPrompt.getValues()));
+						//log(oPrompt.name, JSON.stringify(oPrompt.getValues()));
 					}
 				});
 			}
@@ -363,7 +368,7 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 						//	If it is empty, getValues() returns an array with one element:
 						//		[{"use":null,"display":null}]
 						if (v.length == 1 && v[0].use == null && v[0].display == null) v = [];
-						console.log("|     | " + e + " : " + v.length + " : " + JSON.stringify(v));
+						//console.log("|     | " + e + " : " + v.length + " : " + JSON.stringify(v));
 						if (v.length > 0) i++;
 					});
 					valid = (valid || (i == rp[index].length));
@@ -391,7 +396,9 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 				//var oCR = cognos.Report.getReport("_THIS_");
 				//oCR.sendRequest( oCR.Action.NEXT );
 				if (!oPage.AutoFinish) {
-					oPage.AutoFinish = function () {oPage.getControlByName("AutoFinish").ControlHost.next()};
+					oPage.AutoFinish = function () {
+						oPage.getControlByName("AutoFinish").ControlHost.next();
+					};
 				}
 				//setTimeout(oPage.AutoFinish(), 100);
 				oPage.AutoFinish();

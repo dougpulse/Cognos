@@ -19,4 +19,19 @@ This is where I put all of the JavaScript modules.  On my Cognos server, this li
 
   <dt>OrderOfMethodsPageModule.js and OrderOfMethodsCustomControl.js</dt>
   <dd>Used to demonstrate when events occur in the Cognos JavaScript API.</dd>
+
+  <dt>ParameterToText.js</dt>
+  <dd>Parses the XML stored in the COGIPF_PARAMETER_VALUE_BLOB field for paramValue records and makes them human-readable for reporting.</dd>
+
+  <dt>cleanParams.js</dt>
+  <dd>Used by ParameterToText.js to return the human-readable text.</dd>
+
+  <dt>xml2json.js</dt>
+  <dd>Used by ParameterToText.js to turn the XML into a JSON string.</dd>
+
+  <dt>json2xml.js</dt>
+  <dd>Not used yet.  It's the inverse of xml2json.js.</dd>
+
+  <dt>json.js</dt>
+  <dd>Used by ParameterToText.js.  Creates a JSON object only if one does not already exist.  (for old browsers)</dd>
 </dl>
