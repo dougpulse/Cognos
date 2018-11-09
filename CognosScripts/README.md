@@ -8,6 +8,9 @@ This is where I put all of the JavaScript modules.  On my Cognos server, this li
   <dt>PromptAutoFinish.js</dt>
   <dd>Custom Control module that works with Prompts.js to autofinish (autonext?) a prompt page.</dd>
 
+  <dt>PromptButton.js</dt>
+  <dd>Custom Control module to create a prompt button.  Includes prompt control method for RequiredPrompts and RequiredPromptCount.</dd>
+
   <dt>ObjectMethods.js</dt>
   <dd>A collection of additional object methods to make some scripting tasks simpler.<br />Used by Prompts.js.</dd>
 
