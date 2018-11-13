@@ -79,14 +79,20 @@ define( function() {
 			if (n < 1) return true;		//	No prompts are required.  Why use this feature?
 			
 			for (var i = 0; i < this.Prompts.length && m < n; i++) {
-				v = this.Prompts[i].getValues();
-				//	A single-select textbox prompt is a special case.
-				//	If it is empty, getValues() returns an array with one element:
-				//		[{"use":null,"display":null}]
-				if (v.length == 1 && v[0].use == null && v[0].display == null) {
+				if (this.Prompts[i].name.substr(0, 4) == 'oper') {
+					//	this is an operator selector
+					//	don't count this in fulfilling a minimum number of parameters
 				}
-				else if (v.length > 0) {
-					m++;
+				else {
+					v = this.Prompts[i].getValues();
+					//	A single-select textbox prompt is a special case.
+					//	If it is empty, getValues() returns an array with one element:
+					//		[{"use":null,"display":null}]
+					if (v.length == 1 && v[0].use == null && v[0].display == null) {
+					}
+					else if (v.length > 0) {
+						m++;
+					}
 				}
 			}
 			

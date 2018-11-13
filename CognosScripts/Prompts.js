@@ -96,16 +96,9 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 				"PromptIndex": "last"
 			}
 		], 
-		"RequiredPrompts": 	//	this is [ [a and b] or [a and c] ]
-		[
-			["WorkOrder", "Bien"], 
-			["WorkOrder", "fy"]
-		], 
-		"RequiredPromptCount": 2, 	//	future enhancement
 		"SelectAll":  ["Bien", "fy", "month"], 	--	select all values in prompts with these names; value prompt, select UI List box
 		"AutoComplete":  true
 	}
-	
 	
 	--	Page modules do not have configuration objects.
 	--	The configuration for this page module is read from a text item named PromptConfiguration.
@@ -304,8 +297,8 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 									var y = d.getFullYear() - (d.getFullYear() % 2) - 1;
 									var a = [];
 									var o = new Object();
-									o.use = y;
-									o.display = y;
+									o.use = y.toString();
+									o.display = y.toString();
 									a.push(o);
 									oPrompt.setValues(a);
 									break;
@@ -344,51 +337,6 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 			}
 			
 			
-			//	Required Prompts
-			//	"RequiredPrompts": 	//	this is [ [a and b] or [a and c] ]
-			//	[
-			//		["WorkOrder", "Bien"], 
-			//		["WorkOrder", "fy"]
-			//	], 
-			//	"RequiredPromptCount": 2, 	//	future enhancement
-			//	doesn't work for date prompts
-			var rp = this.oConfig.RequiredPrompts;
-			
-			var promptValidator = function (vals) {
-				var c;
-				var v;
-				var valid = false;
-				
-				rp.forEach(function (currentValue, index) {
-					var i = 0;
-					currentValue.forEach(function (e) {
-						c = oPage.getControlByName(e);
-						v = c.getValues();
-						//	A single-select textbox prompt is a special case.
-						//	If it is empty, getValues() returns an array with one element:
-						//		[{"use":null,"display":null}]
-						if (v.length == 1 && v[0].use == null && v[0].display == null) v = [];
-						//console.log("|     | " + e + " : " + v.length + " : " + JSON.stringify(v));
-						if (v.length > 0) i++;
-					});
-					valid = (valid || (i == rp[index].length));
-				});
-				//console.log("\r\n\r\n");
-				return valid;
-			}
-			
-			if (this.oConfig.RequiredPrompts) {
-				var c;
-				this.oConfig.RequiredPrompts.forEach(function (currentValue, index, array) {
-					currentValue.forEach(function (e) {
-						c = oPage.getControlByName(e);
-						c.setValidator(promptValidator);
-					}, array);
-				});
-			}
-			
-			
-			
 			//	AutoComplete
 			//	Do this last.
 			if (this.oConfig.AutoComplete) {
@@ -412,28 +360,6 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 	PageModule.prototype.hide = function( oPage )
 	{
 		log("page", "PageModule.hide" );
-		
-		//	verify required prompts are populated
-		var bFinish = false;
-		var iMet = 0;
-		var msg = "";
-		
-		//if (this.oConfig.RequiredPrompts) {
-		//	bFinish = this.oConfig.RequiredPrompts.some(function(n) {
-		//		n.forEach(function (m) {
-		//			var oPrompt = oPage.getControlByName(m);
-		//			if (oPrompt.getValues().length > 0) iMet++;
-		//		});
-		//		return iMet == n.length;
-		//	});
-		//	
-		//	if (!bFinish) {
-		//		alert(msg);
-		//		oPage.show();
-		//	}
-		//}
-		
-		//log("dates", JSON.stringify(oPage.getControlByName("date").getValues()));
 	};
 	
 	PageModule.prototype.destroy = function( oPage )
