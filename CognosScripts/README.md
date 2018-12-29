@@ -11,6 +11,9 @@ This is where I put all of the JavaScript modules.  On my Cognos server, this li
   <dt>PromptButton.js</dt>
   <dd>Custom Control module to create a prompt button.  Includes prompt control method for RequiredPrompts and RequiredPromptCount.</dd>
 
+  <dt>PromptDateDefault.js</dt>
+  <dd>A way to use data rather than JavaScript to choose a set of default values for a date prompt.  This is an alternative to the some of the features in Prompts.js.</dd>
+
   <dt>ObjectMethods.js</dt>
   <dd>A collection of additional object methods to make some scripting tasks simpler.<br />Used by Prompts.js.</dd>
 
