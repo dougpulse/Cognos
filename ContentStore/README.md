@@ -8,8 +8,14 @@ Hacking the Cognos Content Store database is not recommended.  The correct, supp
 
 <dl>
   <dt>ContentStore.txt</dt>
-  <dd>Listing and description of tables in the Content Store database.  Found on Cognoise.com.  Comments updated as new insights are realized.</dd>
+  <dd>Listing and description of tables in the Content Store database.  Found on Cognoise.com.  Comments updated as new insights are realized.</dd
   
   <dt>CognosScheduleEmailRecipients.sql</dt>
   <dd>Lists email recipients for schedules.</dd>
+  
+  <dt>OutputSpecs.sql</dt>
+  <dd>Output specifications for reports, dashboards, and data sets within Team Content with the folder structure seen in Cognos.  This can be used as part of a routine to write to the file system.</dd>
+  
+  <dt>SpecBackup (folder)</dt>
+  <dd>Output specifications for reports, dashboards, and data sets to the file system and push them to a source control repository.</dd>
 </dl>

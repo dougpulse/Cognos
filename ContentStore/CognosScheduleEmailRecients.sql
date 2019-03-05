@@ -78,7 +78,7 @@ with cte(PCMID,
 	, cte.ReportId
 	, cte.ReportName
 	, cast(n.NAME + '/' + cte.ReportPath as varchar(max))
-	, case when left(n.NAME, 8) = 'WSDOTAD:' then 1 else 0 end
+	, case when left(n.NAME, 8) = 'AuthenticationNamespaceName:' then 1 else 0 end
 	, cast(n.NAME as varchar(max))
 	from CMOBJECTS o
 	  inner join CMOBJNAMES n on n.CMID = o.CMID
@@ -101,7 +101,7 @@ from cte c
 		inner join CMOBJPROPS33 b on b.CMID = a.CMID
   ) u on u.OBJID = c.RootNode
 where (c.ReportPath like 'Team Content%'
-	or  c.ReportPath like 'WSDOTAD:%')
+	or  c.ReportPath like 'AuthenticationNamespaceName:%')	--	"My Content"
 order by ReportPath
 
 
@@ -139,7 +139,7 @@ with cte(PCMID,
 	, cte.ScheduleId
 	, cte.ObjectName
 	, cast(n.NAME + '/' + cte.ObjectPath as varchar(max))
-	, case when left(n.NAME, 8) = 'WSDOTAD:' then 1 else 0 end
+	, case when left(n.NAME, 8) = 'AuthenticationNamespaceName:' then 1 else 0 end
 	, cast(n.NAME as varchar(max))
 	, case
 		when c.NAME in ('report', 'reportview') then o.CMID
@@ -168,7 +168,7 @@ from cte c
 		inner join CMOBJPROPS33 b on b.CMID = a.CMID
   ) u on u.OBJID = c.RootNode
 where c.ObjectPath like 'Team Content%'
-  or c.ObjectPath like 'WSDOTAD:%'
+  or c.ObjectPath like 'AuthenticationNamespaceName:%'
 order by ObjectPath
 
 
