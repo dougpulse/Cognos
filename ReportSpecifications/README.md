@@ -20,4 +20,7 @@ Report samples for various purposes.  These contain the report spec xml that can
   
   <dt>VariableOperator</dt>
   <dd>Ask the user how to filter.</dd>
+  
+  <dt>Bursting</dt>
+  <dd>A very simple example of using the bursting feature.</dd>
 </dl>

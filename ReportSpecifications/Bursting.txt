@@ -1,0 +1,837 @@
+<report xmlns="http://developer.cognos.com/schemas/report/14.3/" useStyleVersion="11.4" expressionLocale="en-us">
+	<drillBehavior/>
+	<layouts>
+		<layout>
+			<reportPages>
+				<page name="Page1">
+					<style>
+						<defaultStyles>
+							<defaultStyle refStyle="pg"/>
+						</defaultStyles>
+					</style>
+					<pageBody>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="pb"/>
+							</defaultStyles>
+						</style>
+						<contents>
+							<block>
+								<contents>
+									<repeater name="Repeater1" refQuery="country">
+										<contents>
+											<list horizontalPagination="true" name="List1" refQuery="Retailer" rowsPerPage="1000">
+												<noDataHandler>
+													<contents>
+														<block>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<staticValue>No Data Available</staticValue>
+																	</dataSource>
+																	<style>
+																		<CSS value="padding:10px 18px;"/>
+																	</style>
+																</textItem>
+															</contents>
+														</block>
+													</contents>
+												</noDataHandler>
+												<style>
+													<CSS value="border-collapse:collapse"/>
+													<defaultStyles>
+														<defaultStyle refStyle="ls"/>
+													</defaultStyles>
+												</style>
+												<listColumns>
+													<listColumn>
+														<listColumnTitle>
+															<style>
+																<defaultStyles>
+																	<defaultStyle refStyle="lt"/>
+																</defaultStyles>
+															</style>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<dataItemLabel refDataItem="Region"/>
+																	</dataSource>
+																</textItem>
+															</contents>
+														</listColumnTitle>
+														<listColumnBody>
+															<style>
+																<defaultStyles>
+																	<defaultStyle refStyle="lc"/>
+																</defaultStyles>
+															</style>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<dataItemValue refDataItem="Region"/>
+																	</dataSource>
+																</textItem>
+															</contents>
+														</listColumnBody>
+													</listColumn>
+													<listColumn>
+														<listColumnTitle>
+															<style>
+																<defaultStyles>
+																	<defaultStyle refStyle="lt"/>
+																</defaultStyles>
+															</style>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<dataItemLabel refDataItem="Retailer country"/>
+																	</dataSource>
+																</textItem>
+															</contents>
+														</listColumnTitle>
+														<listColumnBody>
+															<style>
+																<defaultStyles>
+																	<defaultStyle refStyle="lc"/>
+																</defaultStyles>
+															</style>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<dataItemValue refDataItem="Retailer country"/>
+																	</dataSource>
+																</textItem>
+															</contents>
+														</listColumnBody>
+													</listColumn>
+													<listColumn>
+														<listColumnTitle>
+															<style>
+																<defaultStyles>
+																	<defaultStyle refStyle="lt"/>
+																</defaultStyles>
+															</style>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<dataItemLabel refDataItem="Retailer"/>
+																	</dataSource>
+																</textItem>
+															</contents>
+														</listColumnTitle>
+														<listColumnBody>
+															<style>
+																<defaultStyles>
+																	<defaultStyle refStyle="lc"/>
+																</defaultStyles>
+															</style>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<dataItemValue refDataItem="Retailer"/>
+																	</dataSource>
+																</textItem>
+															</contents>
+														</listColumnBody>
+													</listColumn>
+												</listColumns>
+												<sortList>
+													<sortItem refDataItem="Retailer country"/>
+												</sortList>
+												<masterDetailLinks>
+													<masterDetailLink>
+														<masterContext>
+															<dataItemContext refDataItem="Country"/>
+														</masterContext>
+														<detailContext>
+															<dataItemContext refDataItem="Retailer country"/>
+														</detailContext>
+													</masterDetailLink>
+												</masterDetailLinks>
+											</list>
+											<list horizontalPagination="true" name="List2" refQuery="Branch">
+												<noDataHandler>
+													<contents>
+														<block>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<staticValue>No Data Available</staticValue>
+																	</dataSource>
+																	<style>
+																		<CSS value="padding:10px 18px;"/>
+																	</style>
+																</textItem>
+															</contents>
+														</block>
+													</contents>
+												</noDataHandler>
+												<style>
+													<CSS value="border-collapse:collapse"/>
+													<defaultStyles>
+														<defaultStyle refStyle="ls"/>
+													</defaultStyles>
+												</style>
+												<listColumns>
+													<listColumn>
+														<listColumnTitle>
+															<style>
+																<defaultStyles>
+																	<defaultStyle refStyle="lt"/>
+																</defaultStyles>
+															</style>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<dataItemLabel refDataItem="Country"/>
+																	</dataSource>
+																</textItem>
+															</contents>
+														</listColumnTitle>
+														<listColumnBody>
+															<style>
+																<defaultStyles>
+																	<defaultStyle refStyle="lc"/>
+																</defaultStyles>
+															</style>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<dataItemValue refDataItem="Country"/>
+																	</dataSource>
+																</textItem>
+															</contents>
+														</listColumnBody>
+													</listColumn>
+													<listColumn>
+														<listColumnTitle>
+															<style>
+																<defaultStyles>
+																	<defaultStyle refStyle="lt"/>
+																</defaultStyles>
+															</style>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<dataItemLabel refDataItem="City"/>
+																	</dataSource>
+																</textItem>
+															</contents>
+														</listColumnTitle>
+														<listColumnBody>
+															<style>
+																<defaultStyles>
+																	<defaultStyle refStyle="lc"/>
+																</defaultStyles>
+															</style>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<dataItemValue refDataItem="City"/>
+																	</dataSource>
+																</textItem>
+															</contents>
+														</listColumnBody>
+													</listColumn>
+												</listColumns>
+												<sortList>
+													<sortItem refDataItem="Country"/>
+												</sortList>
+												<masterDetailLinks>
+													<masterDetailLink>
+														<masterContext>
+															<dataItemContext refDataItem="Country"/>
+														</masterContext>
+														<detailContext>
+															<dataItemContext refDataItem="Country"/>
+														</detailContext>
+													</masterDetailLink>
+												</masterDetailLinks>
+											</list>
+											<list horizontalPagination="true" name="List3" refQuery="Staff" rowsPerPage="1000">
+												<noDataHandler>
+													<contents>
+														<block>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<staticValue>No Data Available</staticValue>
+																	</dataSource>
+																	<style>
+																		<CSS value="padding:10px 18px;"/>
+																	</style>
+																</textItem>
+															</contents>
+														</block>
+													</contents>
+												</noDataHandler>
+												<style>
+													<CSS value="border-collapse:collapse"/>
+													<defaultStyles>
+														<defaultStyle refStyle="ls"/>
+													</defaultStyles>
+												</style>
+												<listColumns>
+													<listColumn>
+														<listColumnTitle>
+															<style>
+																<defaultStyles>
+																	<defaultStyle refStyle="lt"/>
+																</defaultStyles>
+															</style>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<dataItemLabel refDataItem="Sales region"/>
+																	</dataSource>
+																</textItem>
+															</contents>
+														</listColumnTitle>
+														<listColumnBody>
+															<style>
+																<defaultStyles>
+																	<defaultStyle refStyle="lc"/>
+																</defaultStyles>
+															</style>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<dataItemValue refDataItem="Sales region"/>
+																	</dataSource>
+																</textItem>
+															</contents>
+														</listColumnBody>
+													</listColumn>
+													<listColumn>
+														<listColumnTitle>
+															<style>
+																<defaultStyles>
+																	<defaultStyle refStyle="lt"/>
+																</defaultStyles>
+															</style>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<dataItemLabel refDataItem="Country"/>
+																	</dataSource>
+																</textItem>
+															</contents>
+														</listColumnTitle>
+														<listColumnBody>
+															<style>
+																<defaultStyles>
+																	<defaultStyle refStyle="lc"/>
+																</defaultStyles>
+															</style>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<dataItemValue refDataItem="Country"/>
+																	</dataSource>
+																</textItem>
+															</contents>
+														</listColumnBody>
+													</listColumn>
+													<listColumn>
+														<listColumnTitle>
+															<style>
+																<defaultStyles>
+																	<defaultStyle refStyle="lt"/>
+																</defaultStyles>
+															</style>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<dataItemLabel refDataItem="City"/>
+																	</dataSource>
+																</textItem>
+															</contents>
+														</listColumnTitle>
+														<listColumnBody>
+															<style>
+																<defaultStyles>
+																	<defaultStyle refStyle="lc"/>
+																</defaultStyles>
+															</style>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<dataItemValue refDataItem="City"/>
+																	</dataSource>
+																</textItem>
+															</contents>
+														</listColumnBody>
+													</listColumn>
+													<listColumn>
+														<listColumnTitle>
+															<style>
+																<defaultStyles>
+																	<defaultStyle refStyle="lt"/>
+																</defaultStyles>
+															</style>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<dataItemLabel refDataItem="Last name"/>
+																	</dataSource>
+																</textItem>
+															</contents>
+														</listColumnTitle>
+														<listColumnBody>
+															<style>
+																<defaultStyles>
+																	<defaultStyle refStyle="lc"/>
+																</defaultStyles>
+															</style>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<dataItemValue refDataItem="Last name"/>
+																	</dataSource>
+																</textItem>
+															</contents>
+														</listColumnBody>
+													</listColumn>
+													<listColumn>
+														<listColumnTitle>
+															<style>
+																<defaultStyles>
+																	<defaultStyle refStyle="lt"/>
+																</defaultStyles>
+															</style>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<dataItemLabel refDataItem="First name"/>
+																	</dataSource>
+																</textItem>
+															</contents>
+														</listColumnTitle>
+														<listColumnBody>
+															<style>
+																<defaultStyles>
+																	<defaultStyle refStyle="lc"/>
+																</defaultStyles>
+															</style>
+															<contents>
+																<textItem>
+																	<dataSource>
+																		<dataItemValue refDataItem="First name"/>
+																	</dataSource>
+																</textItem>
+															</contents>
+														</listColumnBody>
+													</listColumn>
+												</listColumns>
+												<sortList>
+													<sortItem refDataItem="Country"/>
+												</sortList>
+												<masterDetailLinks>
+													<masterDetailLink>
+														<masterContext>
+															<dataItemContext refDataItem="Country"/>
+														</masterContext>
+														<detailContext>
+															<dataItemContext refDataItem="Country"/>
+														</detailContext>
+													</masterDetailLink>
+												</masterDetailLinks>
+											</list>
+										</contents>
+										<repeaterGroups>
+											<repeaterGroup refDataItem="Country">
+												<sortList>
+													<sortItem refDataItem="Country"/>
+												</sortList>
+											</repeaterGroup>
+										</repeaterGroups>
+									</repeater>
+								</contents>
+							</block>
+						</contents>
+					</pageBody>
+					<pageHeader>
+						<contents>
+							<textItem>
+								<dataSource>
+									<reportExpression>ReportName()</reportExpression>
+								</dataSource>
+							</textItem>
+						</contents>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="ta"/>
+								<defaultStyle refStyle="tt"/>
+							</defaultStyles>
+							<CSS value="text-align:left"/>
+						</style>
+					</pageHeader>
+					<pageFooter>
+						<contents>
+							<textItem>
+								<dataSource>
+									<reportExpression>ReportPath()</reportExpression>
+								</dataSource>
+								<style>
+									<CSS value="font-size:8pt"/>
+								</style>
+							</textItem>
+						</contents>
+					</pageFooter>
+				</page>
+			</reportPages>
+		</layout>
+	</layouts>
+	<XMLAttributes>
+		<XMLAttribute output="no" name="RS_CreateExtendedDataItems" value="true"/>
+		<XMLAttribute output="no" name="RS_modelModificationTime" value="2015-11-25T21:38:24.820Z"/>
+		<XMLAttribute output="no" name="listSeparator" value=","/>
+	</XMLAttributes>
+	<modelPath>/content/folder[@name=&apos;Samples&apos;]/folder[@name=&apos;Models&apos;]/package[@name=&apos;GO sales (query)&apos;]/model[@name=&apos;model&apos;]</modelPath>
+	<queries>
+		<query name="BranchCountry">
+			<source>
+				<model/>
+			</source>
+			<selection>
+				<dataItem aggregate="none" rollupAggregate="none" name="Country">
+					<expression>[Sales (query)].[Branch].[Country]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+					</XMLAttributes>
+				</dataItem>
+			</selection>
+		</query>
+		<query name="RetailerCountry">
+			<source>
+				<model/>
+			</source>
+			<selection>
+				<dataItem aggregate="none" rollupAggregate="none" name="Country">
+					<expression>[Sales (query)].[Retailers].[Retailer country]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+					</XMLAttributes>
+				</dataItem>
+			</selection>
+		</query>
+		<query name="StaffCountry">
+			<source>
+				<model/>
+			</source>
+			<selection>
+				<dataItem aggregate="none" rollupAggregate="none" name="Country">
+					<expression>[Sales (query)].[Sales staff].[Country]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+					</XMLAttributes>
+				</dataItem>
+			</selection>
+		</query>
+		<query name="Query4">
+			<source>
+				<queryOperation name="Union1">
+					<queryRefs>
+						<queryRef refQuery="BranchCountry"/>
+						<queryRef refQuery="RetailerCountry"/>
+					</queryRefs>
+					<projectionList autoGenerated="true">
+
+						<queryItem name="Country"/>
+					</projectionList>
+				</queryOperation>
+			</source>
+			<selection>
+				<dataItem name="Country">
+					<expression>[Union1].[Country]</expression>
+				</dataItem>
+			</selection>
+		</query>
+		<query name="country">
+			<source>
+				<queryOperation name="Union2">
+					<queryRefs>
+						<queryRef refQuery="Query4"/>
+						<queryRef refQuery="StaffCountry"/>
+					</queryRefs>
+					<projectionList autoGenerated="true">
+
+						<queryItem name="Country"/>
+					</projectionList>
+				</queryOperation>
+			</source>
+			<selection>
+				<dataItem name="Country" aggregate="none" sort="ascending">
+					<expression>[Union2].[Country]</expression>
+				</dataItem>
+			</selection>
+		</query>
+		<query name="Query2">
+			<source>
+				<model/>
+			</source>
+			<selection>
+				<dataItem aggregate="none" rollupAggregate="none" name="Country">
+					<expression>[Sales (query)].[Branch].[Country]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItem aggregate="none" rollupAggregate="none" name="City">
+					<expression>[Sales (query)].[Branch].[City]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+					</XMLAttributes>
+				</dataItem>
+			</selection>
+			<detailFilters>
+				<detailFilter>
+					<filterExpression>[Sales (query)].[Time].[Year] = 2013</filterExpression>
+				</detailFilter>
+			</detailFilters>
+		</query>
+		<query name="Branch">
+			<source>
+				<joinOperation>
+					<joinOperands>
+						<joinOperand cardinality="1:1">
+							<queryRef refQuery="Query2"/>
+						</joinOperand>
+						<joinOperand cardinality="1:1">
+							<queryRef refQuery="country"/>
+						</joinOperand>
+					</joinOperands>
+					<joinFilter>
+						<filterExpression>[Query2].[Country] = [country].[Country]</filterExpression>
+					</joinFilter>
+				</joinOperation>
+			</source>
+			<selection>
+				<dataItem aggregate="none" rollupAggregate="none" name="Country">
+					<expression>[Query2].[Country]</expression>
+				</dataItem>
+				<dataItem aggregate="none" rollupAggregate="none" name="City">
+					<expression>[Query2].[City]</expression>
+				</dataItem>
+			</selection>
+		</query>
+		<query name="Query1">
+			<source>
+				<model/>
+			</source>
+			<selection>
+				<dataItem aggregate="none" rollupAggregate="none" name="Region">
+					<expression>[Sales (query)].[Retailers].[Region]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItem aggregate="none" rollupAggregate="none" name="Retailer country">
+					<expression>[Sales (query)].[Retailers].[Retailer country]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItem aggregate="none" rollupAggregate="none" name="Retailer">
+					<expression>[Sales (query)].[Retailers].[Retailer]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+					</XMLAttributes>
+				</dataItem>
+			</selection>
+			<detailFilters>
+				<detailFilter>
+					<filterExpression>[Sales (query)].[Time].[Year] = 2013</filterExpression>
+				</detailFilter>
+			</detailFilters>
+		</query>
+		<query name="Retailer">
+			<source>
+				<joinOperation>
+					<joinOperands>
+						<joinOperand cardinality="1:1">
+							<queryRef refQuery="Query1"/>
+						</joinOperand>
+						<joinOperand cardinality="1:1">
+							<queryRef refQuery="country"/>
+						</joinOperand>
+					</joinOperands>
+					<joinFilter>
+						<filterExpression>[Query1].[Retailer country] = [country].[Country]</filterExpression>
+					</joinFilter>
+				</joinOperation>
+			</source>
+			<selection>
+				<dataItem aggregate="none" rollupAggregate="none" name="Region">
+					<expression>[Query1].[Region]</expression>
+				</dataItem>
+				<dataItem aggregate="none" rollupAggregate="none" name="Retailer country">
+					<expression>[Query1].[Retailer country]</expression>
+				</dataItem>
+				<dataItem aggregate="none" rollupAggregate="none" name="Retailer">
+					<expression>[Query1].[Retailer]</expression>
+				</dataItem>
+			</selection>
+		</query>
+		<query name="Query3">
+			<source>
+				<model/>
+			</source>
+			<selection>
+				<dataItem aggregate="none" rollupAggregate="none" name="Country">
+					<expression>[Sales (query)].[Sales staff].[Country]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItem aggregate="none" rollupAggregate="none" name="Sales region">
+					<expression>[Sales (query)].[Sales staff].[Sales region]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItem aggregate="none" rollupAggregate="none" name="City">
+					<expression>[Sales (query)].[Sales staff].[City]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItem aggregate="none" rollupAggregate="none" name="Last name">
+					<expression>[Sales (query)].[Sales staff].[Last name]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItem aggregate="none" rollupAggregate="none" name="First name">
+					<expression>[Sales (query)].[Sales staff].[First name]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+					</XMLAttributes>
+				</dataItem>
+			</selection>
+			<detailFilters>
+				<detailFilter>
+					<filterExpression>[Sales (query)].[Time].[Year] = 2013</filterExpression>
+				</detailFilter>
+			</detailFilters>
+		</query>
+		<query name="Staff">
+			<source>
+				<joinOperation>
+					<joinOperands>
+						<joinOperand cardinality="1:1">
+							<queryRef refQuery="Query3"/>
+						</joinOperand>
+						<joinOperand cardinality="1:1">
+							<queryRef refQuery="country"/>
+						</joinOperand>
+					</joinOperands>
+					<joinFilter>
+						<filterExpression>[Query3].[Country] = [country].[Country]</filterExpression>
+					</joinFilter>
+				</joinOperation>
+			</source>
+			<selection>
+				<dataItem aggregate="none" rollupAggregate="none" name="Country">
+					<expression>[Query3].[Country]</expression>
+				</dataItem>
+				<dataItem aggregate="none" rollupAggregate="none" name="Sales region">
+					<expression>[Query3].[Sales region]</expression>
+				</dataItem>
+				<dataItem aggregate="none" rollupAggregate="none" name="City">
+					<expression>[Query3].[City]</expression>
+				</dataItem>
+				<dataItem aggregate="none" rollupAggregate="none" name="Last name">
+					<expression>[Query3].[Last name]</expression>
+				</dataItem>
+				<dataItem aggregate="none" rollupAggregate="none" name="First name">
+					<expression>[Query3].[First name]</expression>
+				</dataItem>
+			</selection>
+		</query>
+		<query name="Australia">
+			<source>
+				<model/>
+			</source>
+			<selection>
+				<dataItem name="country" aggregate="none">
+					<expression>&apos;Australia&apos;</expression>
+				</dataItem>
+				<dataItem name="email" aggregate="none">
+					<expression>&apos;doug.pulse@wsdot.wa.gov&apos;</expression>
+				</dataItem>
+			</selection>
+		</query>
+		<query name="Austria">
+			<source>
+				<model/>
+			</source>
+			<selection>
+				<dataItem name="country" aggregate="none">
+					<expression>&apos;Austria&apos;</expression>
+				</dataItem>
+				<dataItem name="email" aggregate="none">
+					<expression>&apos;doug.pulse@wsdot.wa.gov&apos;</expression>
+				</dataItem>
+			</selection>
+		</query>
+		<query name="email">
+			<source>
+				<queryOperation name="Union3">
+					<queryRefs>
+						<queryRef refQuery="Australia"/>
+						<queryRef refQuery="Austria"/>
+					</queryRefs>
+					<projectionList autoGenerated="true">
+						<queryItem name="country"/>
+						<queryItem name="email"/>
+					</projectionList>
+				</queryOperation>
+			</source>
+			<selection>
+				<dataItem name="country">
+					<expression>[Union3].[country]</expression>
+				</dataItem>
+				<dataItem name="email">
+					<expression>[Union3].[email]</expression>
+				</dataItem>
+			</selection>
+		</query>
+	</queries>
+	<reportName>Bursting Example</reportName>
+	<burst refQuery="country">
+		<burstGroups>
+			<burstGroup refDataItem="Country">
+				<sortList>
+					<sortItem refDataItem="Country"/>
+				</sortList>
+			</burstGroup>
+		</burstGroups>
+		<burstLabel refDataItem="Country"/>
+		<burstRecipient refQuery="email" refDataItem="email">
+			<masterDetailLinks>
+				<masterDetailLink>
+					<masterContext>
+						<dataItemContext refDataItem="Country"/>
+					</masterContext>
+					<detailContext>
+						<dataItemContext refDataItem="country"/>
+					</detailContext>
+				</masterDetailLink>
+			</masterDetailLinks>
+		</burstRecipient>
+	</burst>
+</report>
