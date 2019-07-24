@@ -115,7 +115,6 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 		valArray.forEach(function (n) {
 			a.push({"use": n, "display": n});
 		});
-		
 		return a;
 	}
 	
@@ -124,7 +123,13 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 		valArray.forEach(function (n) {
 			a.push({"start": {"use": n.start, "display": n.start}, "end": {"use": n.end, "display": n.end}});
 		});
-		
+		return a;
+	}
+	
+	var getValueFromSource = function (src) {
+		var a = [];
+		var n = src.element.innerHTML;
+		a.push({"use": n, "display": n});
 		return a;
 	}
 	
@@ -182,6 +187,11 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 					//		log("prompt range", JSON.stringify(n.PromptRange));
 					//		log("prompt range", JSON.stringify(convertRanges(n.PromptRange)));
 							oPrompt.setValues(convertRanges(n.PromptRange));
+						}
+						if (n.PromptValueSource) {
+						//	log("prompt source", JSON.stringify(n.PromptValueSource));
+						//	log("prompt source", JSON.stringify(getValueFromSource(oPage.getControlByName(n.PromptValueSource))));
+							oPrompt.setValues(getValueFromSource(oPage.getControlByName(n.PromptValueSource)));
 						}
 						
 						//"PromptValues" : [
