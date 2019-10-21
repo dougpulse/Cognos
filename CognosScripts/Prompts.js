@@ -96,6 +96,12 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 				"PromptIndex": "last"
 			}
 		], 
+		"RequiredPrompts": 
+		[
+			["WorkOrderNumber","Biennium"], 	--	WorkOrderNumber and Biennium
+			["WorkOrderNumber","FiscalYear"]	--	or WorkOrderNumber and FiscalYear
+		], 
+		"RequiredPromptCount":2,
 		"SelectAll":  ["Bien", "fy", "month"], 	--	select all values in prompts with these names; value prompt, select UI List box
 		"AutoComplete":  true
 	}
@@ -343,6 +349,40 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 						oPrompt.setValues(oPrompt.getValues(true));
 						//log(oPrompt.name, JSON.stringify(oPrompt.getValues()));
 					}
+				});
+			}
+			
+			if (this.oConfig.RequiredPrompts) {
+				//	Inspect the required prompt to verify that an acceptable combination of prompts is populated
+			}
+			
+			if (this.oConfig.RequiredPromptCount) {
+				//	loop through the prompts on the page
+				//	increment a counter if a prompt is populated
+				//	When the counter equals RequiredPromptCount, we're done.  Enable the Finish button.
+				//	If the counter never grows to RequiredPromptCount, disable the Finish button.
+				//	This should probably occur within the prompt validator function for every prompt.
+				//log("RequiredPromptCount:  ", this.oConfig.RequiredPromptCount);
+				var rpc = this.oConfig.RequiredPromptCount;
+				var ap = oPage.getAllPromptControls();
+				ap.forEach(function(p) {
+					//log("RequiredPromptCount:  Prompt", p.name);
+					p.setValidator(function () {
+						//log(p.name, "");
+						var c = rpc;
+						var i = 0;
+						var a = oPage.getAllPromptControls();
+						a.forEach(function(e) {
+							//log("    Prompt Validation:  Prompt" + e.name, JSON.stringify(e.getValues()));
+							//log("    Prompt Validation:  Prompt" + e.name, e.getValues()[0].use == undefined);
+							i += e.getValues()[0].use == undefined ? 0 : 1;
+							//log("    Prompt Validation:  Prompt" + e.name, i);
+						});
+						//log("PromptCount", i);
+						//log("RequiredPromptCount", c);
+						log("Valid Prompt", i >= c);
+						return i >= c;
+					});
 				});
 			}
 			

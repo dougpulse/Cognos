@@ -24,6 +24,7 @@ define( function() {
 				["WorkOrder", "fy"]
 			], 
 			"RequiredPromptCount": 2,
+			"HiddenPrompt": "MyHiddenPrompt",
 			"ValidationFailureAlert": "validation failed"
 		}
 		*/
@@ -31,6 +32,11 @@ define( function() {
 		/*
 			Using RequiredPrompts or RequiredPromptCount probably only makes
 			sense with a ButtonType of Finish or Next.
+			
+			Using HiddenPrompt is for when the page may already have all 
+			required prompts set, but you want to allow autosubmit to control 
+			other prompting and not to "finish" prompting.
+			The prompt used for HiddenPrompt should be a Text Box Prompt.
 		*/
 		
 		this.controlHost = oControlHost;
@@ -99,6 +105,48 @@ define( function() {
 			return m >= n;
 		};
 		
+		this.CompletePromptInit = function (s) {
+			var done = false;
+			var p;
+			
+			log("CompletePromptInit", s);
+			
+			p = this.page.getControlByName(s)
+			
+			if (p) {
+				p.setValues([{"use": undefined, "display": undefined}]);
+				done = true;
+				log("CompletePromptInit", "success");
+			}
+			else {
+				done = false;
+				log("CompletePromptInit", "failure");
+			}
+			
+			return done;
+		};
+		
+		this.CompletePrompt = function (s) {
+			var done = false;
+			var p;
+			
+			log("CompletePrompt", s);
+			
+			p = this.page.getControlByName(s)
+			
+			if (p) {
+				p.setValues([{"use": "a", "display": "a"}]);
+				done = true;
+				log("CompletePrompt", "success");
+			}
+			else {
+				done = false;
+				log("CompletePrompt", "failure");
+			}
+			
+			return done;
+		};
+		
 		this.TakeAction = function () {
 			var i = 0;
 			var msg = "";
@@ -119,7 +167,15 @@ define( function() {
 				i++;
 			}
 			
-			if (i == 2) {
+			if (this.oConfig && this.oConfig.HiddenPrompt) {
+				if (this.CompletePrompt(this.oConfig.HiddenPrompt)) i++;
+				else msg += "\r\n    Prompt named " + this.oConfig.HiddenPrompt + " was not found or could not be set.";
+			}
+			else {
+				i++;
+			}
+			
+			if (i == 3) {
 				//	passed validation.  take action
 				switch (this.ButtonType.toLowerCase()) {
 					case "finish":
@@ -147,6 +203,14 @@ define( function() {
 				if (this.failureAlert) alert(this.failureAlert);
 			}
 		};
+		
+		if (this.oConfig && this.oConfig.HiddenPrompt) {
+			if (this.CompletePromptInit(this.oConfig.HiddenPrompt)) {
+			}
+			else {
+				log("Prompt Validation Failure", "Unable to initialize.\r\n    Prompt named " + this.oConfig.HiddenPrompt + " was not found or could not be set.");
+			}
+		}
 		
 		fnDoneInitializing();
 	};

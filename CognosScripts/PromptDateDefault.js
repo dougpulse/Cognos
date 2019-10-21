@@ -41,6 +41,7 @@ define(["/CognosScripts/ObjectMethods.js"], function() {
 		var reDate = /^\d{4}-\d{2}-\d{2}$/;
 		var iDateCol, iStartDateCol, iEndDateCol;
 		var sDate, sStartDate, sEndDate;
+		var sMsg = "";
 		
 		
 		//	check configuration
@@ -49,7 +50,7 @@ define(["/CognosScripts/ObjectMethods.js"], function() {
 			sMsg += "Invalid Configuration:  The name of the date prompt was not provided.";
 		}
 		
-		if (!sDateColumn || !(sStartDateColumn && sEndDateColumn)) {
+		if (!sDateColumn && !(sStartDateColumn || sEndDateColumn)) {
 			bValid = false;
 			sMsg += "Invalid Configuration:  The name of either the date prompt or the startdate and enddate prompts are required.";
 		}
@@ -114,8 +115,8 @@ define(["/CognosScripts/ObjectMethods.js"], function() {
 		var vals = ds.columnValues;
 		if (sDateColumn) {
 			for (var i = 0; i < ds.rowCount; i++) {
-				if (!vals[iDateCol][i].match(reDate)) {
-					sMsg += "Invalid input:  " + vals[iDateCol][i] + "is not a valid date.";
+				if (!vals[iDateCol][i].left(10).match(reDate)) {
+					sMsg += "Invalid input:  " + vals[iDateCol][i] + " is not a valid date.";
 					bValid = false;
 					break;
 				}
@@ -123,13 +124,13 @@ define(["/CognosScripts/ObjectMethods.js"], function() {
 		}
 		else {
 			for (var i = 0; i < ds.rowCount; i++) {
-				if (!vals[iStartDateCol][i].match(reDate)) {
-					sMsg += "Invalid input:  " + vals[iStartDateCol][i] + "is not a valid date.";
+				if (!vals[iStartDateCol][i].left(10).match(reDate)) {
+					sMsg += "Invalid input:  " + vals[iStartDateCol][i] + " is not a valid date.";
 					bValid = false;
 					break;
 				}
-				if (!vals[iEndDateCol][i].match(reDate)) {
-					sMsg += "Invalid input:  " + vals[iEndDateCol][i] + "is not a valid date.";
+				if (!vals[iEndDateCol][i].left(10).match(reDate)) {
+					sMsg += "Invalid input:  " + vals[iEndDateCol][i] + " is not a valid date.";
 					bValid = false;
 					break;
 				}
@@ -146,18 +147,23 @@ define(["/CognosScripts/ObjectMethods.js"], function() {
 		var arrDates = [];
 		if (sDateColumn) {
 			for (var i = 0; i < ds.rowCount; i++) {
-				arrDates.push({"use":vals[iDateCol][i]});
+				arrDates.push({"use":vals[iDateCol][i].left(10)});
 			}
 		}
 		else {
 			for (var i = 0; i < ds.rowCount; i++) {
-				arrDates.push({"start":{"use":vals[iStartDateCol][i]},"end":{"use":vals[iEndDateCol][i]}});
+				arrDates.push({"start":{"use":vals[iStartDateCol][i].left(10)},"end":{"use":vals[iEndDateCol][i].left(10)}});
 			}
 		}
 		oControlHost.page.getControlByName(sPromptName).setValues(arrDates);
 		
 		
 		fnDoneInitializing();
+	};
+	
+	DateDefault.prototype.draw = function( oControlHost )
+	{
+		
 	};
 	
 	return DateDefault;
