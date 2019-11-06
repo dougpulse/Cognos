@@ -14,6 +14,12 @@ This is where I put all of the JavaScript modules.  On my Cognos server, this li
   <dt>PromptDateDefault.js</dt>
   <dd>A way to use data rather than JavaScript to choose a set of default values for a date prompt.  This is an alternative to the some of the features in Prompts.js.</dd>
 
+  <dt>ParameterCapture.js</dt>
+  <dd>Captures parameter name, prompt name, and selected parameter values for presentation using ParameterDisplay.js.</dd>
+
+  <dt>ParameterDisplay.js</dt>
+  <dd>For each parameter, displays the prompt name and selected values.</dd>
+
   <dt>ObjectMethods.js</dt>
   <dd>A collection of additional object methods to make some scripting tasks simpler.<br />Used by Prompts.js.</dd>
 
