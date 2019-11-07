@@ -18,7 +18,10 @@ This is where I put all of the JavaScript modules.  On my Cognos server, this li
   <dd>Captures parameter name, prompt name, and selected parameter values for presentation using ParameterDisplay.js.</dd>
 
   <dt>ParameterDisplay.js</dt>
-  <dd>For each parameter, displays the prompt name and selected values.</dd>
+  <dd>For each prompt on any prompt page, displays the prompt name and selected values.</dd>
+
+  <dt>ParamDisplay.js</dt>
+  <dd>For each parameter, displays the parameter name and selected values.</dd>
 
   <dt>ObjectMethods.js</dt>
   <dd>A collection of additional object methods to make some scripting tasks simpler.<br />Used by Prompts.js.</dd>

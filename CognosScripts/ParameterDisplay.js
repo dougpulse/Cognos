@@ -10,20 +10,20 @@ define( function() {
 		console.log("    ****    " + label + " : " + message);
 	}
 	
-	function test2() {};
+	function ParameterDisplay() {};
 	
-	test2.prototype.initialize = function(oControlHost, fnDoneInitializing) {
-		log("test2", "CustomControlModule.initialize" );
+	ParameterDisplay.prototype.initialize = function(oControlHost, fnDoneInitializing) {
+		log("ParameterDisplay", "CustomControlModule.initialize" );
 		this.CurrentReport = sessionStorage.getItem("CurrentReport");
 		fnDoneInitializing();
 	};
 	
-	test2.prototype.destroy = function(oControlHost) {
-		log("test2", "CustomControlModule.destroy" );
+	ParameterDisplay.prototype.destroy = function(oControlHost) {
+		log("ParameterDisplay", "CustomControlModule.destroy" );
 	};
 	
-	test2.prototype.draw = function(oControlHost) {
-		log("test2", "CustomControlModule.draw" );
+	ParameterDisplay.prototype.draw = function(oControlHost) {
+		log("ParameterDisplay", "CustomControlModule.draw" );
 		
 		if (this.CurrentReport) {	//	if there is no object named ReportName, don't try to display parameters
 			var params = JSON.parse(sessionStorage.getItem("Parameters" + this.CurrentReport));
@@ -50,25 +50,25 @@ define( function() {
 		//oControlHost.container.innerHTML = JSON.stringify(apn);
 	};
 	
-	test2.prototype.show = function(oControlHost) {
-		log("test2", "CustomControlModule.show" );
+	ParameterDisplay.prototype.show = function(oControlHost) {
+		log("ParameterDisplay", "CustomControlModule.show" );
 	};
 	
-	test2.prototype.hide = function(oControlHost) {
-		log("test2", "CustomControlModule.hide" );
+	ParameterDisplay.prototype.hide = function(oControlHost) {
+		log("ParameterDisplay", "CustomControlModule.hide" );
 	};
 	
-	test2.prototype.isInValidState = function(oControlHost) {
-		log("test2", "CustomControlModule.isInValidState" );
+	ParameterDisplay.prototype.isInValidState = function(oControlHost) {
+		log("ParameterDisplay", "CustomControlModule.isInValidState" );
 	};
 	
-	test2.prototype.getParameters = function(oControlHost) {
-		log("test2", "CustomControlModule.getParameters" );
+	ParameterDisplay.prototype.getParameters = function(oControlHost) {
+		log("ParameterDisplay", "CustomControlModule.getParameters" );
 	};
 	
-	test2.prototype.setData = function(oControlHost, oDataStore) {
-		log("test2", "CustomControlModule.setData" );
+	ParameterDisplay.prototype.setData = function(oControlHost, oDataStore) {
+		log("ParameterDisplay", "CustomControlModule.setData" );
 	};
 	
-	return test2;
+	return ParameterDisplay;
 });
