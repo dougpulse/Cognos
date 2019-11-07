@@ -24,25 +24,28 @@ define( function() {
 	
 	test2.prototype.draw = function(oControlHost) {
 		log("test2", "CustomControlModule.draw" );
-		var params = JSON.parse(sessionStorage.getItem("Parameters" + this.CurrentReport));
-
-		Object.keys(params).forEach(function(e) {
-			var ss = JSON.parse(params[e]);
-			var ne = document.createElement("div");
-			var ns = "";
-			JSON.parse(ss[1]).forEach(function(f) {
-				if (f.start) {
-					ns += ", start: " + ((typeof f.start.display == "undefined") ? "" : f.start.display) + ", end: " + ((typeof f.end.display == "undefined") ? "" : f.end.display);
-				}
-				else {
-					ns += ", " + ((typeof f.display == "undefined") ? "" : f.display);
-				}
+		
+		if (this.CurrentReport) {	//	if there is no object named ReportName, don't try to display parameters
+			var params = JSON.parse(sessionStorage.getItem("Parameters" + this.CurrentReport));
+			
+			Object.keys(params).forEach(function(e) {
+				var ss = JSON.parse(params[e]);
+				var ne = document.createElement("div");
+				var ns = "";
+				JSON.parse(ss[1]).forEach(function(f) {
+					if (f.start) {
+						ns += ", start: " + ((typeof f.start.display == "undefined") ? "" : f.start.display) + ", end: " + ((typeof f.end.display == "undefined") ? "" : f.end.display);
+					}
+					else {
+						ns += ", " + ((typeof f.display == "undefined") ? "" : f.display);
+					}
+				});
+				ns = ns.substring(2);
+				var nc = document.createTextNode(ss[0] + ":  " + ns);
+				ne.appendChild(nc);
+				oControlHost.container.appendChild(ne);
 			});
-			ns = ns.substring(2);
-			var nc = document.createTextNode(ss[0] + ":  " + ns);
-			ne.appendChild(nc);
-			oControlHost.container.appendChild(ne);
-		});
+		}
 		
 		//oControlHost.container.innerHTML = JSON.stringify(apn);
 	};

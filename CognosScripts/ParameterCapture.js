@@ -32,11 +32,11 @@ define(function () {
 			sessionStorage.setItem("CurrentReport", this.CurrentReport);
 		}
 		
-		var apc = oPage.getAllPromptControls();
-		
-		apc.forEach(function (n) {
-			log("	Prompts:  ", n.name);
-		});
+		//var apc = oPage.getAllPromptControls();
+		//
+		//apc.forEach(function (n) {
+		//	log("	Prompts:  ", n.name);
+		//});
 	};
 	
 	PageModule.prototype.show = function(oPage) {
@@ -50,21 +50,23 @@ define(function () {
 	PageModule.prototype.destroy = function(oPage) {
 		log("page", "PageModule.destroy" );
 		
-		if (!sessionStorage.getItem("Parameters" + this.CurrentReport)) {
-			sessionStorage.setItem("Parameters" + this.CurrentReport, JSON.stringify({}));
+		if (this.CurrentReport) {
+			if (!sessionStorage.getItem("Parameters" + this.CurrentReport)) {
+				sessionStorage.setItem("Parameters" + this.CurrentReport, JSON.stringify({}));
+			}
+			
+			var prompts = oPage.getAllPromptControls();
+			prompts.forEach(function (e) {
+				var p = JSON.parse(sessionStorage.getItem("Parameters" + this.CurrentReport));
+				var v1 = e.getValues();
+				var v2 = JSON.stringify(v1);
+				var v3 = e.name;
+				var v4 = [v3, v2];
+				p[e.parameter] = JSON.stringify(v4);
+				//p[e.parameter] = JSON.stringify([e.name, JSON.stringify(e.getValues())]);
+				sessionStorage.setItem("Parameters" + this.CurrentReport, JSON.stringify(p));
+			}, this);
 		}
-		
-		var prompts = oPage.getAllPromptControls();
-		prompts.forEach(function (e) {
-			var p = JSON.parse(sessionStorage.getItem("Parameters" + this.CurrentReport));
-			var v1 = e.getValues();
-			var v2 = JSON.stringify(v1);
-			var v3 = e.name;
-			var v4 = [v3, v2];
-			p[e.parameter] = JSON.stringify(v4);
-			//p[e.parameter] = JSON.stringify([e.name, JSON.stringify(e.getValues())]);
-			sessionStorage.setItem("Parameters" + this.CurrentReport, JSON.stringify(p));
-		}, this);
 	};
 	
 	return PageModule;
