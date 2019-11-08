@@ -21,48 +21,61 @@ define( function() {
 	};
 	
 	ParamDisplay.prototype.destroy = function(oControlHost) {
-		log("ParamDisplay", "CustomControlModule.destroy" );
+		//log("ParamDisplay", "CustomControlModule.destroy" );
 	};
 	
 	ParamDisplay.prototype.draw = function(oControlHost) {
 		log("ParamDisplay", "CustomControlModule.draw" );
 		
+		var tbl = document.createElement("table");
 		this.Params.forEach(function(e) {
-			var ne = document.createElement("div");
+			var tr = document.createElement("tr");
+			var paramName = document.createElement("td");
+			paramName.appendChild(document.createTextNode(e.name));
+			paramName.style.verticalAlign = "top";
+			tr.appendChild(paramName);
+			var paramValue = document.createElement("td");
+			paramValue.style.verticalAlign = "top";
 			var ParamValue = "";
+			//var paramDiv = document.createElement("div");
+			var bRange = false;
 			e.value.forEach(function(v) {
 				if (v.type.indexOf("Range") != -1) {
-					ParamValue += ", start: " + ((typeof v.start == "undefined") ? "" : v.start.display) + ", end: " + ((typeof v.end == "undefined") ? "" : v.end.display);
+					bRange = true;
+					var paramDiv = document.createElement("div");
+					ParamValue = ((typeof v.start == "undefined") ? "" : v.start.display) + " to " + ((typeof v.end == "undefined") ? "" : v.end.display);
+					paramDiv.appendChild(document.createTextNode(ParamValue));
+					paramValue.appendChild(paramDiv);
 				}
 				else {
 					ParamValue += ", " + ((typeof v.display == "undefined") ? "" : v.display);
 				}
 			});
-			ParamValue = ParamValue.substring(2);
-			var nc = document.createTextNode(e.name + ":  " + ParamValue);
-			ne.appendChild(nc);
-			oControlHost.container.appendChild(ne);
+			if (!bRange) paramValue.appendChild(document.createTextNode(ParamValue.substring(2)));
+			tr.appendChild(paramValue);
+			tbl.appendChild(tr);
 		});
+		oControlHost.container.appendChild(tbl);
 	};
 	
 	ParamDisplay.prototype.show = function(oControlHost) {
-		log("ParamDisplay", "CustomControlModule.show" );
+		//log("ParamDisplay", "CustomControlModule.show" );
 	};
 	
 	ParamDisplay.prototype.hide = function(oControlHost) {
-		log("ParamDisplay", "CustomControlModule.hide" );
+		//log("ParamDisplay", "CustomControlModule.hide" );
 	};
 	
 	ParamDisplay.prototype.isInValidState = function(oControlHost) {
-		log("ParamDisplay", "CustomControlModule.isInValidState" );
+		//log("ParamDisplay", "CustomControlModule.isInValidState" );
 	};
 	
 	ParamDisplay.prototype.getParameters = function(oControlHost) {
-		log("ParamDisplay", "CustomControlModule.getParameters" );
+		//log("ParamDisplay", "CustomControlModule.getParameters" );
 	};
 	
 	ParamDisplay.prototype.setData = function(oControlHost, oDataStore) {
-		log("ParamDisplay", "CustomControlModule.setData" );
+		//log("ParamDisplay", "CustomControlModule.setData" );
 	};
 	
 	return ParamDisplay;
