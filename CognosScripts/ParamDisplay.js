@@ -15,21 +15,6 @@ define( function() {
 	ParamDisplay.prototype.initialize = function(oControlHost, fnDoneInitializing) {
 		log("ParamDisplay", "CustomControlModule.initialize" );
 		
-		/*
-		//	this part is needed if using 11.1.4
-		var ReportFrame = null;
-		var ReportFrameID = window.__glassAppController.getCurrentContentView().id;
-
-		for (var i = 0; i < window.frames.length; ++i) {
-			if (window.frames[i].Application.GlassView && window.frames[i].Application.GlassView.id == ReportFrameID) {
-				ReportFrame = window.frames[i];
-				break;
-			}
-		}
-		this.Params = ReportFrame.Application.GetParameterValues();
-		*/
-		
-		//	11.0.13 is simpler
 		this.Params = window.Application.GetParameterValues();
 		
 		fnDoneInitializing();
