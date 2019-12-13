@@ -1,0 +1,417 @@
+<report xmlns="http://developer.cognos.com/schemas/report/14.3/" useStyleVersion="11.4" expressionLocale="en-us">
+	<drillBehavior/>
+	<layouts>
+		<layout>
+			<reportPages>
+				<page name="Page1">
+					<style>
+						<defaultStyles>
+							<defaultStyle refStyle="pg"/>
+						</defaultStyles>
+					</style>
+					<pageBody>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="pb"/>
+							</defaultStyles>
+						</style>
+						<contents>
+							<customControl path="/CognosScripts/ParamDisplay.js"/>
+						</contents>
+					</pageBody>
+					<pageHeader>
+						<contents>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+											<reportExpression>ReportName()</reportExpression>
+										</dataSource>
+										<style>
+											<defaultStyles>
+												<defaultStyle refStyle="tt"/>
+											</defaultStyles>
+										</style>
+									</textItem>
+								</contents>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="ta"/>
+									</defaultStyles>
+								</style>
+							</block>
+						</contents>
+					</pageHeader>
+					<pageFooter>
+						<contents>
+							<customControl name="test2" path="/CognosScripts/ParameterDisplay.js"/>
+						</contents>
+					</pageFooter>
+				</page>
+			</reportPages>
+			<promptPages>
+				<page name="Prompt page1">
+					<pageHeader>
+						<contents>
+							<block>
+								<contents>
+									<textItem name="ReportName">
+										<dataSource>
+											<reportExpression>ReportName()</reportExpression>
+										</dataSource>
+										<style>
+											<defaultStyles>
+												<defaultStyle refStyle="tt"/>
+											</defaultStyles>
+										</style>
+									</textItem>
+								</contents>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="ta"/>
+									</defaultStyles>
+								</style>
+							</block>
+						</contents>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="hp"/>
+							</defaultStyles>
+						</style>
+					</pageHeader>
+					<pageBody>
+						<contents>
+							<table>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="tb"/>
+									</defaultStyles>
+									<CSS value="border-collapse:collapse;background-color:aqua"/>
+								</style>
+								<tableRows>
+									<tableRow>
+										<tableCells>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>Prompt1:  </staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="text-align:left;vertical-align:top"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>Prompt2:  </staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="text-align:left;vertical-align:top"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>Prompt3:  </staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="text-align:left;vertical-align:top"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>Prompt4:  </staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="text-align:left;vertical-align:top"/>
+												</style>
+											</tableCell>
+										</tableCells>
+									</tableRow>
+									<tableRow>
+										<tableCells>
+											<tableCell>
+												<contents>
+													<textBox multiLine="true" multiSelect="true" name="My First Prompt" parameter="A parameter" required="false"/>
+												</contents>
+												<style>
+													<CSS value="text-align:left;vertical-align:top"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<selectValue name="Another Prompt" parameter="Another parameter" required="false"/>
+												</contents>
+												<style>
+													<CSS value="text-align:left;vertical-align:top"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<selectWithSearch name="Prompt3" parameter="Parameter3" required="false"/>
+												</contents>
+												<style>
+													<CSS value="text-align:left;vertical-align:top"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<selectDate name="Prompt4" parameter="Parameter4" required="false"/>
+												</contents>
+												<style>
+													<CSS value="text-align:left;vertical-align:top"/>
+												</style>
+											</tableCell>
+										</tableCells>
+									</tableRow>
+								</tableRows>
+							</table>
+						</contents>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="py"/>
+							</defaultStyles>
+						</style>
+					</pageBody>
+					<pageFooter>
+						<contents>
+							<promptButton type="cancel">
+								<contents/>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="bp"/>
+									</defaultStyles>
+								</style>
+							</promptButton>
+
+							<promptButton type="next">
+								<contents/>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="bp"/>
+									</defaultStyles>
+								</style>
+							</promptButton>
+
+							<promptButton type="reprompt">
+								<contents/>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="bp"/>
+									</defaultStyles>
+								</style>
+							</promptButton>
+						</contents>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="fp"/>
+							</defaultStyles>
+						</style>
+					</pageFooter>
+					<style>
+						<defaultStyles>
+							<defaultStyle refStyle="pp"/>
+						</defaultStyles>
+					</style>
+					<pageModule path="/CognosScripts/ParameterCapture.js"/>
+				</page>
+				<page name="Prompt page2">
+					<pageHeader>
+						<contents>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+											<reportExpression>ReportName()</reportExpression>
+										</dataSource>
+										<style>
+											<defaultStyles>
+												<defaultStyle refStyle="tt"/>
+											</defaultStyles>
+										</style>
+									</textItem>
+								</contents>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="ta"/>
+									</defaultStyles>
+								</style>
+							</block>
+						</contents>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="hp"/>
+							</defaultStyles>
+						</style>
+					</pageHeader>
+					<pageBody>
+						<contents>
+							<table>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="tb"/>
+									</defaultStyles>
+									<CSS value="border-collapse:collapse"/>
+								</style>
+								<tableRows>
+									<tableRow>
+										<tableCells>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>Prompt5:  </staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="text-align:left;vertical-align:top"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>Prompt6:  </staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="text-align:left;vertical-align:top"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>Prompt7:  </staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="text-align:left;vertical-align:top"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue>Prompt8:  </staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<CSS value="text-align:left;vertical-align:top"/>
+												</style>
+											</tableCell>
+										</tableCells>
+									</tableRow>
+									<tableRow>
+										<tableCells>
+											<tableCell>
+												<contents>
+													<textBox name="Prompt5" parameter="Parameter5" required="false"/>
+												</contents>
+												<style>
+													<CSS value="text-align:left;vertical-align:top"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<selectValue name="Prompt6" parameter="Parameter6" required="false"/>
+												</contents>
+												<style>
+													<CSS value="text-align:left;vertical-align:top"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<selectWithSearch parameter="Parameter7" required="false"/>
+												</contents>
+												<style>
+													<CSS value="text-align:left;vertical-align:top"/>
+												</style>
+											</tableCell>
+											<tableCell>
+												<contents>
+													<selectDate multiSelect="true" name="Date Ranges" parameter="DateRange" range="true" required="false" selectDateUI="editBox"/>
+												</contents>
+												<style>
+													<CSS value="text-align:left;vertical-align:top"/>
+												</style>
+											</tableCell>
+										</tableCells>
+									</tableRow>
+								</tableRows>
+							</table>
+						</contents>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="py"/>
+							</defaultStyles>
+						</style>
+					</pageBody>
+					<pageFooter>
+						<contents>
+							<promptButton type="cancel">
+								<contents/>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="bp"/>
+									</defaultStyles>
+								</style>
+							</promptButton>
+							<promptButton type="back">
+								<contents/>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="bp"/>
+									</defaultStyles>
+								</style>
+							</promptButton>
+
+							<promptButton type="finish">
+								<contents/>
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="bp"/>
+									</defaultStyles>
+								</style>
+							</promptButton>
+						</contents>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="fp"/>
+							</defaultStyles>
+						</style>
+					</pageFooter>
+					<style>
+						<defaultStyles>
+							<defaultStyle refStyle="pp"/>
+						</defaultStyles>
+					</style>
+					<pageModule path="/CognosScripts/ParameterCapture.js"/>
+				</page>
+			</promptPages>
+		</layout>
+	</layouts>
+	<XMLAttributes>
+		<XMLAttribute output="no" name="RS_CreateExtendedDataItems" value="false"/>
+		<XMLAttribute output="no" name="listSeparator" value=","/>
+	</XMLAttributes>
+	<modelPath>/content/folder[@name=&apos;Samples&apos;]/folder[@name=&apos;Models&apos;]/package[@name=&apos;GO sales (query)&apos;]/model[@name=&apos;model&apos;]</modelPath>
+	<reportName>ParameterReporter</reportName>
+</report>
