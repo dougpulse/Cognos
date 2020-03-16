@@ -16,7 +16,7 @@ Report samples for various purposes.  These contain the report spec xml that can
   <dd>Demonstrates how to use ParamDisplay.js, ParameterDisplay.js, and ParameterCapture.js.</dd>
   
   <dt>Date Calculations</dt>
-  <dd>Demonstrates using MS SQL and Cognos Macros to compute different date values.</dd>
+  <dd>Demonstrates using MS SQL and Cognos Macros to compute various date values.</dd>
   
   <dt>ToolTips</dt>
   <dd>Show more detail about a data value in a tooltip.</dd>
