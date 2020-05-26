@@ -364,6 +364,40 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 			
 			if (this.oConfig.RequiredPrompts) {
 				//	Inspect the required prompt to verify that an acceptable combination of prompts is populated
+				var ap = [];
+				this.oConfig.RequiredPrompts.forEach(function (arr) {
+					arr.forEach(function(sPromptName) {
+						ap.push(oPage.getControlByName(sPromptName));
+					}
+				}
+				
+				ap.forEach(function(p) {
+					p.setValidator(function () {
+						var blnGood = false;
+						//	check the entire set
+						//	if any group is complete, we're done
+						this.oConfig.RequiredPrompts.forEach(function (arr) {
+							//	check each group
+							if (!blnGood) {
+								//	reset the counter
+								var rpc = 0;
+								arr.forEach(function(sPromptName, i, grp) {
+									//log("Prompt Name", sPromptName);
+									var oPrompt = oPage.getControlByName(sPromptName);
+									if (!oPrompt) {
+										alert(sPromptName + " was not found.");
+									}
+									else {
+										rpc += (oPrompt.getValues()[0].use == undefined ? 0 : 1);
+									}
+								}
+								//	if the counter grew to the size of the array, we're good
+								if (arr.length == rpc) blnGood = true;
+							}
+						}
+						return blnGood;
+					}
+				}
 			}
 			
 			if (this.oConfig.RequiredPromptCount) {

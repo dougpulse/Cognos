@@ -43,7 +43,7 @@ $status | Out-File -append "E:\logs\gitstatus$dnum.txt"
 $cmd = "e:\tools\tidy.exe"
 
 foreach ($line in $status) {
-	if (($line.Substring(0, 3) -eq " M " -Or $line.Substring(0, 3) -eq " A ") -And $line.Substring($line.length - 5, 4) -eq ".xml") {
+	if (($line.Substring(0, 3) -eq " M " -Or $line.Substring(0, 3) -eq " A " -Or $line.Substring(0, 3) -eq "?? ") -And $line.Substring($line.length - 5, 4) -eq ".xml") {
 		#	we want this one
 		$f = "`"" + $fldr + "\" +  $line.Substring(4, $line.length - 5) + "`""
 		$f = $f.replace("/", "\")
@@ -72,8 +72,8 @@ foreach ($line in $status) {
 		$f = $f.replace("/", "\")
 		
 		(get-content $f) | convertfrom-json | convertto-json -depth 100 | set-content $f
-		$dlog = (date).tostring("yyyy-MM-dd HH:mm:ss.fff ")
-		"$dlog  tidied $f" | Out-File -append "E:\logs\ReportBackupLog.txt"
+		#$dlog = (date).tostring("yyyy-MM-dd HH:mm:ss.fff ")
+		#"$dlog  tidied $f" | Out-File -append "E:\logs\ReportBackupLog.txt"
 	}
 }
 
@@ -82,7 +82,7 @@ foreach ($line in $status) {
 $status = git status --porcelain
 #	...and record what changed
 foreach ($line in $status) {
-	if (($line.Substring(0, 3) -eq " M " -Or $line.Substring(0, 3) -eq " A ") -And ($line.Substring($line.length - 5, 4) -eq ".xml" -Or $line.Substring($line.length - 6, 5) -eq ".json")) {
+	if (($line.Substring(0, 3) -eq " M " -Or $line.Substring(0, 3) -eq " A " -Or $line.Substring(0, 3) -eq "?? ") -And ($line.Substring($line.length - 5, 4) -eq ".xml" -Or $line.Substring($line.length - 6, 5) -eq ".json")) {
 		#	we want this one
 		$f = "`"" + $fldr + "\" +  $line.Substring(4, $line.length - 5) + "`""
 		$f = $f.replace("/", "\")

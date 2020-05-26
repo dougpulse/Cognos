@@ -12,7 +12,7 @@ $fldr = "E:\ReportBackup"
 Set-Location -Path $fldr
 $pull = git pull
 
-$dlog = (date).tostring("yyyy-MM-dd hh:mm:ss.fff ")
+$dlog = (date).tostring("yyyy-MM-dd HH:mm:ss.fff ")
 "" | Out-File -append "E:\logs\ReportBackupLog.txt"
 "$dlog  git pull complete" | Out-File -append "E:\logs\ReportBackupLog.txt"
 #"---   BEGIN PULL OUTPUT   ---" | Out-File -append "E:\logs\ReportBackupLog.txt"

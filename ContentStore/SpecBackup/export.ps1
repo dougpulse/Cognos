@@ -84,7 +84,7 @@ $sqlquery = "with cte2(CMID,
 )
 
 select REPLACE(c.ObjectPath,'/','\') + case when c.ObjectClass = 'exploration' then '.json' else '.xml' end as FilePath
-,s.SPEC as SPEC
+, s.SPEC as SPEC
 from cte2 c
   left join CMOBJPROPS7 s on s.CMID = c.CMID
 where c.ObjectClass in ('report', 'exploration', 'dataSet2')
@@ -100,20 +100,30 @@ $sqlquery = $sqlquery + "
 order by 1"
 
 
-
 push-location
-$result = Invoke-Sqlcmd $sqlquery -ServerInstance "DatabaseServerName" -Database "ContentStoreDatabaseName" -MaxCharLength 1000000
+try {
+	$result = Invoke-Sqlcmd $sqlquery -ServerInstance "HQOLYMSQL19P" -Database "IBMCOGNOS" -MaxCharLength 2000000 -ErrorAction 'Stop' -QueryTimeout 900
+}
+catch {
+	pop-location
+	$dlog = (date).tostring("yyyy-MM-dd HH:mm:ss.fff ")
+	"$dlog  Error:  $($_.Exception.Message)" | Out-File -append "E:\logs\ReportBackupLog.txt"	#write the error to the log
+	break																						#quit the program without making changes
+}
+
 pop-location
 
 $l = $result.length
 
 $dlog = (date).tostring("yyyy-MM-dd HH:mm:ss.fff ")
+if ($dow -ne 0) {
 "$dlog  $l reports modified" | Out-File -append "E:\logs\ReportBackupLog.txt"
+}
 
-
-#	If it's Sunday, delete everything under Team Conten\Reports.
+#	If it's Sunday, delete everything under Team Content\Reports.
 #	This is to delete items that are no longer in the Content Store.
 if ($dow -eq 0) {
+"$dlog  $l reports total" | Out-File -append "E:\logs\ReportBackupLog.txt"
 	Remove-Item -path "E:\ReportBackup\Team Content\Reports" -recurse
 }
 

@@ -70,7 +70,7 @@ with cte2(CMID,
 )
 
 select REPLACE(c.ObjectPath,'/','\') + case when c.ObjectClass = 'exploration' then '.json' else '.xml' end as FilePath
-,s.SPEC as SPEC
+, s.SPEC as SPEC
 from cte2 c
   left join CMOBJPROPS7 s on s.CMID = c.CMID
 where c.ObjectClass in ('report', 'exploration', 'dataSet2')
