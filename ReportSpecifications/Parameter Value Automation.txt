@@ -245,7 +245,6 @@
 									</defaultStyles>
 								</style>
 							</promptButton>
-
 							<promptButton type="next">
 								<contents>
 									<textItem>
@@ -260,7 +259,6 @@
 									</defaultStyles>
 								</style>
 							</promptButton>
-
 							<textItem>
 								<dataSource>
 									<staticValue>Finish button is actually a Next button with a text item on it.</staticValue>
@@ -315,6 +313,33 @@
 								<contents>
 									<textItem>
 										<dataSource>
+											<staticValue>Add a page module for Prompts.js</staticValue>
+										</dataSource>
+									</textItem>
+								</contents>
+							</block>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+											<staticValue>Add a block for the prompt script configuration.  Set its Box type to None-Block.</staticValue>
+										</dataSource>
+									</textItem>
+								</contents>
+							</block>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+											<staticValue>Add a Text item to the block, name it PromptConfiguration, and set the JSON-formatted configuration string for the page.</staticValue>
+										</dataSource>
+									</textItem>
+								</contents>
+							</block>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
 											<staticValue>Make the header and footer match the first prompt page.</staticValue>
 										</dataSource>
 									</textItem>
@@ -334,6 +359,15 @@
 									<textItem>
 										<dataSource>
 											<staticValue>Name the value prompt.  The name is used in the script.</staticValue>
+										</dataSource>
+									</textItem>
+								</contents>
+							</block>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+											<staticValue>Set the Multi-select value of the value prompt to Yes.</staticValue>
 										</dataSource>
 									</textItem>
 								</contents>
@@ -413,8 +447,6 @@
 									</defaultStyles>
 								</style>
 							</promptButton>
-
-
 							<promptButton type="finish">
 								<contents/>
 								<style>

@@ -1,0 +1,355 @@
+<report xmlns="http://developer.cognos.com/schemas/report/14.3/" useStyleVersion="11.4" expressionLocale="en-us">
+	<drillBehavior/>
+	<layouts>
+		<layout>
+			<reportPages>
+				<page name="Page1">
+					<style>
+						<defaultStyles>
+							<defaultStyle refStyle="pg"/>
+						</defaultStyles>
+					</style>
+					<pageBody>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="pb"/>
+							</defaultStyles>
+						</style>
+						<contents>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+											<staticValue>In the More (...) menu on the context-sensitive toolbar, go to Visual Aids and ensure that Show Hidden Objects is checked.</staticValue>
+										</dataSource>
+									</textItem>
+								</contents>
+							</block>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+											<staticValue>Notice that the &quot;Box type&quot; property of the crosstab corner and the crosstab intersections of the crosstab spaces is set to &quot;None&quot;.</staticValue>
+										</dataSource>
+									</textItem>
+								</contents>
+							</block>
+							<block>
+								<contents>
+									<textItem>
+										<dataSource>
+											<staticValue>Process:</staticValue>
+										</dataSource>
+									</textItem>
+									<block>
+										<contents>
+											<textItem>
+												<dataSource>
+													<staticValue>Create the crosstab.</staticValue>
+												</dataSource>
+											</textItem>
+										</contents>
+										<style>
+											<CSS value="margin-left:1em"/>
+										</style>
+									</block>
+									<block>
+										<contents>
+											<textItem>
+												<dataSource>
+													<staticValue>Add a crosstab space for each row label.  These should be dropped on the left half of the left column label.  You&apos;ll see the insertion indicator vertical and full-height between the row labels and crosstab intersection.</staticValue>
+												</dataSource>
+											</textItem>
+										</contents>
+										<style>
+											<CSS value="margin-left:1em"/>
+										</style>
+									</block>
+									<block>
+										<contents>
+											<textItem>
+												<dataSource>
+													<staticValue>Select the resulting crosstab intersections and the crosstab corner and change their &quot;Box Type&quot; property to &quot;None&quot;.</staticValue>
+												</dataSource>
+											</textItem>
+										</contents>
+										<style>
+											<CSS value="margin-left:1em"/>
+										</style>
+									</block>
+								</contents>
+							</block>
+							<crosstab horizontalPagination="true" refQuery="Query1" name="Crosstab1">
+								<crosstabCorner>
+									<contents>
+										<textItem>
+											<dataSource>
+												<dataItemLabel refDataItem="Quantity"/>
+											</dataSource>
+										</textItem>
+									</contents>
+									<style>
+										<defaultStyles>
+											<defaultStyle refStyle="xm"/>
+										</defaultStyles>
+										<CSS value="display:none"/>
+									</style>
+								</crosstabCorner>
+								<style>
+									<CSS value="border-collapse:collapse"/>
+									<defaultStyles>
+										<defaultStyle refStyle="xt"/>
+									</defaultStyles>
+								</style>
+								<noDataHandler>
+									<contents>
+										<block>
+											<contents>
+												<textItem>
+													<dataSource>
+														<staticValue>No Data Available</staticValue>
+													</dataSource>
+													<style>
+														<CSS value="padding:10px 18px;"/>
+													</style>
+												</textItem>
+											</contents>
+										</block>
+									</contents>
+								</noDataHandler>
+								<crosstabColumns>
+									<crosstabNode>
+										<crosstabNodeMembers>
+											<crosstabSpacer edgeLocation="s1">
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue> Country</staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<defaultStyles>
+														<defaultStyle refStyle="xs"/>
+													</defaultStyles>
+												</style>
+											</crosstabSpacer>
+										</crosstabNodeMembers>
+									</crosstabNode>
+									<crosstabNode>
+										<crosstabNodeMembers>
+											<crosstabSpacer edgeLocation="s2">
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue> Province/State</staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<defaultStyles>
+														<defaultStyle refStyle="xs"/>
+													</defaultStyles>
+												</style>
+											</crosstabSpacer>
+										</crosstabNodeMembers>
+									</crosstabNode>
+									<crosstabNode>
+										<crosstabNodeMembers>
+											<crosstabSpacer edgeLocation="s3">
+												<contents>
+													<textItem>
+														<dataSource>
+															<staticValue> City</staticValue>
+														</dataSource>
+													</textItem>
+												</contents>
+												<style>
+													<defaultStyles>
+														<defaultStyle refStyle="xs"/>
+													</defaultStyles>
+												</style>
+											</crosstabSpacer>
+										</crosstabNodeMembers>
+									</crosstabNode>
+									<crosstabNode>
+										<crosstabNodeMembers>
+											<crosstabNodeMember refDataItem="Year" edgeLocation="e1">
+												<style>
+													<defaultStyles>
+														<defaultStyle refStyle="ml"/>
+													</defaultStyles>
+												</style>
+												<contents>
+													<textItem>
+														<dataSource>
+															<memberCaption/>
+														</dataSource>
+													</textItem>
+												</contents>
+												<sortList>
+													<sortItem refDataItem="Year"/>
+												</sortList>
+											</crosstabNodeMember>
+										</crosstabNodeMembers>
+									</crosstabNode>
+								</crosstabColumns>
+								<crosstabRows>
+									<crosstabNode>
+										<crosstabNestedNodes>
+											<crosstabNode>
+												<crosstabNestedNodes>
+													<crosstabNode>
+														<crosstabNodeMembers>
+															<crosstabNodeMember refDataItem="City" edgeLocation="e2">
+																<style>
+																	<defaultStyles>
+																		<defaultStyle refStyle="ml"/>
+																	</defaultStyles>
+																</style>
+																<contents>
+																	<textItem>
+																		<dataSource>
+																			<memberCaption/>
+																		</dataSource>
+																	</textItem>
+																</contents>
+																<sortList>
+																	<sortItem refDataItem="City"/>
+																</sortList>
+															</crosstabNodeMember>
+														</crosstabNodeMembers>
+													</crosstabNode>
+												</crosstabNestedNodes>
+												<crosstabNodeMembers>
+													<crosstabNodeMember refDataItem="Province or state" edgeLocation="e3">
+														<style>
+															<defaultStyles>
+																<defaultStyle refStyle="ml"/>
+															</defaultStyles>
+														</style>
+														<contents>
+															<textItem>
+																<dataSource>
+																	<memberCaption/>
+																</dataSource>
+															</textItem>
+														</contents>
+														<sortList>
+															<sortItem refDataItem="Province or state"/>
+														</sortList>
+													</crosstabNodeMember>
+												</crosstabNodeMembers>
+											</crosstabNode>
+										</crosstabNestedNodes>
+										<crosstabNodeMembers>
+											<crosstabNodeMember refDataItem="Country" edgeLocation="e4">
+												<style>
+													<defaultStyles>
+														<defaultStyle refStyle="ml"/>
+													</defaultStyles>
+												</style>
+												<contents>
+													<textItem>
+														<dataSource>
+															<memberCaption/>
+														</dataSource>
+													</textItem>
+												</contents>
+												<sortList>
+													<sortItem refDataItem="Country"/>
+												</sortList>
+											</crosstabNodeMember>
+										</crosstabNodeMembers>
+									</crosstabNode>
+								</crosstabRows>
+								<defaultMeasure refDataItem="Quantity"/>
+								<crosstabFactCell>
+									<contents>
+										<textItem>
+											<dataSource>
+												<cellValue/>
+											</dataSource>
+										</textItem>
+									</contents>
+									<style>
+										<defaultStyles>
+											<defaultStyle refStyle="mv"/>
+										</defaultStyles>
+									</style>
+								</crosstabFactCell>
+								<crosstabIntersections>
+									<crosstabIntersection row="e2" column="s1">
+										<style>
+											<CSS value="display:none"/>
+										</style>
+									</crosstabIntersection>
+									<crosstabIntersection row="e2" column="s2">
+										<style>
+											<CSS value="display:none"/>
+										</style>
+									</crosstabIntersection>
+									<crosstabIntersection row="e2" column="s3">
+										<style>
+											<CSS value="display:none"/>
+										</style>
+									</crosstabIntersection>
+								</crosstabIntersections>
+							</crosstab>
+						</contents>
+					</pageBody>
+				</page>
+			</reportPages>
+		</layout>
+	</layouts>
+	<XMLAttributes>
+		<XMLAttribute output="no" name="RS_CreateExtendedDataItems" value="true"/>
+		<XMLAttribute output="no" name="RS_modelModificationTime" value="2015-11-25T21:38:24.820Z"/>
+		<XMLAttribute output="no" name="listSeparator" value=","/>
+	</XMLAttributes>
+	<modelPath>/content/folder[@name=&apos;Samples&apos;]/folder[@name=&apos;Models&apos;]/package[@name=&apos;GO sales (query)&apos;]/model[@name=&apos;model&apos;]</modelPath>
+	<queries>
+		<query name="Query1">
+			<source>
+				<model/>
+			</source>
+			<selection>
+				<dataItem aggregate="none" rollupAggregate="none" name="Country">
+					<expression>[Sales (query)].[Branch].[Country]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItem aggregate="none" rollupAggregate="none" name="Province or state">
+					<expression>[Sales (query)].[Branch].[Province or state]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItem aggregate="none" rollupAggregate="none" name="City">
+					<expression>[Sales (query)].[Branch].[City]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItem aggregate="total" name="Quantity">
+					<expression>[Sales (query)].[Sales].[Quantity]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="1"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="2"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItem aggregate="none" rollupAggregate="none" name="Year">
+					<expression>[Sales (query)].[Time].[Year]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="1"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+					</XMLAttributes>
+				</dataItem>
+			</selection>
+		</query>
+	</queries>
+</report>

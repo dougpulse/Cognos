@@ -26,4 +26,7 @@ Report samples for various purposes.  These contain the report spec xml that can
   
   <dt>Bursting</dt>
   <dd>A very simple example of using the bursting feature.</dd>
+  
+  <dt>CrosstabWithRowLabelHeaders</dt>
+  <dd>Use crosstab spaces to add headers to your row labels.</dd>
 </dl>

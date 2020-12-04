@@ -63,7 +63,7 @@ define( function() {
 						//	A single-select textbox prompt is a special case.
 						//	If it is empty, getValues() returns an array with one element:
 						//		[{"use":null,"display":null}]
-						if (v.length == 1 && v[0].use == null && v[0].display == null) {
+						if (v.length == 1 && v[0].use == "" && v[0].display == null) {
 						}
 						else if (v.length > 0) {
 							m++;
