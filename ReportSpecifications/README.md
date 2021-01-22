@@ -29,4 +29,7 @@ Report samples for various purposes.  These contain the report spec xml that can
   
   <dt>CrosstabWithRowLabelHeaders</dt>
   <dd>Use crosstab spaces to add headers to your row labels.</dd>
+  
+  <dt>CommaDelimitedList</dt>
+  <dd>Use a repeater table to produce comma-delimited output.</dd>
 </dl>

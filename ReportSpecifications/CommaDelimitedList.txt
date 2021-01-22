@@ -1,0 +1,310 @@
+<report xmlns="http://developer.cognos.com/schemas/report/14.3/" useStyleVersion="11.4" expressionLocale="en-us">
+	<drillBehavior/>
+	<layouts>
+		<layout>
+			<reportPages>
+				<page name="Page1">
+					<style>
+						<defaultStyles>
+							<defaultStyle refStyle="pg"/>
+						</defaultStyles>
+					</style>
+					<pageBody>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="pb"/>
+							</defaultStyles>
+						</style>
+						<contents>
+							<list horizontalPagination="true" name="List1" refQuery="Query3">
+								<noDataHandler>
+									<contents>
+										<block>
+											<contents>
+												<textItem>
+													<dataSource>
+														<staticValue>No Data Available</staticValue>
+													</dataSource>
+													<style>
+														<CSS value="padding:10px 18px;"/>
+													</style>
+												</textItem>
+											</contents>
+										</block>
+									</contents>
+								</noDataHandler>
+								<style>
+									<CSS value="border-collapse:collapse"/>
+									<defaultStyles>
+										<defaultStyle refStyle="ls"/>
+									</defaultStyles>
+								</style>
+								<listColumns>
+									<listColumn>
+										<listColumnTitle>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lt"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemLabel refDataItem="Country"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnTitle>
+										<listColumnBody>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lc"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemValue refDataItem="Country"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnBody>
+									</listColumn>
+									<listColumn>
+										<listColumnTitle>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lt"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<staticValue>Retailer Type</staticValue>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnTitle>
+										<listColumnBody>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lc"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<repeaterTable across="20" down="1" name="Repeater table1" refQuery="Query2">
+													<repeaterTableCell>
+														<contents>
+															<textItem>
+																<dataSource>
+																	<dataItemValue refDataItem="Retailer type"/>
+																</dataSource>
+															</textItem>
+															<textItem>
+																<dataSource>
+																	<dataItemValue refDataItem="Comma"/>
+																</dataSource>
+															</textItem>
+														</contents>
+														<style>
+															<defaultStyles>
+																<defaultStyle refStyle="rc"/>
+															</defaultStyles>
+															<CSS value="padding:0px;font-size:8pt"/>
+														</style>
+													</repeaterTableCell>
+													<style>
+														<CSS value="border-collapse:collapse"/>
+														<defaultStyles>
+															<defaultStyle refStyle="rt"/>
+														</defaultStyles>
+													</style>
+													<masterDetailLinks>
+														<masterDetailLink>
+															<masterContext>
+																<dataItemContext refDataItem="Country"/>
+															</masterContext>
+															<detailContext>
+																<dataItemContext refDataItem="Country"/>
+															</detailContext>
+														</masterDetailLink>
+													</masterDetailLinks>
+												</repeaterTable>
+											</contents>
+										</listColumnBody>
+									</listColumn>
+									<listColumn>
+										<listColumnTitle>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lt"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemLabel refDataItem="Quantity"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnTitle>
+										<listColumnBody>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="lm"/>
+												</defaultStyles>
+											</style>
+											<contents>
+												<textItem>
+													<dataSource>
+														<dataItemValue refDataItem="Quantity"/>
+													</dataSource>
+												</textItem>
+											</contents>
+										</listColumnBody>
+									</listColumn>
+								</listColumns>
+								<listOverallGroup>
+									<listFooter>
+										<listRows>
+											<listRow>
+												<rowCells>
+													<rowCell colSpan="2">
+														<contents>
+															<textItem>
+																<dataSource>
+																	<staticValue>Overall</staticValue>
+																</dataSource>
+															</textItem>
+															<textItem>
+																<dataSource>
+																	<staticValue>-</staticValue>
+																</dataSource>
+															</textItem>
+															<textItem>
+																<dataSource>
+																	<staticValue>Summary</staticValue>
+																</dataSource>
+															</textItem>
+														</contents>
+														<style>
+															<defaultStyles>
+																<defaultStyle refStyle="if"/>
+															</defaultStyles>
+														</style>
+													</rowCell>
+													<rowCell>
+														<contents>
+															<textItem>
+																<dataSource>
+																	<dataItemValue refDataItem="Summary(Quantity)"/>
+																</dataSource>
+															</textItem>
+														</contents>
+														<style>
+															<defaultStyles>
+																<defaultStyle refStyle="is"/>
+															</defaultStyles>
+														</style>
+													</rowCell>
+												</rowCells>
+											</listRow>
+										</listRows>
+									</listFooter>
+								</listOverallGroup>
+							</list>
+						</contents>
+					</pageBody>
+				</page>
+			</reportPages>
+		</layout>
+	</layouts>
+	<XMLAttributes>
+		<XMLAttribute output="no" name="RS_CreateExtendedDataItems" value="true"/>
+		<XMLAttribute output="no" name="listSeparator" value=","/>
+	</XMLAttributes>
+	<modelPath type="FM">/content/folder[@name='Samples']/folder[@name='Models']/package[@name='GO sales (query)']/model[@name='model']</modelPath>
+	<queries>
+		<query name="Query1">
+			<source>
+				<model/>
+			</source>
+			<selection>
+				<dataItem aggregate="none" rollupAggregate="none" name="Country" sort="ascending">
+					<expression>[Sales (query)].[Branch].[Country]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="attribute"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItem aggregate="none" rollupAggregate="none" name="Retailer type" sort="ascending">
+					<expression>[Sales (query)].[Retailer type].[Retailer type]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="attribute"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItem aggregate="total" name="Quantity">
+					<expression>[Sales (query)].[Sales].[Quantity]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="1"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="fact"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItemListSummary refDataItem="Quantity" aggregateMethod="aggregate" name="Summary(Quantity)"/>
+			</selection>
+			<detailFilters>
+				<detailFilter>
+					<filterExpression>[Sales (query)].[Time].[Year] = 2013</filterExpression>
+				</detailFilter>
+			</detailFilters>
+		</query>
+		<query name="Query2">
+			<source>
+				<queryRef refQuery="Query1"/>
+			</source>
+			<selection>
+				<dataItem aggregate="none" rollupAggregate="none" name="Country">
+					<expression>[Query1].[Country]</expression>
+				</dataItem>
+				<dataItem aggregate="none" rollupAggregate="none" name="Retailer type">
+					<expression>[Query1].[Retailer type]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItem name="Comma">
+					<expression>case when running-count ([Retailer type] for [Country]) &lt; maximum (running-count ([Retailer type] for [Country]) for [Country]) then ',' else '' end</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value=""/>
+					</XMLAttributes>
+				</dataItem>
+			</selection>
+		</query>
+		<query name="Query3">
+			<source>
+				<queryRef refQuery="Query1"/>
+			</source>
+			<selection>
+				<dataItemListSummary aggregateMethod="aggregate" name="Summary(Quantity)" refDataItem="Quantity"/>
+				<dataItem aggregate="none" rollupAggregate="none" name="Country">
+					<expression>[Query1].[Country]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="3"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+					</XMLAttributes>
+				</dataItem>
+				<dataItem aggregate="total" name="Quantity">
+					<expression>[Query1].[Quantity]</expression>
+					<XMLAttributes>
+						<XMLAttribute output="no" name="RS_dataType" value="2"/>
+						<XMLAttribute output="no" name="RS_dataUsage" value="2"/>
+					</XMLAttributes>
+				</dataItem>
+			</selection>
+		</query>
+	</queries>
+	<reportName>Repeater Table (using Samples data)</reportName>
+</report>
