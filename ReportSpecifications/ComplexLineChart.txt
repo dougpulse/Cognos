@@ -1,0 +1,708 @@
+<report xmlns="http://developer.cognos.com/schemas/report/14.3/" expressionLocale="en" useStyleVersion="11.4">
+    <drillBehavior/>
+    <layouts>
+        <layout>
+            <reportPages>
+                <page name="Page1">
+                    <style>
+                        <defaultStyles>
+                            <defaultStyle refStyle="pg"/>
+                        </defaultStyles>
+                    </style>
+                    <pageBody>
+                        <style>
+                            <defaultStyles>
+                                <defaultStyle refStyle="pb"/>
+                            </defaultStyles>
+                        </style>
+                        <contents>
+                            <v2_combinationChart maxHotspots="10000" name="Combination chart1" refQuery="output">
+                                <v2_combinationTypeTooltips/>
+                                <v2_legend>
+                                    <v2_legendPosition>
+                                        <v2_legendPreset/>
+                                    </v2_legendPosition>
+                                    <v2_legendTitle refQuery="output">
+                                        <v2_chartTextContents>
+                                            <v2_automaticText/>
+                                        </v2_chartTextContents>
+                                        <style>
+                                            <defaultStyles>
+                                                <defaultStyle refStyle="lx"/>
+                                            </defaultStyles>
+                                        </style>
+                                    </v2_legendTitle>
+                                    <style>
+                                        <defaultStyles>
+                                            <defaultStyle refStyle="lg"/>
+                                        </defaultStyles>
+                                    </style>
+                                </v2_legend>
+                                <v2_commonAxis>
+                                    <v2_ordinalAxis>
+                                        <v2_axisTitle refQuery="output">
+                                            <v2_chartTextContents>
+                                                <v2_automaticText/>
+                                            </v2_chartTextContents>
+                                            <style>
+                                                <defaultStyles>
+                                                    <defaultStyle refStyle="at"/>
+                                                </defaultStyles>
+                                            </style>
+                                        </v2_axisTitle>
+                                        <v2_axisLine lineWeight="0"/>
+                                        <v2_axisLabels>
+                                            <style>
+                                                <defaultStyles>
+                                                    <defaultStyle refStyle="al"/>
+                                                </defaultStyles>
+                                            </style>
+                                        </v2_axisLabels>
+                                        <v2_labelControl/>
+                                    </v2_ordinalAxis>
+                                    <chartNodes>
+                                        <chartNode>
+                                            <chartNodeMembers>
+                                                <chartNodeMember refDataItem="Date">
+                                                    <chartContents>
+                                                        <chartTextItem>
+                                                            <dataSource>
+                                                                <memberCaption/>
+                                                            </dataSource>
+                                                        </chartTextItem>
+                                                    </chartContents>
+                                                    <sortList>
+                                                        <sortItem refDataItem="Date" sortOrder="ascending"/>
+                                                    </sortList>
+                                                    <propertyList>
+                                                        <propertyItem refDataItem="Region"/>
+                                                    </propertyList>
+                                                </chartNodeMember>
+                                            </chartNodeMembers>
+                                        </chartNode>
+                                    </chartNodes>
+                                </v2_commonAxis>
+                                <v2_topLeftAxis>
+                                    <v2_combinationChartTypes>
+                                        <v2_line lineDisplayType="lineAndMarkers">
+                                            <v2_linePalette markerSize="5pt">
+                                                <v2_linePaletteEntries>
+                                                    <v2_linePaletteEntry>
+                                                        <v2_lineFill defaultColor="#8599D3">
+                                                            <v2_linearGradient>
+                                                                <v2_gradientColor gradientColor="#8599D3"/>
+                                                                <v2_gradientColor colorPosition="100" gradientColor="#5876AE"/>
+                                                            </v2_linearGradient>
+                                                        </v2_lineFill>
+                                                        <v2_pointPaletteEntry>
+                                                            <v2_fillEffect>
+                                                                <v2_linearGradient>
+                                                                    <v2_gradientColor gradientColor="#8599D3"/>
+                                                                    <v2_gradientColor colorPosition="100" gradientColor="#5876AE"/>
+                                                                </v2_linearGradient>
+                                                            </v2_fillEffect>
+                                                        </v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry>
+                                                    <v2_linePaletteEntry>
+                                                        <v2_lineFill defaultColor="#E3AE6C">
+                                                            <v2_linearGradient>
+                                                                <v2_gradientColor gradientColor="#E3AE6C"/>
+                                                                <v2_gradientColor colorPosition="100" gradientColor="#CD854E"/>
+                                                            </v2_linearGradient>
+                                                        </v2_lineFill>
+                                                        <v2_pointPaletteEntry>
+                                                            <v2_fillEffect>
+                                                                <v2_linearGradient>
+                                                                    <v2_gradientColor gradientColor="#E3AE6C"/>
+                                                                    <v2_gradientColor colorPosition="100" gradientColor="#CD854E"/>
+                                                                </v2_linearGradient>
+                                                            </v2_fillEffect>
+                                                        </v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry>
+                                                    <v2_linePaletteEntry>
+                                                        <v2_lineFill defaultColor="#839862">
+                                                            <v2_linearGradient>
+                                                                <v2_gradientColor gradientColor="#839862"/>
+                                                                <v2_gradientColor colorPosition="100" gradientColor="#6C7F56"/>
+                                                            </v2_linearGradient>
+                                                        </v2_lineFill>
+                                                        <v2_pointPaletteEntry>
+                                                            <v2_fillEffect>
+                                                                <v2_linearGradient>
+                                                                    <v2_gradientColor gradientColor="#839862"/>
+                                                                    <v2_gradientColor colorPosition="100" gradientColor="#6C7F56"/>
+                                                                </v2_linearGradient>
+                                                            </v2_fillEffect>
+                                                        </v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry>
+                                                    <v2_linePaletteEntry>
+                                                        <v2_lineFill defaultColor="#B7C873">
+                                                            <v2_linearGradient>
+                                                                <v2_gradientColor gradientColor="#B7C873"/>
+                                                                <v2_gradientColor colorPosition="100" gradientColor="#AFB885"/>
+                                                            </v2_linearGradient>
+                                                        </v2_lineFill>
+                                                        <v2_pointPaletteEntry>
+                                                            <v2_fillEffect>
+                                                                <v2_linearGradient>
+                                                                    <v2_gradientColor gradientColor="#B7C873"/>
+                                                                    <v2_gradientColor colorPosition="100" gradientColor="#AFB885"/>
+                                                                </v2_linearGradient>
+                                                            </v2_fillEffect>
+                                                        </v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry>
+                                                    <v2_linePaletteEntry>
+                                                        <v2_lineFill defaultColor="#8484A8">
+                                                            <v2_linearGradient>
+                                                                <v2_gradientColor gradientColor="#8484A8"/>
+                                                                <v2_gradientColor colorPosition="100" gradientColor="#525E7E"/>
+                                                            </v2_linearGradient>
+                                                        </v2_lineFill>
+                                                        <v2_pointPaletteEntry>
+                                                            <v2_fillEffect>
+                                                                <v2_linearGradient>
+                                                                    <v2_gradientColor gradientColor="#8484A8"/>
+                                                                    <v2_gradientColor colorPosition="100" gradientColor="#525E7E"/>
+                                                                </v2_linearGradient>
+                                                            </v2_fillEffect>
+                                                        </v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry>
+                                                    <v2_linePaletteEntry>
+                                                        <v2_lineFill defaultColor="#C0CCED">
+                                                            <v2_linearGradient>
+                                                                <v2_gradientColor gradientColor="#C0CCED"/>
+                                                                <v2_gradientColor colorPosition="100" gradientColor="#B0C2E5"/>
+                                                            </v2_linearGradient>
+                                                        </v2_lineFill>
+                                                        <v2_pointPaletteEntry>
+                                                            <v2_fillEffect>
+                                                                <v2_linearGradient>
+                                                                    <v2_gradientColor gradientColor="#C0CCED"/>
+                                                                    <v2_gradientColor colorPosition="100" gradientColor="#B0C2E5"/>
+                                                                </v2_linearGradient>
+                                                            </v2_fillEffect>
+                                                        </v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry>
+                                                    <v2_linePaletteEntry>
+                                                        <v2_lineFill defaultColor="#8C5580">
+                                                            <v2_linearGradient>
+                                                                <v2_gradientColor gradientColor="#8C5580"/>
+                                                                <v2_gradientColor colorPosition="100" gradientColor="#794067"/>
+                                                            </v2_linearGradient>
+                                                        </v2_lineFill>
+                                                        <v2_pointPaletteEntry>
+                                                            <v2_fillEffect>
+                                                                <v2_linearGradient>
+                                                                    <v2_gradientColor gradientColor="#8C5580"/>
+                                                                    <v2_gradientColor colorPosition="100" gradientColor="#794067"/>
+                                                                </v2_linearGradient>
+                                                            </v2_fillEffect>
+                                                        </v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry>
+                                                    <v2_linePaletteEntry>
+                                                        <v2_lineFill defaultColor="#C789BC">
+                                                            <v2_linearGradient>
+                                                                <v2_gradientColor gradientColor="#C789BC"/>
+                                                                <v2_gradientColor colorPosition="100" gradientColor="#BB72BC"/>
+                                                            </v2_linearGradient>
+                                                        </v2_lineFill>
+                                                        <v2_pointPaletteEntry>
+                                                            <v2_fillEffect>
+                                                                <v2_linearGradient>
+                                                                    <v2_gradientColor gradientColor="#C789BC"/>
+                                                                    <v2_gradientColor colorPosition="100" gradientColor="#BB72BC"/>
+                                                                </v2_linearGradient>
+                                                            </v2_fillEffect>
+                                                        </v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry>
+                                                    <v2_linePaletteEntry>
+                                                        <v2_lineFill defaultColor="#D5BAEF">
+                                                            <v2_linearGradient>
+                                                                <v2_gradientColor gradientColor="#D5BAEF"/>
+                                                                <v2_gradientColor colorPosition="100" gradientColor="#C29FD1"/>
+                                                            </v2_linearGradient>
+                                                        </v2_lineFill>
+                                                        <v2_pointPaletteEntry>
+                                                            <v2_fillEffect>
+                                                                <v2_linearGradient>
+                                                                    <v2_gradientColor gradientColor="#D5BAEF"/>
+                                                                    <v2_gradientColor colorPosition="100" gradientColor="#C29FD1"/>
+                                                                </v2_linearGradient>
+                                                            </v2_fillEffect>
+                                                        </v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry>
+                                                    <v2_linePaletteEntry>
+                                                        <v2_lineFill defaultColor="#83683F">
+                                                            <v2_linearGradient>
+                                                                <v2_gradientColor gradientColor="#83683F"/>
+                                                                <v2_gradientColor colorPosition="100" gradientColor="#604926"/>
+                                                            </v2_linearGradient>
+                                                        </v2_lineFill>
+                                                        <v2_pointPaletteEntry>
+                                                            <v2_fillEffect>
+                                                                <v2_linearGradient>
+                                                                    <v2_gradientColor gradientColor="#83683F"/>
+                                                                    <v2_gradientColor colorPosition="100" gradientColor="#604926"/>
+                                                                </v2_linearGradient>
+                                                            </v2_fillEffect>
+                                                        </v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry>
+                                                    <v2_linePaletteEntry>
+                                                        <v2_lineFill defaultColor="#DCB05A">
+                                                            <v2_linearGradient>
+                                                                <v2_gradientColor gradientColor="#DCB05A"/>
+                                                                <v2_gradientColor colorPosition="100" gradientColor="#C09C52"/>
+                                                            </v2_linearGradient>
+                                                        </v2_lineFill>
+                                                        <v2_pointPaletteEntry>
+                                                            <v2_fillEffect>
+                                                                <v2_linearGradient>
+                                                                    <v2_gradientColor gradientColor="#DCB05A"/>
+                                                                    <v2_gradientColor colorPosition="100" gradientColor="#C09C52"/>
+                                                                </v2_linearGradient>
+                                                            </v2_fillEffect>
+                                                        </v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry>
+                                                    <v2_linePaletteEntry>
+                                                        <v2_lineFill defaultColor="#F4DF9E">
+                                                            <v2_linearGradient>
+                                                                <v2_gradientColor gradientColor="#F4DF9E"/>
+                                                                <v2_gradientColor colorPosition="100" gradientColor="#E4CF87"/>
+                                                            </v2_linearGradient>
+                                                        </v2_lineFill>
+                                                        <v2_pointPaletteEntry>
+                                                            <v2_fillEffect>
+                                                                <v2_linearGradient>
+                                                                    <v2_gradientColor gradientColor="#F4DF9E"/>
+                                                                    <v2_gradientColor colorPosition="100" gradientColor="#E4CF87"/>
+                                                                </v2_linearGradient>
+                                                            </v2_fillEffect>
+                                                        </v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry>
+                                                    <v2_linePaletteEntry>
+                                                        <v2_lineFill defaultColor="#5F8A8C">
+                                                            <v2_linearGradient>
+                                                                <v2_gradientColor gradientColor="#5F8A8C"/>
+                                                                <v2_gradientColor colorPosition="100" gradientColor="#537579"/>
+                                                            </v2_linearGradient>
+                                                        </v2_lineFill>
+                                                        <v2_pointPaletteEntry>
+                                                            <v2_fillEffect>
+                                                                <v2_linearGradient>
+                                                                    <v2_gradientColor gradientColor="#5F8A8C"/>
+                                                                    <v2_gradientColor colorPosition="100" gradientColor="#537579"/>
+                                                                </v2_linearGradient>
+                                                            </v2_fillEffect>
+                                                        </v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry>
+                                                    <v2_linePaletteEntry>
+                                                        <v2_lineFill defaultColor="#96C4B2">
+                                                            <v2_linearGradient>
+                                                                <v2_gradientColor gradientColor="#96C4B2"/>
+                                                                <v2_gradientColor colorPosition="100" gradientColor="#89B0A0"/>
+                                                            </v2_linearGradient>
+                                                        </v2_lineFill>
+                                                        <v2_pointPaletteEntry>
+                                                            <v2_fillEffect>
+                                                                <v2_linearGradient>
+                                                                    <v2_gradientColor gradientColor="#96C4B2"/>
+                                                                    <v2_gradientColor colorPosition="100" gradientColor="#89B0A0"/>
+                                                                </v2_linearGradient>
+                                                            </v2_fillEffect>
+                                                        </v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry>
+                                                    <v2_linePaletteEntry>
+                                                        <v2_lineFill defaultColor="#CBE8E7">
+                                                            <v2_linearGradient>
+                                                                <v2_gradientColor gradientColor="#CBE8E7"/>
+                                                                <v2_gradientColor colorPosition="100" gradientColor="#BDD6D5"/>
+                                                            </v2_linearGradient>
+                                                        </v2_lineFill>
+                                                        <v2_pointPaletteEntry>
+                                                            <v2_fillEffect>
+                                                                <v2_linearGradient>
+                                                                    <v2_gradientColor gradientColor="#CBE8E7"/>
+                                                                    <v2_gradientColor colorPosition="100" gradientColor="#BDD6D5"/>
+                                                                </v2_linearGradient>
+                                                            </v2_fillEffect>
+                                                        </v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry>
+                                                    <v2_linePaletteEntry>
+                                                        <v2_lineFill defaultColor="#AE6564">
+                                                            <v2_linearGradient>
+                                                                <v2_gradientColor gradientColor="#AE6564"/>
+                                                                <v2_gradientColor colorPosition="100" gradientColor="#875352"/>
+                                                            </v2_linearGradient>
+                                                        </v2_lineFill>
+                                                        <v2_pointPaletteEntry>
+                                                            <v2_fillEffect>
+                                                                <v2_linearGradient>
+                                                                    <v2_gradientColor gradientColor="#AE6564"/>
+                                                                    <v2_gradientColor colorPosition="100" gradientColor="#875352"/>
+                                                                </v2_linearGradient>
+                                                            </v2_fillEffect>
+                                                        </v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry>
+                                                    <v2_linePaletteEntry>
+                                                        <v2_lineFill defaultColor="#D88C6F">
+                                                            <v2_linearGradient>
+                                                                <v2_gradientColor gradientColor="#D88C6F"/>
+                                                                <v2_gradientColor colorPosition="100" gradientColor="#C47D61"/>
+                                                            </v2_linearGradient>
+                                                        </v2_lineFill>
+                                                        <v2_pointPaletteEntry>
+                                                            <v2_fillEffect>
+                                                                <v2_linearGradient>
+                                                                    <v2_gradientColor gradientColor="#D88C6F"/>
+                                                                    <v2_gradientColor colorPosition="100" gradientColor="#C47D61"/>
+                                                                </v2_linearGradient>
+                                                            </v2_fillEffect>
+                                                        </v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry>
+                                                    <v2_linePaletteEntry>
+                                                        <v2_lineFill defaultColor="#E3C9B0">
+                                                            <v2_linearGradient>
+                                                                <v2_gradientColor gradientColor="#E3C9B0"/>
+                                                                <v2_gradientColor colorPosition="100" gradientColor="#D2B2A5"/>
+                                                            </v2_linearGradient>
+                                                        </v2_lineFill>
+                                                        <v2_pointPaletteEntry>
+                                                            <v2_fillEffect>
+                                                                <v2_linearGradient>
+                                                                    <v2_gradientColor gradientColor="#E3C9B0"/>
+                                                                    <v2_gradientColor colorPosition="100" gradientColor="#D2B2A5"/>
+                                                                </v2_linearGradient>
+                                                            </v2_fillEffect>
+                                                        </v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry>
+                                                    <v2_linePaletteEntry>
+                                                        <v2_lineFill defaultColor="#848484">
+                                                            <v2_linearGradient>
+                                                                <v2_gradientColor gradientColor="#848484"/>
+                                                                <v2_gradientColor colorPosition="100" gradientColor="#555555"/>
+                                                            </v2_linearGradient>
+                                                        </v2_lineFill>
+                                                        <v2_pointPaletteEntry>
+                                                            <v2_fillEffect>
+                                                                <v2_linearGradient>
+                                                                    <v2_gradientColor gradientColor="#848484"/>
+                                                                    <v2_gradientColor colorPosition="100" gradientColor="#555555"/>
+                                                                </v2_linearGradient>
+                                                            </v2_fillEffect>
+                                                        </v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry>
+                                                    <v2_linePaletteEntry>
+                                                        <v2_lineFill defaultColor="#a4a4a4">
+                                                            <v2_linearGradient>
+                                                                <v2_gradientColor gradientColor="#a4a4a4"/>
+                                                                <v2_gradientColor colorPosition="100" gradientColor="#909090"/>
+                                                            </v2_linearGradient>
+                                                        </v2_lineFill>
+                                                        <v2_pointPaletteEntry>
+                                                            <v2_fillEffect>
+                                                                <v2_linearGradient>
+                                                                    <v2_gradientColor gradientColor="#a4a4a4"/>
+                                                                    <v2_gradientColor colorPosition="100" gradientColor="#909090"/>
+                                                                </v2_linearGradient>
+                                                            </v2_fillEffect>
+                                                        </v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry>
+                                                    <v2_linePaletteEntry>
+                                                        <v2_lineFill defaultColor="#C7C7C7">
+                                                            <v2_linearGradient>
+                                                                <v2_gradientColor gradientColor="#C7C7C7"/>
+                                                                <v2_gradientColor colorPosition="100" gradientColor="#c1c1c1"/>
+                                                            </v2_linearGradient>
+                                                        </v2_lineFill>
+                                                        <v2_pointPaletteEntry>
+                                                            <v2_fillEffect>
+                                                                <v2_linearGradient>
+                                                                    <v2_gradientColor gradientColor="#C7C7C7"/>
+                                                                    <v2_gradientColor colorPosition="100" gradientColor="#c1c1c1"/>
+                                                                </v2_linearGradient>
+                                                            </v2_fillEffect>
+                                                        </v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry>
+                                                </v2_linePaletteEntries>
+                                            </v2_linePalette>
+                                            <v2_conditionalLinePalette showInLegend="hide">
+                                                <v2_lineAdvancedCondition>
+                                                    <v2_lineCases>
+                                                        <v2_lineCase>
+                                                            <v2_conditionalPaletteEntryLabel>
+                                                                <v2_automaticLabel/>
+                                                            </v2_conditionalPaletteEntryLabel>
+                                                            <reportCondition>_day_of_week ([output].[Date],1) in (6,7) and [output].[Order method type]='E-mail' and [output].[Region] = 'Americas'</reportCondition>
+                                                            <v2_linePaletteEntry lineStyle="dash">
+                                                                <v2_lineFill defaultColor="#198545">
+                                                                    <v2_color color="#8599D3"/>
+                                                                </v2_lineFill>
+                                                                <v2_pointPaletteEntry markerShape="circle">
+                                                                    <v2_fillEffect defaultColor="#198545">
+                                                                        <v2_solidColor color="blue"/>
+                                                                    </v2_fillEffect>
+                                                                </v2_pointPaletteEntry>
+                                                            </v2_linePaletteEntry>
+                                                        </v2_lineCase>
+                                                    </v2_lineCases>
+                                                </v2_lineAdvancedCondition>
+                                                <v2_lineAdvancedCondition>
+                                                    <v2_lineCases>
+                                                        <v2_lineCase>
+                                                            <reportCondition>_day_of_week ([output].[Date],1) in (6,7) and [output].[Order method type]='Telephone' and [output].[Region] = 'Americas'</reportCondition>
+                                                            <v2_linePaletteEntry lineStyle="dash">
+                                                                <v2_lineFill defaultColor="#198545">
+                                                                    <v2_color color="#E3AE6C"/>
+                                                                </v2_lineFill>
+                                                                <v2_pointPaletteEntry markerShape="circle">
+                                                                    <v2_fillEffect defaultColor="#198545">
+                                                                        <v2_solidColor color="blue"/>
+                                                                    </v2_fillEffect>
+                                                                </v2_pointPaletteEntry>
+                                                            </v2_linePaletteEntry>
+                                                        </v2_lineCase>
+                                                    </v2_lineCases>
+                                                </v2_lineAdvancedCondition>
+                                            </v2_conditionalLinePalette>
+                                            <chartNodes>
+                                                <chartNode>
+                                                    <chartNodeMembers>
+                                                        <chartNodeMember refDataItem="Order method type">
+                                                            <chartContents>
+                                                                <chartTextItem>
+                                                                    <dataSource>
+                                                                        <memberCaption/>
+                                                                    </dataSource>
+                                                                </chartTextItem>
+                                                            </chartContents>
+                                                        </chartNodeMember>
+                                                    </chartNodeMembers>
+                                                </chartNode>
+                                            </chartNodes>
+                                        </v2_line>
+                                    </v2_combinationChartTypes>
+                                    <v2_axis>
+                                        <v2_axisTitle refQuery="output">
+                                            <v2_chartTextContents>
+                                                <v2_automaticText/>
+                                            </v2_chartTextContents>
+                                            <style>
+                                                <defaultStyles>
+                                                    <defaultStyle refStyle="at"/>
+                                                </defaultStyles>
+                                            </style>
+                                        </v2_axisTitle>
+                                        <v2_axisLine lineWeight="0"/>
+                                        <v2_axisRange>
+                                            <v2_automaticRange/>
+                                        </v2_axisRange>
+                                        <v2_axisLabels>
+                                            <style>
+                                                <defaultStyles>
+                                                    <defaultStyle refStyle="al"/>
+                                                </defaultStyles>
+                                            </style>
+                                        </v2_axisLabels>
+                                        <v2_majorGridlines lineWeight="0" lineColor="#CCCCCC"/>
+                                    </v2_axis>
+                                </v2_topLeftAxis>
+                                <style>
+                                    <defaultStyles>
+                                        <defaultStyle refStyle="ch"/>
+                                    </defaultStyles>
+                                    <CSS value="width:1054px;height:365px"/>
+                                </style>
+                                <noDataHandler>
+                                    <contents>
+                                        <block>
+                                            <contents>
+                                                <textItem>
+                                                    <dataSource>
+                                                        <staticValue>No Data Available</staticValue>
+                                                    </dataSource>
+                                                </textItem>
+                                            </contents>
+                                            <style>
+                                                <CSS value="padding:16px;"/>
+                                            </style>
+                                        </block>
+                                    </contents>
+                                </noDataHandler>
+                                <v2_defaultChartMeasure refDataItem="Revenue"/>
+                            </v2_combinationChart>
+                        </contents>
+                    </pageBody>
+                </page>
+            </reportPages>
+        </layout>
+    </layouts>
+    <queries>
+        <query name="source">
+            <source>
+                <model/>
+            </source>
+            <selection>
+                <dataItem aggregate="total" name="Revenue">
+                    <expression>[Sales (query)].[Sales].[Revenue]</expression>
+                    <XMLAttributes>
+                        <XMLAttribute output="no" name="RS_dataType" value="2"/>
+                        <XMLAttribute output="no" name="RS_dataUsage" value="2"/>
+                        <XMLAttribute output="no" name="RS_isCurrency" value="true"/>
+                    </XMLAttributes>
+                </dataItem>
+                <dataItem aggregate="none" rollupAggregate="none" name="Date">
+                    <expression>[Sales (query)].[Time].[Date]</expression>
+                    <XMLAttributes>
+                        <XMLAttribute output="no" name="RS_dataType" value="4"/>
+                        <XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+                    </XMLAttributes>
+                </dataItem>
+                <dataItem aggregate="none" rollupAggregate="none" name="Day of the week">
+                    <expression>[Sales (query)].[Time].[Day of the week]</expression>
+                    <XMLAttributes>
+                        <XMLAttribute output="no" name="RS_dataType" value="1"/>
+                        <XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+                    </XMLAttributes>
+                </dataItem>
+                <dataItem aggregate="none" rollupAggregate="none" name="Order method type">
+                    <expression>[Sales (query)].[Order method].[Order method type]</expression>
+                    <XMLAttributes>
+                        <XMLAttribute output="no" name="RS_dataType" value="3"/>
+                        <XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+                    </XMLAttributes>
+                </dataItem>
+                <dataItem name="Region" aggregate="none" rollupAggregate="none">
+                    <expression>[Sales (query)].[Retailers].[Region]</expression>
+                    <XMLAttributes>
+                        <XMLAttribute name="RS_dataType" value="3" output="no"/>
+                        <XMLAttribute name="RS_dataUsage" value="0" output="no"/>
+                    </XMLAttributes>
+                </dataItem>
+                <dataItem name="join" aggregate="none">
+                    <expression>'a'</expression>
+                </dataItem>
+            </selection>
+            <detailFilters>
+                <detailFilter>
+                    <filterExpression>[Order method type] in ('E-mail','Telephone')</filterExpression>
+                </detailFilter>
+                <detailFilter>
+                    <filterExpression>[Date]&lt;= 2010-02-28</filterExpression>
+                </detailFilter>
+            </detailFilters>
+        </query>
+        <query name="date">
+            <source>
+                <model/>
+            </source>
+            <selection>
+                <dataItem aggregate="none" rollupAggregate="none" name="Date">
+                    <expression>[Sales (query)].[Time].[Date]</expression>
+                    <XMLAttributes>
+                        <XMLAttribute output="no" name="RS_dataType" value="4"/>
+                        <XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+                    </XMLAttributes>
+                </dataItem>
+                <dataItem aggregate="none" rollupAggregate="none" name="Day of the week">
+                    <expression>[Sales (query)].[Time].[Day of the week]</expression>
+                    <XMLAttributes>
+                        <XMLAttribute output="no" name="RS_dataType" value="1"/>
+                        <XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+                    </XMLAttributes>
+                </dataItem>
+                <dataItem name="join" aggregate="none">
+                    <expression>'a'</expression>
+                </dataItem>
+            </selection>
+            <detailFilters>
+                <detailFilter>
+                    <filterExpression>[Date]&lt;= 2010-02-28</filterExpression>
+                </detailFilter>
+            </detailFilters>
+        </query>
+        <query name="dimensions">
+            <source>
+                <joinOperation>
+                    <joinOperands>
+                        <joinOperand cardinality="1:1">
+                            <queryRef refQuery="source"/>
+                        </joinOperand>
+                        <joinOperand cardinality="1:1">
+                            <queryRef refQuery="date"/>
+                        </joinOperand>
+                    </joinOperands>
+                    <joinFilter>
+                        <filterExpression>[source].[join] = [date].[join]</filterExpression>
+                    </joinFilter>
+                </joinOperation>
+            </source>
+            <selection>
+                <dataItem name="Date" aggregate="none" rollupAggregate="none">
+                    <expression>[date].[Date]</expression>
+                </dataItem>
+                <dataItem name="Day of the week" aggregate="none" rollupAggregate="none">
+                    <expression>[date].[Day of the week]</expression>
+                </dataItem>
+                <dataItem name="Order method type" aggregate="none" rollupAggregate="none">
+                    <expression>[source].[Order method type]</expression>
+                </dataItem>
+                <dataItem name="Region" aggregate="none" rollupAggregate="none">
+                    <expression>[source].[Region]</expression>
+                </dataItem>
+            </selection>
+        </query>
+        <query name="output">
+            <source>
+                <joinOperation>
+                    <joinOperands>
+                        <joinOperand cardinality="0:1">
+                            <queryRef refQuery="source"/>
+                        </joinOperand>
+                        <joinOperand cardinality="1:1">
+                            <queryRef refQuery="dimensions"/>
+                        </joinOperand>
+                    </joinOperands>
+                    <joinFilter>
+                        <filterExpression>[source].[Date] = [dimensions].[Date] and [source].[Order method type] = [dimensions].[Order method type] and [source].[Region] = [dimensions].[Region]</filterExpression>
+                    </joinFilter>
+                </joinOperation>
+            </source>
+            <selection>
+                <dataItem name="Date" aggregate="none" rollupAggregate="none">
+                    <expression>[dimensions].[Date]</expression>
+                    <XMLAttributes>
+                        <XMLAttribute name="RS_dataType" value="4" output="no"/>
+                        <XMLAttribute name="RS_dataUsage" value="0" output="no"/>
+                    </XMLAttributes>
+                </dataItem>
+                <dataItem name="Day of the week" aggregate="none" rollupAggregate="none">
+                    <expression>[dimensions].[Day of the week]</expression>
+                </dataItem>
+                <dataItem name="Order method type" aggregate="none" rollupAggregate="none">
+                    <expression>[dimensions].[Order method type]</expression>
+                    <XMLAttributes>
+                        <XMLAttribute name="RS_dataType" value="3" output="no"/>
+                        <XMLAttribute name="RS_dataUsage" value="0" output="no"/>
+                    </XMLAttributes>
+                </dataItem>
+                <dataItem name="Region" aggregate="none" rollupAggregate="none">
+                    <expression>[dimensions].[Region]</expression>
+                </dataItem>
+                <dataItem name="Revenue" aggregate="total" rollupAggregate="automatic">
+                    <expression>[source].[Revenue]</expression>
+                    <XMLAttributes>
+                        <XMLAttribute name="RS_dataType" value="2" output="no"/>
+                        <XMLAttribute name="RS_dataUsage" value="2" output="no"/>
+                    </XMLAttributes>
+                </dataItem>
+            </selection>
+        </query>
+    </queries>
+    <XMLAttributes>
+        <XMLAttribute output="no" name="RS_CreateExtendedDataItems" value="true"/>
+        <XMLAttribute output="no" name="listSeparator" value=","/>
+        <XMLAttribute output="no" name="decimalSeparator" value="."/>
+        <XMLAttribute output="no" name="RS_modelModificationTime" value="2015-11-25T21:38:24.820Z"/>
+    </XMLAttributes>
+    <modelPath type="FM">/content/folder[@name='Samples']/folder[@name='Models']/package[@name='GO sales (query)']/model[@name='model']</modelPath>
+</report>

@@ -32,4 +32,7 @@ Report samples for various purposes.  These contain the report spec xml that can
   
   <dt>CommaDelimitedList</dt>
   <dd>Use a repeater table to produce comma-delimited output.</dd>
+  
+  <dt>ComplexLineChart</dt>
+  <dd>How to format a line chart with multiple dimensions.</dd>
 </dl>
