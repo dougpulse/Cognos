@@ -771,7 +771,7 @@
 					<expression>&apos;Australia&apos;</expression>
 				</dataItem>
 				<dataItem name="email" aggregate="none">
-					<expression>&apos;doug.pulse@wsdot.wa.gov&apos;</expression>
+					<expression>&apos;dude@example.com&apos;</expression>
 				</dataItem>
 			</selection>
 		</query>
@@ -784,7 +784,7 @@
 					<expression>&apos;Austria&apos;</expression>
 				</dataItem>
 				<dataItem name="email" aggregate="none">
-					<expression>&apos;doug.pulse@wsdot.wa.gov&apos;</expression>
+					<expression>&apos;dude@example.com&apos;</expression>
 				</dataItem>
 			</selection>
 		</query>
