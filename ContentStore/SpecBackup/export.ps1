@@ -102,7 +102,7 @@ order by 1"
 
 push-location
 try {
-	$result = Invoke-Sqlcmd $sqlquery -ServerInstance "HQOLYMSQL19P" -Database "IBMCOGNOS" -MaxCharLength 2000000 -ErrorAction 'Stop' -QueryTimeout 900
+	$result = Invoke-Sqlcmd $sqlquery -ServerInstance "<servername>" -Database "IBMCOGNOS" -MaxCharLength 2000000 -ErrorAction 'Stop' -QueryTimeout 900
 }
 catch {
 	pop-location
