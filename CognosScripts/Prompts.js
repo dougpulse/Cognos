@@ -96,12 +96,12 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 				"PromptIndex": "last"
 			}
 		], 
-		"RequiredPrompts": 
-		[
-			["WorkOrderNumber","Biennium"], 	--	WorkOrderNumber and Biennium
-			["WorkOrderNumber","FiscalYear"]	--	or WorkOrderNumber and FiscalYear
-		], 
-		"RequiredPromptCount":2,
+		//"RequiredPrompts": 
+		//[
+		//	["WorkOrderNumber","Biennium"], 	--	WorkOrderNumber and Biennium
+		//	["WorkOrderNumber","FiscalYear"]	--	or WorkOrderNumber and FiscalYear
+		//], 
+		//"RequiredPromptCount":2,
 		"SelectAll":  ["Bien", "fy", "month"], 	--	select all values in prompts with these names; value prompt, select UI List box
 		"AutoComplete":  true
 	}
@@ -362,6 +362,7 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 				});
 			}
 			
+			/*
 			if (this.oConfig.RequiredPrompts) {
 				//	Inspect the required prompt to verify that an acceptable combination of prompts is populated
 				var ap = [];
@@ -429,6 +430,7 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 					});
 				});
 			}
+			*/
 			
 			
 			//	AutoComplete
