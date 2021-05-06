@@ -25,14 +25,6 @@ The *Name* property of the prompt object.
 #### PromptIndex
 The zero-based index of the item in the list, or a word like "first" or "last".
 
-### RequiredPrompts
-Require one of a set of combinations of prompts to be set.  This is the case 
-when you want a and b or a and c.  b and c can't be required, but then Cognos 
-thinks they are not needed.
-
-### RequiredPromptCount
-Require that a minimum number of prompts are populated, but it doesn't matter which ones.
-
 ### SelectAll
 A list of prompt names for which all of the values in the prompt will be selected.
 
@@ -43,6 +35,9 @@ Works with a Custom Control using *PromptAutoFinish.js*.
 
 ## PromptAutoFinish.js
 Custom Control module that works with Prompts.js to autofinish (autonext?) a prompt page.
+
+## PromptFinish.js
+Custom Control module that handles RequiredPrompts and RequiredPromptCount.  This is a different take on PromptButton.js, which may work better.
 
 ## PromptButton.js
 Custom Control module to create a prompt button.  Includes prompt control method for RequiredPrompts and RequiredPromptCount.
