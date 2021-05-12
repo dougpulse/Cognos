@@ -2073,7 +2073,20 @@ Object.extend(Date.prototype, {
 	
 	dateAdd: function(interval, n, cal) {
 		var dt = new Date(this);
-		if (!interval || !n) return;
+		if (!interval || typeof n == "undefined") return;
+		if (!Object.isInteger(n)) return;
+		var intervals = [
+			"month", "m", 
+			"quarter", "q", 
+			"year", "y", 
+			"second", "s", 
+			"minute", "n", 
+			"hour", "h", 
+			"day", "d", 
+			"workday", "w", 
+			"week", "ww"
+		];
+		if (!intervals.contains(interval)) return;
 		var s = 1, m = 1, h = 1, dd = 1, w = 1, i = interval;
 		
 		//	if the user wants workdays, but didn't provide a calendar, create a generic calendar
