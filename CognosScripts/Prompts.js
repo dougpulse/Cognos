@@ -1,4 +1,4 @@
-define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"], function (hc) {
+define (["/js/ObjectMethods.js"], function () {
 	/*
 	--	Configuration:
 	
@@ -103,7 +103,8 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 		//], 
 		//"RequiredPromptCount":2,
 		"SelectAll":  ["Bien", "fy", "month"], 	--	select all values in prompts with these names; value prompt, select UI List box
-		"AutoComplete":  true
+		"AutoComplete":  true,
+		"HolidayCalendarName": "HolidayCalendar"	--	the name of the Custom Control that provides the data set of holiday dates
 	}
 	
 	--	Page modules do not have configuration objects.
@@ -114,6 +115,28 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 	
 	var log = function (label, message) {
 		console.log("    ****    " + label + " : " + message);
+	};
+	
+	function HolidayCalendar () {
+		var Holidays = [];
+		
+		function isHoliday (d) {
+			var b = false;
+			d1 = new Date(d);
+			d1.setHours(0);
+			d1.setMinutes(0);
+			d1.setSeconds(0);
+			d1.setMilliseconds(0);
+			//console.log(d);
+			b = this.Holidays.contains(d1);
+			//console.log("    " + b.toString());
+			return b;
+		}
+		
+		return {
+			isHoliday: isHoliday,
+			Holidays: Holidays
+		}
 	}
 	
 	var convertValues = function (valArray) {
@@ -122,7 +145,7 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 			a.push({"use": n, "display": n});
 		});
 		return a;
-	}
+	};
 	
 	var convertRanges = function (valArray) {
 		var a = [];
@@ -130,14 +153,14 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 			a.push({"start": {"use": n.start, "display": n.start}, "end": {"use": n.end, "display": n.end}});
 		});
 		return a;
-	}
+	};
 	
 	var getValueFromSource = function (src) {
 		var a = [];
 		var n = src.element.innerHTML;
 		a.push({"use": n, "display": n});
 		return a;
-	}
+	};
 	
 	var PromptPageLoaded = false;
 	
@@ -147,7 +170,7 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 	
 	PageModule.prototype.load = function( oPage ) {
 		log("page", "PageModule.load" );
-		
+		alert("waiting");
 		
 		////	Use ParamDisplay, not ParameterDisplay
 		////	initialize parameter capture
@@ -178,6 +201,14 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 		}
 		//log("oConfig", JSON.stringify(oConfig));
 		//log("Prompt values", oConfig.PromptValues.length);
+		//this.HolidayCalendar = function () {oPage.getControlByName("HolidayCalendar").DataStores[0].};
+		
+		this.HolidayCalendar = new HolidayCalendar();
+		var oDataStore = oPage.getControlByName(oConfig.HolidayCalendarName).dataStores[0];
+		var iRowCount = oDataStore.rowCount;
+		for ( var iRow = 0; iRow < iRowCount; iRow++ ) {
+			this.HolidayCalendar.Holidays.push(oDataStore.getCellValue( iRow, 0 ));
+		}
 	};
 	
 	PageModule.prototype.show = function( oPage ) {
@@ -244,7 +275,7 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 								case "last work day":
 									var d = new Date();
 									d.setDate(d.getDate()-1);
-									while (hc.isHoliday(d) || (d.getDay() % 6 == 0)) {
+									while (this.HolidayCalendar.isHoliday(d) || (d.getDay() % 6 == 0)) {
 										d.setDate(d.getDate()-1);
 									};
 									var a = [];
@@ -330,7 +361,7 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 									break;
 								case "date offset":
 									var d = new Date();
-									var d2 = d.dateAdd(n.Interval, n.Number, hc);
+									var d2 = d.dateAdd(n.Interval, n.Number, this.HolidayCalendar);
 									var a = [];
 									var o = new Object();
 									o.use = d2.format("yyyy-mm-dd");
@@ -343,7 +374,7 @@ define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"]
 							}
 						}
 					}
-				});
+				}, this);
 			}
 			
 			if (this.oConfig.SelectAll) {
