@@ -61,7 +61,7 @@ A collection of additional object methods to make some scripting tasks simpler.<
 Provides a HolidayCalendar object used by some methods of the Date object that are defined in ObjectMethods.js.<br />Used by Prompt.js.
 
 ## HolidayCalendarControl.js
-Custom Control module to define the data set for the HolidayCalendar object in Prompts.js.
+Custom Control module to define the data set for the HolidayCalendar object in Prompts.js.  Used as the module for a custom control that has one dataset with one category that contains the dates of holidays approprate to the context of the report.
 
 ## mapOpenLayers.js
 Provides a means to present points on a map using a base map from OpenStreetMap or ArcGISOnline.
