@@ -1,4 +1,4 @@
-define (["/js/ObjectMethods.js"], function () {
+define (["/CognosScripts/HolidayCalendar.js", "/CognosScripts/ObjectMethods.js"], function (hc) {
 	/*
 	--	Configuration:
 	
@@ -96,15 +96,14 @@ define (["/js/ObjectMethods.js"], function () {
 				"PromptIndex": "last"
 			}
 		], 
-		//"RequiredPrompts": 
-		//[
-		//	["WorkOrderNumber","Biennium"], 	--	WorkOrderNumber and Biennium
-		//	["WorkOrderNumber","FiscalYear"]	--	or WorkOrderNumber and FiscalYear
-		//], 
-		//"RequiredPromptCount":2,
+		"RequiredPrompts": 
+		[
+			["WorkOrderNumber","Biennium"], 	--	WorkOrderNumber and Biennium
+			["WorkOrderNumber","FiscalYear"]	--	or WorkOrderNumber and FiscalYear
+		], 
+		"RequiredPromptCount":2,
 		"SelectAll":  ["Bien", "fy", "month"], 	--	select all values in prompts with these names; value prompt, select UI List box
-		"AutoComplete":  true,
-		"HolidayCalendarName": "HolidayCalendar"	--	the name of the Custom Control that provides the data set of holiday dates
+		"AutoComplete":  true
 	}
 	
 	--	Page modules do not have configuration objects.
@@ -115,28 +114,6 @@ define (["/js/ObjectMethods.js"], function () {
 	
 	var log = function (label, message) {
 		console.log("    ****    " + label + " : " + message);
-	};
-	
-	function HolidayCalendar () {
-		var Holidays = [];
-		
-		function isHoliday (d) {
-			var b = false;
-			d1 = new Date(d);
-			d1.setHours(0);
-			d1.setMinutes(0);
-			d1.setSeconds(0);
-			d1.setMilliseconds(0);
-			//console.log(d);
-			b = this.Holidays.contains(d1);
-			//console.log("    " + b.toString());
-			return b;
-		}
-		
-		return {
-			isHoliday: isHoliday,
-			Holidays: Holidays
-		}
 	}
 	
 	var convertValues = function (valArray) {
@@ -145,7 +122,7 @@ define (["/js/ObjectMethods.js"], function () {
 			a.push({"use": n, "display": n});
 		});
 		return a;
-	};
+	}
 	
 	var convertRanges = function (valArray) {
 		var a = [];
@@ -153,25 +130,25 @@ define (["/js/ObjectMethods.js"], function () {
 			a.push({"start": {"use": n.start, "display": n.start}, "end": {"use": n.end, "display": n.end}});
 		});
 		return a;
-	};
+	}
 	
 	var getValueFromSource = function (src) {
 		var a = [];
 		var n = src.element.innerHTML;
 		a.push({"use": n, "display": n});
 		return a;
-	};
+	}
 	
-	var PromptPageLoaded = false;
+	//var PromptPageLoaded = false;
 	
 	//var hc = new HolidayCalendar();
 	
 	function PageModule() {};
 	
 	PageModule.prototype.load = function( oPage ) {
-		log("page", "PageModule.load" );
-		alert("waiting");
+		log("page " + oPage.name, "PageModule.load" );
 		
+		if (typeof this.PromptPageLoaded == "undefined") this.PromptPageLoaded = false;
 		////	Use ParamDisplay, not ParameterDisplay
 		////	initialize parameter capture
 		//var crObject = oPage.getControlByName("ReportName");
@@ -185,37 +162,34 @@ define (["/js/ObjectMethods.js"], function () {
 		
 		
 		this.configContainer = oPage.getControlByName("PromptConfiguration");
+		var i = 0;
+		while (!this.configContainer) {
+			this.configContainer = oPage.getControlByName("PromptConfiguration" + (i++).toString());
+			if (i > 20) break;
+		}
 		if (!this.configContainer) {
-			alert("The prompt configuration container was not found.\r\nIt must be named \"PromptConfiguration\".");
+			alert("The prompt configuration container was not found.\r\nIt must be named \"PromptConfigurationx\", where x is empty or a number between 1 and 20.");
 		}
 		//log("config tag name", configContainer.element.tagName);
 		
 		this.sConfig = this.configContainer.element.innerHTML;
-		log("sConfig", this.sConfig);
+		//log("sConfig", this.sConfig);
 		
 		this.oConfig = JSON.parse(this.sConfig);
 		
 		if (this.oConfig.AutoComplete) {
 			//	AutoComplete and the Auto-Submit property on a control are not compatible
-			PromptPageLoaded = false;
+			this.PromptPageLoaded = false;
 		}
-		//log("oConfig", JSON.stringify(oConfig));
+		//log("oConfig", JSON.stringify(this.oConfig));
 		//log("Prompt values", oConfig.PromptValues.length);
-		//this.HolidayCalendar = function () {oPage.getControlByName("HolidayCalendar").DataStores[0].};
-		
-		this.HolidayCalendar = new HolidayCalendar();
-		var oDataStore = oPage.getControlByName(oConfig.HolidayCalendarName).dataStores[0];
-		var iRowCount = oDataStore.rowCount;
-		for ( var iRow = 0; iRow < iRowCount; iRow++ ) {
-			this.HolidayCalendar.Holidays.push(oDataStore.getCellValue( iRow, 0 ));
-		}
 	};
 	
 	PageModule.prototype.show = function( oPage ) {
-		log("page", "PageModule.show" );
-		//log("start of show", "PromptPageLoaded = " + PromptPageLoaded.toString());
+		log("page " + oPage.name, "PageModule.show" );
+		//log("start of show", "PromptPageLoaded = " + this.PromptPageLoaded.toString());
 		
-		if (!PromptPageLoaded) {
+		if (!this.PromptPageLoaded) {
 			//log("page.show", "loading prompt defaults");
 			if (this.oConfig.PromptValues) {
 				//	set default prompt values
@@ -275,7 +249,7 @@ define (["/js/ObjectMethods.js"], function () {
 								case "last work day":
 									var d = new Date();
 									d.setDate(d.getDate()-1);
-									while (this.HolidayCalendar.isHoliday(d) || (d.getDay() % 6 == 0)) {
+									while (hc.isHoliday(d) || (d.getDay() % 6 == 0)) {
 										d.setDate(d.getDate()-1);
 									};
 									var a = [];
@@ -361,7 +335,7 @@ define (["/js/ObjectMethods.js"], function () {
 									break;
 								case "date offset":
 									var d = new Date();
-									var d2 = d.dateAdd(n.Interval, n.Number, this.HolidayCalendar);
+									var d2 = d.dateAdd(n.Interval, n.Number, hc);
 									var a = [];
 									var o = new Object();
 									o.use = d2.format("yyyy-mm-dd");
@@ -374,7 +348,7 @@ define (["/js/ObjectMethods.js"], function () {
 							}
 						}
 					}
-				}, this);
+				});
 			}
 			
 			if (this.oConfig.SelectAll) {
@@ -393,43 +367,48 @@ define (["/js/ObjectMethods.js"], function () {
 				});
 			}
 			
-			/*
 			if (this.oConfig.RequiredPrompts) {
 				//	Inspect the required prompt to verify that an acceptable combination of prompts is populated
+				log("Required Prompts", JSON.stringify(this.oConfig.RequiredPrompts));
 				var ap = [];
 				this.oConfig.RequiredPrompts.forEach(function (arr) {
 					arr.forEach(function(sPromptName) {
 						ap.push(oPage.getControlByName(sPromptName));
-					}
-				}
+					});
+				});
+				var rp = this.oConfig.RequiredPrompts;
 				
 				ap.forEach(function(p) {
 					p.setValidator(function () {
 						var blnGood = false;
 						//	check the entire set
 						//	if any group is complete, we're done
-						this.oConfig.RequiredPrompts.forEach(function (arr) {
+						rp.forEach(function (arr) {
 							//	check each group
 							if (!blnGood) {
 								//	reset the counter
 								var rpc = 0;
-								arr.forEach(function(sPromptName, i, grp) {
-									//log("Prompt Name", sPromptName);
+								arr.forEach(function(sPromptName) {
+									log("    prompt", sPromptName);
 									var oPrompt = oPage.getControlByName(sPromptName);
 									if (!oPrompt) {
 										alert(sPromptName + " was not found.");
 									}
 									else {
-										rpc += (oPrompt.getValues()[0].use == undefined ? 0 : 1);
+										log("        prompt value", JSON.stringify(oPrompt.getValues()[0].use));
+										rpc += (oPrompt.getValues()[0].use == undefined || oPrompt.getValues()[0].use == "") ? 0 : 1;
 									}
-								}
+								});
 								//	if the counter grew to the size of the array, we're good
+								log("    array length", arr.length);
+								log("    prompt count", rpc);
 								if (arr.length == rpc) blnGood = true;
 							}
-						}
+						});
+						log("result", blnGood);
 						return blnGood;
-					}
-				}
+					});
+				});
 			}
 			
 			if (this.oConfig.RequiredPromptCount) {
@@ -461,7 +440,6 @@ define (["/js/ObjectMethods.js"], function () {
 					});
 				});
 			}
-			*/
 			
 			
 			//	AutoComplete
@@ -479,17 +457,17 @@ define (["/js/ObjectMethods.js"], function () {
 				oPage.AutoFinish();
 			}
 			
-			PromptPageLoaded = true;
+			this.PromptPageLoaded = true;
 		}
-		//log("end of show", "PromptPageLoaded = " + PromptPageLoaded.toString());
+		//log("end of show", "PromptPageLoaded = " + this.PromptPageLoaded.toString());
 	};
 	
 	PageModule.prototype.hide = function( oPage ) {
-		log("page", "PageModule.hide" );
+		log("page " + oPage.name, "PageModule.hide" );
 	};
 	
 	PageModule.prototype.destroy = function( oPage ) {
-		log("page", "PageModule.destroy" );
+		log("page " + oPage.name, "PageModule.destroy" );
 		
 		////	use ParamDisplay, not ParameterDisplay
 		////	capture parameters
