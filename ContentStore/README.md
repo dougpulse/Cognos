@@ -8,7 +8,7 @@ Hacking the Cognos Content Store database is not recommended.  The correct, supp
 
 <dl>
   <dt>ContentStore.txt</dt>
-  <dd>Listing and description of tables in the Content Store database.  Found on Cognoise.com.  Comments updated as new insights are realized.</dd
+  <dd>Listing and description of tables in the Content Store database.  Found on Cognoise.com.  Comments updated as new insights are realized.</dd>
   
   <dt>CognosScheduleEmailRecipients.sql</dt>
   <dd>Lists email recipients for schedules.</dd>
