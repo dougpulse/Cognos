@@ -13,6 +13,9 @@ Hacking the Cognos Content Store database is not recommended.  The correct, supp
   <dt>CognosScheduleEmailRecipients.sql</dt>
   <dd>Lists email recipients for schedules.</dd>
   
+  <dt>LocateSchedules.sql</dt>
+  <dd>Outputs the path to each schedules.</dd>
+  
   <dt>OutputSpecs.sql</dt>
   <dd>Output specifications for reports, dashboards, and data sets within Team Content with the folder structure seen in Cognos.  This can be used as part of a routine to write to the file system.</dd>
   
