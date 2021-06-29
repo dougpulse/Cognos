@@ -120,6 +120,13 @@ define (["/CognosScripts/ObjectMethods.js"], function () {
 	function HolidayCalendar () {
 		var Holidays = [];
 		
+		function contains(v) {
+			for (var i = 0; i < Holidays.length; i++) {
+				if (Holidays[i].valueOf() == v.valueOf()) return true;
+			}
+			return false;
+		}
+		
 		function isHoliday (d) {
 			var b = false;
 			d1 = new Date(d);
@@ -128,7 +135,7 @@ define (["/CognosScripts/ObjectMethods.js"], function () {
 			d1.setSeconds(0);
 			d1.setMilliseconds(0);
 			//console.log(d);
-			b = this.Holidays.contains(d1);
+			b = contains(d1);
 			//console.log("    " + b.toString());
 			return b;
 		}
@@ -249,6 +256,20 @@ define (["/CognosScripts/ObjectMethods.js"], function () {
 						//	}
 						//]
 						if (n.PromptRelative) {
+							this.HolidayCalendar = new HolidayCalendar();
+							if (this.oConfig.HolidayCalendarName) {
+								var oHC = oPage.getControlByName(this.oConfig.HolidayCalendarName);
+								if (!oHC) {
+								}
+								else {
+									oHC.dataStores[0].columnValues[0].forEach (function(e) {
+										this.HolidayCalendar.Holidays.push(new Date(e));
+									}, this);
+								}
+							}
+							else {
+							}
+							
 							switch (n.PromptRelative.toLowerCase()) {
 								case "today":
 									var d = new Date();
@@ -271,10 +292,13 @@ define (["/CognosScripts/ObjectMethods.js"], function () {
 									break;
 								case "last work day":
 									var d = new Date();
+									log("today", d);
 									d.setDate(d.getDate()-1);
+									log("checking", d);
 									while (this.HolidayCalendar.isHoliday(d) || (d.getDay() % 6 == 0)) {
 										d.setDate(d.getDate()-1);
 									};
+									log("got", d);
 									var a = [];
 									var o = new Object();
 									o.use = d.format("yyyy-mm-dd");
