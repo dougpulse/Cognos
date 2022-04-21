@@ -1,0 +1,15 @@
+MachineName,MachineDescription,Type,Product,Expires
+CognosCMPrd,Cognos Production Content Manager,Root,Cognos Server,1/2/2050
+CognosDispPrd,Cognos Production Dispatcher,Root,Cognos Server,1/2/2050
+CognosTest,Cognos Test Server,Root,Cognos Server,1/2/2050
+CognosCMPrd,Cognos Production Content Manager,Intermediate,Cognos Server,1/2/2030
+CognosDispPrd,Cognos Production Dispatcher,Intermediate,Cognos Server,1/2/2030
+CognosTest,Cognos Test Server,Intermediate,Cognos Server,1/2/2030
+CognosCMPrd,Cognos Production Content Manager,Machine,Cognos Server,10/1/2022
+CognosDispPrd,Cognos Production Dispatcher,Machine,Cognos Server,10/1/2022
+CognosTest,Cognos Test Server,Machine,Cognos Server,11/1/2022
+CognosDispPrd,Cognos Production Gateway,Machine,IIS,10/1/2022
+CognosTest,Cognos Test Server,Machine,IIS,1/1/2022
+MyClientMachine,Joe's workstation,Machine,Framework Manager,1/20/2023
+MyClientMachine,Joe's workstation,Intermediate,Framework Manager,8/20/2034
+MyClientMachine,Joe's workstation,Root,Framework Manager,7/23/2054
