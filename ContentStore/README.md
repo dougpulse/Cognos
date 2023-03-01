@@ -5,20 +5,28 @@ I use Microsoft SQL Server.  Your mileage may vary.
 
 Hacking the Cognos Content Store database is not recommended.  The correct, supported way to automate Cognos management tasks is by using the Cognos SDK.
 
+## ContentStore.txt ##
 
-<dl>
-  <dt>ContentStore.txt</dt>
-  <dd>Listing and description of tables in the Content Store database.  Found on Cognoise.com.  Comments updated as new insights are realized.</dd>
+Listing and description of tables in the Content Store database.  Found on Cognoise.com.  Comments updated as new insights are realized.
   
-  <dt>CognosScheduleEmailRecipients.sql</dt>
-  <dd>Lists email recipients for schedules.</dd>
+## CognosScheduleEmailRecipients.sql ##
+
+Lists email recipients for schedules.
   
-  <dt>LocateSchedules.sql</dt>
-  <dd>Outputs the path to each schedules.</dd>
+## LocateSchedules.sql ##
+
+Outputs the path to each schedule.
   
-  <dt>OutputSpecs.sql</dt>
-  <dd>Output specifications for reports, dashboards, and data sets within Team Content with the folder structure seen in Cognos.  This can be used as part of a routine to write to the file system.</dd>
+## OutputSpecs.sql ##
+
+Output specifications for reports, dashboards, and data sets within Team Content with the folder structure seen in Cognos.  This can be used as part of a routine to write to the file system.
   
-  <dt>SpecBackup (folder)</dt>
-  <dd>Output specifications for reports, dashboards, and data sets to the file system and push them to a source control repository.</dd>
-</dl>
+## SpecBackup (folder) ##
+
+Output specifications for reports, dashboards, and data sets to the file system and push them to a source control repository.
+
+## BrokenShortcuts.sql ##
+
+Find broken shortcuts and report views.
+
+

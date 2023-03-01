@@ -72,6 +72,7 @@ define(function () {
 	HolidayCalendar.Holidays.push(new Date(2022,0,17));
 	HolidayCalendar.Holidays.push(new Date(2022,1,21));
 	HolidayCalendar.Holidays.push(new Date(2022,4,30));
+	HolidayCalendar.Holidays.push(new Date(2022,5,19));
 	HolidayCalendar.Holidays.push(new Date(2022,6,4));
 	HolidayCalendar.Holidays.push(new Date(2022,8,5));
 	HolidayCalendar.Holidays.push(new Date(2022,10,11));
@@ -82,6 +83,7 @@ define(function () {
 	HolidayCalendar.Holidays.push(new Date(2023,0,16));
 	HolidayCalendar.Holidays.push(new Date(2023,1,20));
 	HolidayCalendar.Holidays.push(new Date(2023,4,29));
+	HolidayCalendar.Holidays.push(new Date(2023,5,19));
 	HolidayCalendar.Holidays.push(new Date(2023,6,4));
 	HolidayCalendar.Holidays.push(new Date(2023,8,4));
 	HolidayCalendar.Holidays.push(new Date(2023,10,10));
@@ -92,6 +94,7 @@ define(function () {
 	HolidayCalendar.Holidays.push(new Date(2024,0,15));
 	HolidayCalendar.Holidays.push(new Date(2024,1,19));
 	HolidayCalendar.Holidays.push(new Date(2024,4,27));
+	HolidayCalendar.Holidays.push(new Date(2024,5,19));
 	HolidayCalendar.Holidays.push(new Date(2024,6,4));
 	HolidayCalendar.Holidays.push(new Date(2024,8,2));
 	HolidayCalendar.Holidays.push(new Date(2024,10,11));

@@ -2,7 +2,7 @@ define( function() {
 	"use strict";
 	
 	var log = function (label, message) {
-		console.log("    ****    " + label + " : " + message);
+		console.log("    ****    PromptButton :  " + label + " : " + message);
 	};
 	
 	
@@ -63,7 +63,7 @@ define( function() {
 						//	A single-select textbox prompt is a special case.
 						//	If it is empty, getValues() returns an array with one element:
 						//		[{"use":null,"display":null}]
-						if (v.length == 1 && v[0].use == "" && v[0].display == null) {
+						if (v.length == 1 && (v[0].use == "" || v[0].use == undefined) && (v[0].display == null || v[0].display == "" || v[0].display == undefined)) {
 						}
 						else if (v.length > 0) {
 							m++;

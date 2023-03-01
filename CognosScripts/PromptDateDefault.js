@@ -1,4 +1,4 @@
-define(["/CognosScripts/ObjectMethods.js"], function() {
+define(function() {
 	"use strict";
 	/*
 	Sets a date prompt to the value(s) returned by a query.
@@ -16,7 +16,7 @@ define(["/CognosScripts/ObjectMethods.js"], function() {
 		"EndDate": "EndDate"
 	}
 	
-	The data store(s) must contain columns with names that match the values for 
+	The data store must contain columns with names that match the values for 
 	either Date or StartDate and EndDate.
 	The date values must be in the format yyyy-mm-dd.
 	*/
@@ -115,7 +115,7 @@ define(["/CognosScripts/ObjectMethods.js"], function() {
 		var vals = ds.columnValues;
 		if (sDateColumn) {
 			for (var i = 0; i < ds.rowCount; i++) {
-				if (!vals[iDateCol][i].left(10).match(reDate)) {
+				if (!vals[iDateCol][i].substr(0, 10).match(reDate)) {
 					sMsg += "Invalid input:  " + vals[iDateCol][i] + " is not a valid date.";
 					bValid = false;
 					break;
@@ -124,12 +124,12 @@ define(["/CognosScripts/ObjectMethods.js"], function() {
 		}
 		else {
 			for (var i = 0; i < ds.rowCount; i++) {
-				if (!vals[iStartDateCol][i].left(10).match(reDate)) {
+				if (!vals[iStartDateCol][i].substr(0, 10).match(reDate)) {
 					sMsg += "Invalid input:  " + vals[iStartDateCol][i] + " is not a valid date.";
 					bValid = false;
 					break;
 				}
-				if (!vals[iEndDateCol][i].left(10).match(reDate)) {
+				if (!vals[iEndDateCol][i].substr(0, 10).match(reDate)) {
 					sMsg += "Invalid input:  " + vals[iEndDateCol][i] + " is not a valid date.";
 					bValid = false;
 					break;
@@ -147,12 +147,12 @@ define(["/CognosScripts/ObjectMethods.js"], function() {
 		var arrDates = [];
 		if (sDateColumn) {
 			for (var i = 0; i < ds.rowCount; i++) {
-				arrDates.push({"use":vals[iDateCol][i].left(10)});
+				arrDates.push({"use":vals[iDateCol][i].substr(0, 10)});
 			}
 		}
 		else {
 			for (var i = 0; i < ds.rowCount; i++) {
-				arrDates.push({"start":{"use":vals[iStartDateCol][i].left(10)},"end":{"use":vals[iEndDateCol][i].left(10)}});
+				arrDates.push({"start":{"use":vals[iStartDateCol][i].substr(0, 10)},"end":{"use":vals[iEndDateCol][i].substr(0, 10)}});
 			}
 		}
 		oControlHost.page.getControlByName(sPromptName).setValues(arrDates);
