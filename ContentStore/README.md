@@ -30,3 +30,24 @@ Output specifications for reports, dashboards, and data sets to the file system 
 Find broken shortcuts and report views.
 
 
+## PermissionsPerUser.sql ##
+
+Find everywhere that a user (or group) from Active Directory is defined in object permissions in Cognos.
+
+For objects that inherit permissions, POLICIES is NULL.  These are not identified by this query.
+
+This query processes the CMPOLICIES.POLICIES value for all objects in the Content Store using two, nested functions, then performs the search (filter) on the results.  It can take a very long time to run.
+
+Requires udf_CognosPermissions.sql.
+
+## udf_CognosPermissions.sql ##
+
+Converts CMPOLICIES.POLICIES (image) to a human-readable string.
+
+Requires udf_ConvertFromBase10.sql
+
+## udf_ConvertFromBase10.sql ##
+
+Converts a number in base 10 to a string (varchar(255)) containing the number in another number base.
+
+Used by udf_CognosPermissions to convert 64-bit encoded characters to binary.
