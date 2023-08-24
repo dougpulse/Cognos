@@ -35,7 +35,7 @@ with cte(PCMID,
   , cast(n.NAME as varchar(max))
   , cte.Modified
   , case
-    when c.NAME in ('report', 'reportview') then o.CMID
+    when c.NAME in ('report', 'reportview', 'dataset2') then o.CMID
     else cte.ReportId
     end
   from CMOBJECTS o
