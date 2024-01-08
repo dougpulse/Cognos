@@ -1,7 +1,22 @@
-﻿$AuthenticationNamespace = "NamespaceName"
-$SQLServer = "SQLServerName"
-"
+﻿$CognosEnvironment = Read-Host "Cognos Environment (P, Q, D):"
+switch($CognosEnvironment) {
+    "P" {
+        $dbServer = "ProdDBServer"
+        $dbName = "ProdDBName"
+    }
+    "Q" {
+        $dbServer = "QADBServer"
+        $dbName = "QADBName"
+    }
+    "D" {
+        $dbServer = "DevDBServer"
+        $dbName = "DevDBName"
+    }
+}
 
+$AuthenticationNamespace = "NamespaceName"
+
+"
 
 
 
@@ -92,7 +107,7 @@ from members
 order by ObjectPath
 "
 
-$result = Invoke-Sqlcmd $sqlquery -ServerInstance "$SQLServer" -Database "IBMCOGNOS" -MaxCharLength 1000000 -ConnectionTimeout 120 -QueryTimeout 600
+$result = Invoke-Sqlcmd $sqlquery -ServerInstance $dbServer -Database $dbName -MaxCharLength 1000000 -ConnectionTimeout 10 -QueryTimeout 600
 
 $l = $result.length
 $i = 0
@@ -146,8 +161,7 @@ foreach($row in $result) {
 
 
 "
-#$out
 
-$f =  Join-Path (Join-Path $env:USERPROFILE "Downloads") "RoleGroupMembership.csv"
+$f =  Join-Path (Join-Path $env:USERPROFILE "Downloads") "RoleGroupMembership$CognosEnvironment.csv"
 $out | Export-Csv -Path $f -NoTypeInformation
 Start-Process -FilePath $f

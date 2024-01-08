@@ -1,20 +1,20 @@
 use IBMCognos
 go
 ;
-declare @DirectoryNamespace varchar(128) = 'MyNamespaceName'
+declare @DirectoryNamespace varchar(128) = 'WSDOTAD'
 ;
 with
-capability as (
-  select o.CMID
-
-  from CMOBJECTS o
-    inner join CMOBJNAMES n on n.CMID = o.CMID
-    inner join CMCLASSES c on c.CLASSID = o.CLASSID
-
-  where n.ISDEFAULT = 1
-    and n.NAME = 'Capability'
-    and c.NAME = 'capability'
-), 
+--capability as (
+--  select o.CMID
+--
+--  from CMOBJECTS o
+--    inner join CMOBJNAMES n on n.CMID = o.CMID
+--    inner join CMCLASSES c on c.CLASSID = o.CLASSID
+--
+--  where n.ISDEFAULT = 1
+--    and n.NAME = 'Capability'
+--    and c.NAME = 'capability'
+--), 
 capabilities as (
   select cast(n.NAME as varchar(max)) as CapabilityPath
   , n.NAME

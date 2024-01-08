@@ -1,20 +1,38 @@
-use IBMCognos
-go
-;
-declare @DirectoryNamespace varchar(128) = 'MyNamespaceName'
-;
-with
-capability as (
-  select o.CMID
+﻿$CognosEnvironment = Read-Host "Cognos Environment (P, Q, D):"
+switch($CognosEnvironment) {
+    "P" {
+        $dbServer = "ProdDBServer"
+        $dbName = "ProdDBName"
+    }
+    "Q" {
+        $dbServer = "QADBServer"
+        $dbName = "QADBName"
+    }
+    "D" {
+        $dbServer = "DevDBServer"
+        $dbName = "DevDBName"
+    }
+}
 
-  from CMOBJECTS o
-    inner join CMOBJNAMES n on n.CMID = o.CMID
-    inner join CMCLASSES c on c.CLASSID = o.CLASSID
+$AuthenticationNamespace = "NamespaceName"
+$DomainName = "DomainName"
 
-  where n.ISDEFAULT = 1
-    and n.NAME = 'Capability'
-    and c.NAME = 'capability'
-), 
+"
+
+
+
+Getting data from the database.
+This may take a couple minutes.
+
+
+
+"
+
+$sqlquery = "
+declare @DirectoryNamespace varchar(128) = '$DirectoryNamespace'
+declare @DomainName varchar(255) = '$DomainName'
+;
+with 
 capabilities as (
   select cast(n.NAME as varchar(max)) as CapabilityPath
   , n.NAME
@@ -26,11 +44,10 @@ capabilities as (
   from CMOBJECTS o
     inner join CMOBJNAMES n on n.CMID = o.CMID
     inner join CMCLASSES c on c.CLASSID = o.CLASSID
-    --inner join capability cap on cap.CMID = o.PCMID
 
   where n.ISDEFAULT = 1
-    and n.NAME = 'Capability'
     and c.NAME = 'capability'
+    and n.NAME = 'Capability'
 
   union all
   select cast(cap.CapabilityPath + '/' + n.NAME as varchar(max))
@@ -54,10 +71,6 @@ from capabilities
 with 
 capabilitypolicy as (
   select c.CapabilityPath
-  --, c.NAME
-  --, c.class
-  --, c.CMID
-  --, c.PCMID
   , c.DISABLED
   , CONVERT(varchar(max), CONVERT(varbinary(max), p.POLICIES, 1), 2) as pol
   from #capabilities c
@@ -129,9 +142,6 @@ into #q
 from q
 OPTION (MAXRECURSION 0)
 
---select *
---from #q
---order by CapabilityPath
 ;
 
 with
@@ -147,15 +157,20 @@ perms as (
   ) v (perm)
 ),
 capabilityPerms as (
+  --  Cognos roles
   select q.CapabilityPath
   , q.rownum
   , n.NAME
   from #q q
-    inner join CMOBJNAMES n on n.CMID = cast(SUBSTRING(val, 3, CHARINDEX(':', val, 3) - 3) as int)
+    inner join CMOBJNAMES n on n.CMID = cast(SUBSTRING(q.val, 3, CHARINDEX(':', q.val, 3) - 3) as int)
+    inner join CMOBJECTS o on o.CMID = n.CMID
+    inner join CMCLASSES c on c.CLASSID = o.CLASSID
   where q.val like '::%'
     and CHARINDEX(':', val, 3) > 0
     and n.ISDEFAULT = 1
+    and c.NAME = 'role'
 
+  --  Cognos groups?  Cognos groups and users?
   union
   select q.CapabilityPath
   , q.rownum
@@ -163,16 +178,18 @@ capabilityPerms as (
   from #q q
   where q.val like '::%'
     and CHARINDEX(':', val, 3) = 0
-
+  
+  --  AD groups and users?
   union
   select q.CapabilityPath
   , q.rownum
-  , 'WSDOT\' + u.NAME
+  , @DomainName + '\' + u.NAME
   from #q q
     inner join CMOBJNAMES n on n.NAME = q.val
     inner join cmobjprops33 u on u.CMID = n.CMID
   where n.NAME like @DirectoryNamespace + '%'
 
+  --  permissions (setPolicy, execute, etc.)
   union
   select q.CapabilityPath
   , q.rownum
@@ -180,13 +197,6 @@ capabilityPerms as (
   from #q q
     inner join perms p on q.val like '%' + p.perm + '%'
 ),
---capabilityPermType as (
---  select cp.CapabilityPath
---  , cp.rownum
---  , cp.NAME
---  from capabilityPerms cp
---    inner join perms p on p.perm = cp.NAME
---),
 executeStart as (
   select cp.CapabilityPath
   , cp.rownum
@@ -253,7 +263,7 @@ select c.CapabilityPath
       then 'write'
     else 'inherited'
   end as permission
-, pc.NAME
+, pc.NAME as PrincipalName
 from #capabilities c
   left outer join permClass pc on pc.CapabilityPath = c.CapabilityPath
                               and pc.NAME not in (
@@ -265,3 +275,35 @@ order by 1, 2, 3
 
 drop table #q
 drop table #capabilities
+"
+
+$result = Invoke-Sqlcmd $sqlquery -ServerInstance $dbServer -Database $dbName -MaxCharLength 1000000 -ConnectionTimeout 10 -QueryTimeout 600
+
+$l = $result.length
+$Capability = @()
+$i = 0
+$startTime = Get-Date
+
+foreach($row in $result) {
+    $r = [PSCustomObject]@{}
+    $r | Add-Member -MemberType NoteProperty -Name 'CapabilityPath' -Value $row.CapabilityPath
+    $r | Add-Member -MemberType NoteProperty -Name 'permission' -Value $row.permission
+    $r | Add-Member -MemberType NoteProperty -Name 'PrincipalName' -Value $row.PrincipalName
+
+    $Capability += $r
+
+    $i++
+    $p = [int]($i * 100 / $l)
+    
+    $elapsed = ((Get-Date) - $startTime).TotalSeconds
+    $remainingItems = $l - $i
+    $averageItemTime = $elapsed / $i
+
+    Write-Progress "Processing $l capabilities" -Status "$i capabilities processed" -PercentComplete $p -SecondsRemaining ($remainingItems * $averageItemTime)
+}
+
+
+$f =  Join-Path (Join-Path $env:USERPROFILE "Downloads") "Capabilities$CognosEnvironment.csv"
+
+$Capability | Export-Csv -Path $f -NoTypeInformation
+Start-Process -FilePath $f

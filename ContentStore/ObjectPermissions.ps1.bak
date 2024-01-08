@@ -323,7 +323,7 @@ drop table #q
 drop table #cogobj
 "
 
-$result = Invoke-Sqlcmd $sqlquery -ServerInstance "$dbServer" -Database "$dbName" -MaxCharLength 1000000 -ConnectionTimeout 120 -QueryTimeout 600
+$result = Invoke-Sqlcmd $sqlquery -ServerInstance "HQOLYMSQL19P" -Database "IBMCOGNOS" -MaxCharLength 1000000 -ConnectionTimeout 120 -QueryTimeout 600
 
 $l = $result.length
 $ObjectPermission = @()

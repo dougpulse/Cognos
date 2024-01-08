@@ -1,7 +1,22 @@
-﻿$AuthenticationNamespace = "NamespaceName"
-$SQLServer = "SQLServerName"
-"
+﻿$CognosEnvironment = Read-Host "Cognos Environment (P, Q, D):"
+switch($CognosEnvironment) {
+    "P" {
+        $dbServer = "ProdDBServer"
+        $dbName = "ProdDBName"
+    }
+    "Q" {
+        $dbServer = "QADBServer"
+        $dbName = "QADBName"
+    }
+    "D" {
+        $dbServer = "DevDBServer"
+        $dbName = "DevDBName"
+    }
+}
 
+$DirectoryNamespace = "NamespaceName"
+
+"
 
 
 
@@ -13,7 +28,7 @@ This may take a couple minutes.
 "
 
 $sqlquery = "
-declare @DirectoryNamespace varchar(255) = '$AuthenticationNamespace'
+declare @DirectoryNamespace varchar(255) = '$DirectoryNamespace'
 ;
 with
 objname as (
@@ -26,17 +41,15 @@ objname as (
                            and n2.LOCALEID = 118	--	en-us
 ),
 src (
-  CMID,
-  ObjectName,
-  ObjectPath,
-  ObjectClass,
-  Modified
+    CMID
+  , ObjectName
+  , ObjectPath
+  , ObjectClass
 ) as (
   select o.CMID
   , n.NAME
   , cast(n.NAME as varchar(max))
   , cast(c.NAME as varchar(max))
-  , o.MODIFIED
   from CMOBJECTS o
     inner join objname n on n.CMID = o.CMID
     inner join CMCLASSES c on c.CLASSID = o.CLASSID
@@ -47,7 +60,6 @@ src (
   , n.NAME
   , cast(src.ObjectPath + '/' + n.NAME as varchar(max))
   , cast(c.NAME as varchar(max))
-  , o.MODIFIED
   from CMOBJECTS o
     inner join objname n on n.CMID = o.CMID
     inner join CMCLASSES c on c.CLASSID = o.CLASSID
@@ -315,7 +327,7 @@ drop table #cogobj
 
 "
 
-$result = Invoke-Sqlcmd $sqlquery -ServerInstance "$SQLServer" -Database "IBMCOGNOS" -MaxCharLength 1000000 -ConnectionTimeout 120 -QueryTimeout 600
+$result = Invoke-Sqlcmd $sqlquery -ServerInstance $dbServer -Database $dbName -MaxCharLength 1000000 -ConnectionTimeout 10 -QueryTimeout 600
 
 $l = $result.length
 $ObjectCapability = @()
@@ -353,7 +365,7 @@ foreach($row in $result) {
 }
 
 
-$f =  Join-Path (Join-Path $env:USERPROFILE "Downloads") "ObjectCapabilities.csv"
+$f =  Join-Path (Join-Path $env:USERPROFILE "Downloads") "ObjectCapabilities$CognosEnvironment.csv"
 
 $ObjectCapability | Export-Csv -Path $f -NoTypeInformation
 Start-Process -FilePath $f
