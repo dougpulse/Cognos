@@ -107,7 +107,13 @@ from members
 order by ObjectPath
 "
 
-$result = Invoke-Sqlcmd $sqlquery -ServerInstance $dbServer -Database $dbName -MaxCharLength 1000000 -ConnectionTimeout 10 -QueryTimeout 600
+$result = Invoke-Sqlcmd $sqlquery `
+			-ServerInstance $dbServer `
+			-Database $dbName `
+			-MaxCharLength 1000000 `
+			-ConnectionTimeout 10 `
+			-QueryTimeout 600 `
+      -TrustServerCertificate
 
 $l = $result.length
 $i = 0
@@ -155,7 +161,10 @@ foreach($row in $result) {
     # $elapsed = ((Get-Date) - $startTime).TotalSeconds
     # $remainingItems = $l - $i
     # $averageItemTime = $elapsed / $i
-    Write-Progress "Evaluating $l roles and groups" -Status "$i evaluated" -PercentComplete $p # -SecondsRemaining ($remainingItems * $averageItemTime)
+    Write-Progress "Evaluating $l roles and groups" `
+			-Status "$i evaluated" `
+			-PercentComplete $p 
+			# -SecondsRemaining ($remainingItems * $averageItemTime)
 }
 "
 

@@ -126,14 +126,39 @@ a as (
   where rnk = 1
 ),
 q as (
-  select CapabilityPath
-  , ROW_NUMBER() over (partition by CapabilityPath order by CapabilityPath) as rownum   --  not reliable because string_split doesn't guarantee order until SQL 2022
-  --, ROW_NUMBER() over (partition by CapabilityPath order by ordinal) as rownum --  Use with SQL 2022 or later
-  , value as val
-  --, substring(value, 11, 32) as val
-  from a
-    cross apply string_split(valout, char(10))   --  not reliable because string_split doesn't guarantee order until SQL 2022
-    --cross apply string_split(valout, char(10), 1) --  Use with SQL 2022 or later
+  --select CapabilityPath
+  --, ROW_NUMBER() over (partition by CapabilityPath order by CapabilityPath) as rownum   --  not reliable because string_split doesn't guarantee order until SQL 2022
+  ----, ROW_NUMBER() over (partition by CapabilityPath order by ordinal) as rownum --  Use with SQL 2022 or later
+  --, value as val
+  ----, substring(value, 11, 32) as val
+  --from a
+  --  cross apply string_split(valout, char(10))   --  not reliable because string_split doesn't guarantee order until SQL 2022
+  --  --cross apply string_split(valout, char(10), 1) --  Use with SQL 2022 or later
+
+  --  SQL Server 2012 does not have string_split()
+  SELECT CapabilityPath
+  , ROW_NUMBER() over (partition by CapabilityPath order by CapabilityPath) as rownum
+  , Split.a.value('.', 'NVARCHAR(MAX)') val
+  FROM (
+      SELECT CapabilityPath
+      , CAST('<X>' + 
+          REPLACE(
+            replace(
+              replace(
+                replace(
+                  replace(
+                    replace(
+                      valout, '`"', char(10)
+                    ), '<', char(10)
+                  ), '>', char(10)
+                ), '&', char(10)
+              ), '''', char(10)
+            ), char(10), '</X><X>'
+          ) + '</X>' AS XML
+        ) AS String
+      from a
+  ) AS A
+  CROSS APPLY String.nodes('/X') AS Split(a)
 )
 
 --  Using a temporary table here reduces run time from 88 seconds to 8 seconds.
@@ -277,7 +302,13 @@ drop table #q
 drop table #capabilities
 "
 
-$result = Invoke-Sqlcmd $sqlquery -ServerInstance $dbServer -Database $dbName -MaxCharLength 1000000 -ConnectionTimeout 10 -QueryTimeout 600
+$result = Invoke-Sqlcmd $sqlquery `
+			-ServerInstance $dbServer `
+			-Database $dbName `
+			-MaxCharLength 1000000 `
+			-ConnectionTimeout 10 `
+			-QueryTimeout 600 `
+      -TrustServerCertificate
 
 $l = $result.length
 $Capability = @()
@@ -299,7 +330,10 @@ foreach($row in $result) {
     $remainingItems = $l - $i
     $averageItemTime = $elapsed / $i
 
-    Write-Progress "Processing $l capabilities" -Status "$i capabilities processed" -PercentComplete $p -SecondsRemaining ($remainingItems * $averageItemTime)
+    Write-Progress "Processing $l capabilities" `
+			-Status "$i capabilities processed" `
+			-PercentComplete $p `
+			-SecondsRemaining ($remainingItems * $averageItemTime)
 }
 
 

@@ -1,7 +1,9 @@
 ﻿$ExistingVariables = Get-Variable | Select-Object -ExpandProperty Name
 
+$thisFolder = (Split-Path $MyInvocation.MyCommand.Source)
+Set-Location $thisFolder
+. ".\fn.ps1"
 
-. \fn.ps1
 
 function Get-TableMetadata {
   [cmdletbinding()]
