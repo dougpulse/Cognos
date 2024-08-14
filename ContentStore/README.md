@@ -41,14 +41,20 @@ See which objects a user owns.
 ### PackageReference.sql
 
 Identifies data containers (packages, data modules, etc.) and which presentation objects (reports, dashboards, etc.) use them.  
-Also identifies data containers that are not used.
-Identifies where a data module uses a dataset that is populated from a data module that uses a dataset that uses a package (etc.) 
-and attributes the usage (presentation object) to the parent data container.
-Whether or not the presentation objects have been used is a different question.  This routine considers only object references, not usage stats from the Audit database.
+Also identifies data containers that are not used.  
+Identifies where a data module uses a dataset that is populated from a data module that uses a dataset that uses a package (etc.)  
+and attributes the usage (presentation object) to the parent data container.  
+Whether or not the presentation objects have been used is a different question.  This routine considers only object references, not usage stats from the Audit database.  
 
-### ModuleAndModelSpecs.SQL
+### ModuleAndModelSpecs.sql
 
 Initially intended to allow a system-wide search for packages and models that use a specific data source.
+
+### ModulesAndPackages.ps1
+
+Queries the Content Store and saves specs of packages and data modules to the file system.  Includes prettifying the json or xml for easy diffs in source control.  
+This script has trouble unzipping some PKZipped data.  It reports the number of objects that require unzipping and the number of objects unzipped.
+
 
 ## Permissions
 
