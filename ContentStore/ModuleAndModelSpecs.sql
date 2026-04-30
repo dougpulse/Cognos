@@ -3,7 +3,8 @@ GO
 ;
 
 declare @DirectoryNamespace varchar(255) = 'MyNamespace'
-declare @DirectoryNamespaceLength int = 11
+declare @MyDataSource varchar(255) = 'My Data Source'
+declare @MyOtherDataSource varchar(255) = 'My Other Data Source'
 
 --  data container full path
 --  ...for all packages, modules, uploaded files, and datasets
@@ -19,16 +20,16 @@ objname as (
                            and n2.LOCALEID = 118
 ),
 package (
-      PCMID
-    , CMID
-    , ObjectId
-    , ObjectName
-    , ObjectPath
-    , done
-    , RootNode
-    , ObjectType
-    , ParentObjectType
-  ) as (
+    PCMID
+  , CMID
+  , ObjectId
+  , ObjectName
+  , ObjectPath
+  , done
+  , RootNode
+  , ObjectType
+  , ParentObjectType
+) as (
   select o.PCMID
   , n.CMID
   , n.CMID
@@ -69,7 +70,7 @@ package (
         then cast(n.NAME as varchar(max))
       else cast(n.NAME + '/' + p.ObjectPath as varchar(max))
     end
-  , case when left(n.NAME, @DirectoryNamespaceLength + 1) = @DirectoryNamespace + ':' then 1 else 0 end
+  , case when left(n.NAME, len(@DirectoryNamespace) + 1) = @DirectoryNamespace + ':' then 1 else 0 end
   , cast(n.NAME as varchar(max))
   , p.ObjectType
   , case when p.ParentObjectType is null then c.NAME else p.ParentObjectType end
@@ -185,21 +186,21 @@ WITH
 ----('http://www.developer.cognos.com/schemas/bmt/60/7' as ns)  --  The version differs per object.  Can we somehow ignore the xml namespace and still get results?  *: to the rescue!
 --,
 models as (
-select o.ObjectId
-, o.ObjectPath
---, model.datasource.value('ns:cmDataSource[1]', 'varchar(255)') as DataSource
-, model.datasource.value('*:cmDataSource[1]', 'varchar(255)') as DataSource --  *: namespace-unaware in XPath2.0    "This would not work with elements in the default namespace, though." - Rafael Winterhalter on SO
---, model.datasource.value('*[local-name() = "cmDataSource"][1]', 'varchar(255)') as DataSource --  older xpath
-from #models o
-  --cross apply o.CBASEDEF_STRING_x.nodes('/ns:project/ns:dataSources/ns:dataSource') as model(datasource)
-  cross apply o.CBASEDEF_STRING_x.nodes('/*:project/*:dataSources/*:dataSource') as model(datasource)
-  --cross apply o.CBASEDEF_STRING_x.nodes('/*[local-name() = "project"]/*[local-name() = "dataSources"]/*[local-name() = "dataSource"]') as model(datasource)
+  select o.ObjectId
+  , o.ObjectPath
+  --, model.datasource.value('ns:cmDataSource[1]', 'varchar(255)') as DataSource
+  , model.datasource.value('*:cmDataSource[1]', 'varchar(255)') as DataSource --  *: namespace-unaware in XPath2.0    "This would not work with elements in the default namespace, though." - Rafael Winterhalter on SO
+  --, model.datasource.value('*[local-name() = "cmDataSource"][1]', 'varchar(255)') as DataSource --  older xpath
+  from #models o
+    --cross apply o.CBASEDEF_STRING_x.nodes('/ns:project/ns:dataSources/ns:dataSource') as model(datasource)
+    cross apply o.CBASEDEF_STRING_x.nodes('/*:project/*:dataSources/*:dataSource') as model(datasource)
+    --cross apply o.CBASEDEF_STRING_x.nodes('/*[local-name() = "project"]/*[local-name() = "dataSources"]/*[local-name() = "dataSource"]') as model(datasource)
 )
 select *
 from models
 where DataSource in (
-  'My Data Source'
-, 'My Other Data Source'
+  @MyDataSource
+, @MyOtherDataSource
 )
 order by 2, 3
 
