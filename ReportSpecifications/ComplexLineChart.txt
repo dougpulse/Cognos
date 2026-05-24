@@ -1,4 +1,4 @@
-<report xmlns="http://developer.cognos.com/schemas/report/14.3/" expressionLocale="en" useStyleVersion="11.4">
+<report xmlns="http://developer.cognos.com/schemas/report/15.5/"           expressionLocale="en" useStyleVersion="11.4"><!--RSU-SPC-0093 The report specification was upgraded from "http://developer.cognos.com/schemas/report/14.3/" to "http://developer.cognos.com/schemas/report/15.5/" at 2021-2-12. 9:5:54-->
     <drillBehavior/>
     <layouts>
         <layout>
@@ -72,11 +72,9 @@
                                                         </chartTextItem>
                                                     </chartContents>
                                                     <sortList>
-                                                        <sortItem refDataItem="Date" sortOrder="ascending"/>
+                                                        <sortItem refDataItem="Date"/>
                                                     </sortList>
-                                                    <propertyList>
-                                                        <propertyItem refDataItem="Region"/>
-                                                    </propertyList>
+                                                    
                                                 </chartNodeMember>
                                             </chartNodeMembers>
                                         </chartNode>
@@ -86,8 +84,8 @@
                                     <v2_combinationChartTypes>
                                         <v2_line lineDisplayType="lineAndMarkers">
                                             <v2_linePalette markerSize="5pt">
-                                                <v2_linePaletteEntries>
-                                                    <v2_linePaletteEntry>
+                                                
+                                            <v2_linePaletteEntries><v2_linePaletteEntry>
                                                         <v2_lineFill defaultColor="#8599D3">
                                                             <v2_linearGradient>
                                                                 <v2_gradientColor gradientColor="#8599D3"/>
@@ -95,15 +93,11 @@
                                                             </v2_linearGradient>
                                                         </v2_lineFill>
                                                         <v2_pointPaletteEntry>
-                                                            <v2_fillEffect>
-                                                                <v2_linearGradient>
-                                                                    <v2_gradientColor gradientColor="#8599D3"/>
-                                                                    <v2_gradientColor colorPosition="100" gradientColor="#5876AE"/>
-                                                                </v2_linearGradient>
-                                                            </v2_fillEffect>
-                                                        </v2_pointPaletteEntry>
-                                                    </v2_linePaletteEntry>
-                                                    <v2_linePaletteEntry>
+                                                            
+                                                        <v2_fillEffect defaultColor="green">
+                                                                
+                                                            <v2_solidColor color="green"/></v2_fillEffect></v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry><v2_linePaletteEntry>
                                                         <v2_lineFill defaultColor="#E3AE6C">
                                                             <v2_linearGradient>
                                                                 <v2_gradientColor gradientColor="#E3AE6C"/>
@@ -111,15 +105,11 @@
                                                             </v2_linearGradient>
                                                         </v2_lineFill>
                                                         <v2_pointPaletteEntry>
-                                                            <v2_fillEffect>
-                                                                <v2_linearGradient>
-                                                                    <v2_gradientColor gradientColor="#E3AE6C"/>
-                                                                    <v2_gradientColor colorPosition="100" gradientColor="#CD854E"/>
-                                                                </v2_linearGradient>
-                                                            </v2_fillEffect>
-                                                        </v2_pointPaletteEntry>
-                                                    </v2_linePaletteEntry>
-                                                    <v2_linePaletteEntry>
+                                                            
+                                                        <v2_fillEffect defaultColor="green">
+                                                                
+                                                            <v2_solidColor color="green"/></v2_fillEffect></v2_pointPaletteEntry>
+                                                    </v2_linePaletteEntry><v2_linePaletteEntry>
                                                         <v2_lineFill defaultColor="#839862">
                                                             <v2_linearGradient>
                                                                 <v2_gradientColor gradientColor="#839862"/>
@@ -134,8 +124,7 @@
                                                                 </v2_linearGradient>
                                                             </v2_fillEffect>
                                                         </v2_pointPaletteEntry>
-                                                    </v2_linePaletteEntry>
-                                                    <v2_linePaletteEntry>
+                                                    </v2_linePaletteEntry><v2_linePaletteEntry>
                                                         <v2_lineFill defaultColor="#B7C873">
                                                             <v2_linearGradient>
                                                                 <v2_gradientColor gradientColor="#B7C873"/>
@@ -150,8 +139,7 @@
                                                                 </v2_linearGradient>
                                                             </v2_fillEffect>
                                                         </v2_pointPaletteEntry>
-                                                    </v2_linePaletteEntry>
-                                                    <v2_linePaletteEntry>
+                                                    </v2_linePaletteEntry><v2_linePaletteEntry>
                                                         <v2_lineFill defaultColor="#8484A8">
                                                             <v2_linearGradient>
                                                                 <v2_gradientColor gradientColor="#8484A8"/>
@@ -166,8 +154,7 @@
                                                                 </v2_linearGradient>
                                                             </v2_fillEffect>
                                                         </v2_pointPaletteEntry>
-                                                    </v2_linePaletteEntry>
-                                                    <v2_linePaletteEntry>
+                                                    </v2_linePaletteEntry><v2_linePaletteEntry>
                                                         <v2_lineFill defaultColor="#C0CCED">
                                                             <v2_linearGradient>
                                                                 <v2_gradientColor gradientColor="#C0CCED"/>
@@ -182,8 +169,7 @@
                                                                 </v2_linearGradient>
                                                             </v2_fillEffect>
                                                         </v2_pointPaletteEntry>
-                                                    </v2_linePaletteEntry>
-                                                    <v2_linePaletteEntry>
+                                                    </v2_linePaletteEntry><v2_linePaletteEntry>
                                                         <v2_lineFill defaultColor="#8C5580">
                                                             <v2_linearGradient>
                                                                 <v2_gradientColor gradientColor="#8C5580"/>
@@ -198,8 +184,7 @@
                                                                 </v2_linearGradient>
                                                             </v2_fillEffect>
                                                         </v2_pointPaletteEntry>
-                                                    </v2_linePaletteEntry>
-                                                    <v2_linePaletteEntry>
+                                                    </v2_linePaletteEntry><v2_linePaletteEntry>
                                                         <v2_lineFill defaultColor="#C789BC">
                                                             <v2_linearGradient>
                                                                 <v2_gradientColor gradientColor="#C789BC"/>
@@ -214,8 +199,7 @@
                                                                 </v2_linearGradient>
                                                             </v2_fillEffect>
                                                         </v2_pointPaletteEntry>
-                                                    </v2_linePaletteEntry>
-                                                    <v2_linePaletteEntry>
+                                                    </v2_linePaletteEntry><v2_linePaletteEntry>
                                                         <v2_lineFill defaultColor="#D5BAEF">
                                                             <v2_linearGradient>
                                                                 <v2_gradientColor gradientColor="#D5BAEF"/>
@@ -230,8 +214,7 @@
                                                                 </v2_linearGradient>
                                                             </v2_fillEffect>
                                                         </v2_pointPaletteEntry>
-                                                    </v2_linePaletteEntry>
-                                                    <v2_linePaletteEntry>
+                                                    </v2_linePaletteEntry><v2_linePaletteEntry>
                                                         <v2_lineFill defaultColor="#83683F">
                                                             <v2_linearGradient>
                                                                 <v2_gradientColor gradientColor="#83683F"/>
@@ -246,8 +229,7 @@
                                                                 </v2_linearGradient>
                                                             </v2_fillEffect>
                                                         </v2_pointPaletteEntry>
-                                                    </v2_linePaletteEntry>
-                                                    <v2_linePaletteEntry>
+                                                    </v2_linePaletteEntry><v2_linePaletteEntry>
                                                         <v2_lineFill defaultColor="#DCB05A">
                                                             <v2_linearGradient>
                                                                 <v2_gradientColor gradientColor="#DCB05A"/>
@@ -262,8 +244,7 @@
                                                                 </v2_linearGradient>
                                                             </v2_fillEffect>
                                                         </v2_pointPaletteEntry>
-                                                    </v2_linePaletteEntry>
-                                                    <v2_linePaletteEntry>
+                                                    </v2_linePaletteEntry><v2_linePaletteEntry>
                                                         <v2_lineFill defaultColor="#F4DF9E">
                                                             <v2_linearGradient>
                                                                 <v2_gradientColor gradientColor="#F4DF9E"/>
@@ -278,8 +259,7 @@
                                                                 </v2_linearGradient>
                                                             </v2_fillEffect>
                                                         </v2_pointPaletteEntry>
-                                                    </v2_linePaletteEntry>
-                                                    <v2_linePaletteEntry>
+                                                    </v2_linePaletteEntry><v2_linePaletteEntry>
                                                         <v2_lineFill defaultColor="#5F8A8C">
                                                             <v2_linearGradient>
                                                                 <v2_gradientColor gradientColor="#5F8A8C"/>
@@ -294,8 +274,7 @@
                                                                 </v2_linearGradient>
                                                             </v2_fillEffect>
                                                         </v2_pointPaletteEntry>
-                                                    </v2_linePaletteEntry>
-                                                    <v2_linePaletteEntry>
+                                                    </v2_linePaletteEntry><v2_linePaletteEntry>
                                                         <v2_lineFill defaultColor="#96C4B2">
                                                             <v2_linearGradient>
                                                                 <v2_gradientColor gradientColor="#96C4B2"/>
@@ -310,8 +289,7 @@
                                                                 </v2_linearGradient>
                                                             </v2_fillEffect>
                                                         </v2_pointPaletteEntry>
-                                                    </v2_linePaletteEntry>
-                                                    <v2_linePaletteEntry>
+                                                    </v2_linePaletteEntry><v2_linePaletteEntry>
                                                         <v2_lineFill defaultColor="#CBE8E7">
                                                             <v2_linearGradient>
                                                                 <v2_gradientColor gradientColor="#CBE8E7"/>
@@ -326,8 +304,7 @@
                                                                 </v2_linearGradient>
                                                             </v2_fillEffect>
                                                         </v2_pointPaletteEntry>
-                                                    </v2_linePaletteEntry>
-                                                    <v2_linePaletteEntry>
+                                                    </v2_linePaletteEntry><v2_linePaletteEntry>
                                                         <v2_lineFill defaultColor="#AE6564">
                                                             <v2_linearGradient>
                                                                 <v2_gradientColor gradientColor="#AE6564"/>
@@ -342,8 +319,7 @@
                                                                 </v2_linearGradient>
                                                             </v2_fillEffect>
                                                         </v2_pointPaletteEntry>
-                                                    </v2_linePaletteEntry>
-                                                    <v2_linePaletteEntry>
+                                                    </v2_linePaletteEntry><v2_linePaletteEntry>
                                                         <v2_lineFill defaultColor="#D88C6F">
                                                             <v2_linearGradient>
                                                                 <v2_gradientColor gradientColor="#D88C6F"/>
@@ -358,8 +334,7 @@
                                                                 </v2_linearGradient>
                                                             </v2_fillEffect>
                                                         </v2_pointPaletteEntry>
-                                                    </v2_linePaletteEntry>
-                                                    <v2_linePaletteEntry>
+                                                    </v2_linePaletteEntry><v2_linePaletteEntry>
                                                         <v2_lineFill defaultColor="#E3C9B0">
                                                             <v2_linearGradient>
                                                                 <v2_gradientColor gradientColor="#E3C9B0"/>
@@ -374,8 +349,7 @@
                                                                 </v2_linearGradient>
                                                             </v2_fillEffect>
                                                         </v2_pointPaletteEntry>
-                                                    </v2_linePaletteEntry>
-                                                    <v2_linePaletteEntry>
+                                                    </v2_linePaletteEntry><v2_linePaletteEntry>
                                                         <v2_lineFill defaultColor="#848484">
                                                             <v2_linearGradient>
                                                                 <v2_gradientColor gradientColor="#848484"/>
@@ -390,8 +364,7 @@
                                                                 </v2_linearGradient>
                                                             </v2_fillEffect>
                                                         </v2_pointPaletteEntry>
-                                                    </v2_linePaletteEntry>
-                                                    <v2_linePaletteEntry>
+                                                    </v2_linePaletteEntry><v2_linePaletteEntry>
                                                         <v2_lineFill defaultColor="#a4a4a4">
                                                             <v2_linearGradient>
                                                                 <v2_gradientColor gradientColor="#a4a4a4"/>
@@ -406,8 +379,7 @@
                                                                 </v2_linearGradient>
                                                             </v2_fillEffect>
                                                         </v2_pointPaletteEntry>
-                                                    </v2_linePaletteEntry>
-                                                    <v2_linePaletteEntry>
+                                                    </v2_linePaletteEntry><v2_linePaletteEntry>
                                                         <v2_lineFill defaultColor="#C7C7C7">
                                                             <v2_linearGradient>
                                                                 <v2_gradientColor gradientColor="#C7C7C7"/>
@@ -422,46 +394,40 @@
                                                                 </v2_linearGradient>
                                                             </v2_fillEffect>
                                                         </v2_pointPaletteEntry>
-                                                    </v2_linePaletteEntry>
-                                                </v2_linePaletteEntries>
-                                            </v2_linePalette>
+                                                    </v2_linePaletteEntry></v2_linePaletteEntries></v2_linePalette>
                                             <v2_conditionalLinePalette showInLegend="hide">
                                                 <v2_lineAdvancedCondition>
-                                                    <v2_lineCases>
-                                                        <v2_lineCase>
+                                                    <v2_lineCases><v2_lineCase>
                                                             <v2_conditionalPaletteEntryLabel>
                                                                 <v2_automaticLabel/>
                                                             </v2_conditionalPaletteEntryLabel>
-                                                            <reportCondition>_day_of_week ([output].[Date],1) in (6,7) and [output].[Order method type]='E-mail' and [output].[Region] = 'Americas'</reportCondition>
-                                                            <v2_linePaletteEntry lineStyle="dash">
+                                                            <reportCondition>_day_of_week ([output].[Date],1) in (6,7) and [output].[Order method type]=&apos;E-mail&apos; and [output].[Region] = &apos;Americas&apos;</reportCondition>
+                                                            
+                                                        <v2_linePaletteEntry lineStyle="dash">
                                                                 <v2_lineFill defaultColor="#198545">
                                                                     <v2_color color="#8599D3"/>
                                                                 </v2_lineFill>
-                                                                <v2_pointPaletteEntry markerShape="circle">
-                                                                    <v2_fillEffect defaultColor="#198545">
-                                                                        <v2_solidColor color="blue"/>
-                                                                    </v2_fillEffect>
-                                                                </v2_pointPaletteEntry>
-                                                            </v2_linePaletteEntry>
-                                                        </v2_lineCase>
-                                                    </v2_lineCases>
+                                                                <v2_pointPaletteEntry>
+                                                                    
+                                                                <v2_fillEffect defaultColor="#198545">
+                                                                        <v2_solidColor color="red"/>
+                                                                    </v2_fillEffect></v2_pointPaletteEntry>
+                                                            </v2_linePaletteEntry></v2_lineCase></v2_lineCases>
                                                 </v2_lineAdvancedCondition>
                                                 <v2_lineAdvancedCondition>
-                                                    <v2_lineCases>
-                                                        <v2_lineCase>
-                                                            <reportCondition>_day_of_week ([output].[Date],1) in (6,7) and [output].[Order method type]='Telephone' and [output].[Region] = 'Americas'</reportCondition>
-                                                            <v2_linePaletteEntry lineStyle="dash">
+                                                    <v2_lineCases><v2_lineCase>
+                                                            <reportCondition>_day_of_week ([output].[Date],1) in (6,7) and [output].[Order method type]=&apos;Telephone&apos; and [output].[Region] = &apos;Americas&apos;</reportCondition>
+                                                            
+                                                        <v2_linePaletteEntry lineStyle="dash">
                                                                 <v2_lineFill defaultColor="#198545">
                                                                     <v2_color color="#E3AE6C"/>
                                                                 </v2_lineFill>
-                                                                <v2_pointPaletteEntry markerShape="circle">
-                                                                    <v2_fillEffect defaultColor="#198545">
-                                                                        <v2_solidColor color="blue"/>
-                                                                    </v2_fillEffect>
-                                                                </v2_pointPaletteEntry>
-                                                            </v2_linePaletteEntry>
-                                                        </v2_lineCase>
-                                                    </v2_lineCases>
+                                                                <v2_pointPaletteEntry>
+                                                                    
+                                                                <v2_fillEffect>
+                                                                        <v2_solidColor color="red"/>
+                                                                    </v2_fillEffect></v2_pointPaletteEntry>
+                                                            </v2_linePaletteEntry></v2_lineCase></v2_lineCases>
                                                 </v2_lineAdvancedCondition>
                                             </v2_conditionalLinePalette>
                                             <chartNodes>
@@ -475,7 +441,7 @@
                                                                     </dataSource>
                                                                 </chartTextItem>
                                                             </chartContents>
-                                                        </chartNodeMember>
+                                                        <propertyList><propertyItem refDataItem="Region"/></propertyList></chartNodeMember>
                                                     </chartNodeMembers>
                                                 </chartNode>
                                             </chartNodes>
@@ -503,7 +469,7 @@
                                                 </defaultStyles>
                                             </style>
                                         </v2_axisLabels>
-                                        <v2_majorGridlines lineWeight="0" lineColor="#CCCCCC"/>
+                                        <v2_majorGridlines lineColor="#CCCCCC" lineWeight="0"/>
                                     </v2_axis>
                                 </v2_topLeftAxis>
                                 <style>
@@ -545,46 +511,46 @@
                 <dataItem aggregate="total" name="Revenue">
                     <expression>[Sales (query)].[Sales].[Revenue]</expression>
                     <XMLAttributes>
-                        <XMLAttribute output="no" name="RS_dataType" value="2"/>
-                        <XMLAttribute output="no" name="RS_dataUsage" value="2"/>
-                        <XMLAttribute output="no" name="RS_isCurrency" value="true"/>
+                        <XMLAttribute name="RS_dataType" output="no" value="2"/>
+                        <XMLAttribute name="RS_dataUsage" output="no" value="2"/>
+                        <XMLAttribute name="RS_isCurrency" output="no" value="true"/>
                     </XMLAttributes>
                 </dataItem>
-                <dataItem aggregate="none" rollupAggregate="none" name="Date">
+                <dataItem aggregate="none" name="Date" rollupAggregate="none">
                     <expression>[Sales (query)].[Time].[Date]</expression>
                     <XMLAttributes>
-                        <XMLAttribute output="no" name="RS_dataType" value="4"/>
-                        <XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+                        <XMLAttribute name="RS_dataType" output="no" value="4"/>
+                        <XMLAttribute name="RS_dataUsage" output="no" value="0"/>
                     </XMLAttributes>
                 </dataItem>
-                <dataItem aggregate="none" rollupAggregate="none" name="Day of the week">
+                <dataItem aggregate="none" name="Day of the week" rollupAggregate="none">
                     <expression>[Sales (query)].[Time].[Day of the week]</expression>
                     <XMLAttributes>
-                        <XMLAttribute output="no" name="RS_dataType" value="1"/>
-                        <XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+                        <XMLAttribute name="RS_dataType" output="no" value="1"/>
+                        <XMLAttribute name="RS_dataUsage" output="no" value="0"/>
                     </XMLAttributes>
                 </dataItem>
-                <dataItem aggregate="none" rollupAggregate="none" name="Order method type">
+                <dataItem aggregate="none" name="Order method type" rollupAggregate="none">
                     <expression>[Sales (query)].[Order method].[Order method type]</expression>
                     <XMLAttributes>
-                        <XMLAttribute output="no" name="RS_dataType" value="3"/>
-                        <XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+                        <XMLAttribute name="RS_dataType" output="no" value="3"/>
+                        <XMLAttribute name="RS_dataUsage" output="no" value="0"/>
                     </XMLAttributes>
                 </dataItem>
-                <dataItem name="Region" aggregate="none" rollupAggregate="none">
+                <dataItem aggregate="none" name="Region" rollupAggregate="none">
                     <expression>[Sales (query)].[Retailers].[Region]</expression>
                     <XMLAttributes>
-                        <XMLAttribute name="RS_dataType" value="3" output="no"/>
-                        <XMLAttribute name="RS_dataUsage" value="0" output="no"/>
+                        <XMLAttribute name="RS_dataType" output="no" value="3"/>
+                        <XMLAttribute name="RS_dataUsage" output="no" value="0"/>
                     </XMLAttributes>
                 </dataItem>
-                <dataItem name="join" aggregate="none">
-                    <expression>'a'</expression>
+                <dataItem aggregate="none" name="join">
+                    <expression>&apos;a&apos;</expression>
                 </dataItem>
             </selection>
             <detailFilters>
                 <detailFilter>
-                    <filterExpression>[Order method type] in ('E-mail','Telephone')</filterExpression>
+                    <filterExpression>[Order method type] in (&apos;E-mail&apos;,&apos;Telephone&apos;)</filterExpression>
                 </detailFilter>
                 <detailFilter>
                     <filterExpression>[Date]&lt;= 2010-02-28</filterExpression>
@@ -596,22 +562,22 @@
                 <model/>
             </source>
             <selection>
-                <dataItem aggregate="none" rollupAggregate="none" name="Date">
+                <dataItem aggregate="none" name="Date" rollupAggregate="none">
                     <expression>[Sales (query)].[Time].[Date]</expression>
                     <XMLAttributes>
-                        <XMLAttribute output="no" name="RS_dataType" value="4"/>
-                        <XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+                        <XMLAttribute name="RS_dataType" output="no" value="4"/>
+                        <XMLAttribute name="RS_dataUsage" output="no" value="0"/>
                     </XMLAttributes>
                 </dataItem>
-                <dataItem aggregate="none" rollupAggregate="none" name="Day of the week">
+                <dataItem aggregate="none" name="Day of the week" rollupAggregate="none">
                     <expression>[Sales (query)].[Time].[Day of the week]</expression>
                     <XMLAttributes>
-                        <XMLAttribute output="no" name="RS_dataType" value="1"/>
-                        <XMLAttribute output="no" name="RS_dataUsage" value="0"/>
+                        <XMLAttribute name="RS_dataType" output="no" value="1"/>
+                        <XMLAttribute name="RS_dataUsage" output="no" value="0"/>
                     </XMLAttributes>
                 </dataItem>
-                <dataItem name="join" aggregate="none">
-                    <expression>'a'</expression>
+                <dataItem aggregate="none" name="join">
+                    <expression>&apos;a&apos;</expression>
                 </dataItem>
             </selection>
             <detailFilters>
@@ -637,16 +603,16 @@
                 </joinOperation>
             </source>
             <selection>
-                <dataItem name="Date" aggregate="none" rollupAggregate="none">
+                <dataItem aggregate="none" name="Date" rollupAggregate="none">
                     <expression>[date].[Date]</expression>
                 </dataItem>
-                <dataItem name="Day of the week" aggregate="none" rollupAggregate="none">
+                <dataItem aggregate="none" name="Day of the week" rollupAggregate="none">
                     <expression>[date].[Day of the week]</expression>
                 </dataItem>
-                <dataItem name="Order method type" aggregate="none" rollupAggregate="none">
+                <dataItem aggregate="none" name="Order method type" rollupAggregate="none">
                     <expression>[source].[Order method type]</expression>
                 </dataItem>
-                <dataItem name="Region" aggregate="none" rollupAggregate="none">
+                <dataItem aggregate="none" name="Region" rollupAggregate="none">
                     <expression>[source].[Region]</expression>
                 </dataItem>
             </selection>
@@ -668,41 +634,41 @@
                 </joinOperation>
             </source>
             <selection>
-                <dataItem name="Date" aggregate="none" rollupAggregate="none">
+                <dataItem aggregate="none" name="Date" rollupAggregate="none">
                     <expression>[dimensions].[Date]</expression>
                     <XMLAttributes>
-                        <XMLAttribute name="RS_dataType" value="4" output="no"/>
-                        <XMLAttribute name="RS_dataUsage" value="0" output="no"/>
+                        <XMLAttribute name="RS_dataType" output="no" value="4"/>
+                        <XMLAttribute name="RS_dataUsage" output="no" value="0"/>
                     </XMLAttributes>
                 </dataItem>
-                <dataItem name="Day of the week" aggregate="none" rollupAggregate="none">
+                <dataItem aggregate="none" name="Day of the week" rollupAggregate="none">
                     <expression>[dimensions].[Day of the week]</expression>
                 </dataItem>
-                <dataItem name="Order method type" aggregate="none" rollupAggregate="none">
+                <dataItem aggregate="none" name="Order method type" rollupAggregate="none">
                     <expression>[dimensions].[Order method type]</expression>
                     <XMLAttributes>
-                        <XMLAttribute name="RS_dataType" value="3" output="no"/>
-                        <XMLAttribute name="RS_dataUsage" value="0" output="no"/>
+                        <XMLAttribute name="RS_dataType" output="no" value="3"/>
+                        <XMLAttribute name="RS_dataUsage" output="no" value="0"/>
                     </XMLAttributes>
                 </dataItem>
-                <dataItem name="Region" aggregate="none" rollupAggregate="none">
+                <dataItem aggregate="none" name="Region" rollupAggregate="none">
                     <expression>[dimensions].[Region]</expression>
                 </dataItem>
-                <dataItem name="Revenue" aggregate="total" rollupAggregate="automatic">
+                <dataItem aggregate="total" name="Revenue">
                     <expression>[source].[Revenue]</expression>
                     <XMLAttributes>
-                        <XMLAttribute name="RS_dataType" value="2" output="no"/>
-                        <XMLAttribute name="RS_dataUsage" value="2" output="no"/>
+                        <XMLAttribute name="RS_dataType" output="no" value="2"/>
+                        <XMLAttribute name="RS_dataUsage" output="no" value="2"/>
                     </XMLAttributes>
                 </dataItem>
             </selection>
         </query>
     </queries>
     <XMLAttributes>
-        <XMLAttribute output="no" name="RS_CreateExtendedDataItems" value="true"/>
-        <XMLAttribute output="no" name="listSeparator" value=","/>
-        <XMLAttribute output="no" name="decimalSeparator" value="."/>
-        <XMLAttribute output="no" name="RS_modelModificationTime" value="2015-11-25T21:38:24.820Z"/>
-    </XMLAttributes>
-    <modelPath type="FM">/content/folder[@name='Samples']/folder[@name='Models']/package[@name='GO sales (query)']/model[@name='model']</modelPath>
-</report>
+        <XMLAttribute name="RS_CreateExtendedDataItems" output="no" value="true"/>
+        <XMLAttribute name="listSeparator" output="no" value=","/>
+        <XMLAttribute name="decimalSeparator" output="no" value="."/>
+        
+    <XMLAttribute output="no" name="RS_modelModificationTime" value="2013-01-08T15:32:22.123Z"/></XMLAttributes>
+    <modelPath>/content/folder[@name=&apos;Samples_LG_DQ&apos;]/folder[@name=&apos;Models&apos;]/package[@name=&apos;GO Sales (query)&apos;]/model[@name=&apos;model&apos;]</modelPath>
+<reportName>Chart 1.1</reportName></report>
